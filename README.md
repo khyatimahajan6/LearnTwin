@@ -1,1 +1,1 @@
-# TwinLearning
+# AI Twin Professor
