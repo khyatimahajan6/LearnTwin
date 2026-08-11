@@ -1,0 +1,89 @@
+{
+  "lecture_id": "L1",
+  "source": "audio",
+  "document_text": null,
+  "transcript": "Binary search is a searching algorithm that operates on a sorted or monotonic search space repeatedly dividing it into halves to find a target value or optimal answer in logarithmic time O log N. Frame underscore one conditions to apply binary search algorithm in a data structure. The data structure must be sorted, access to any element of the data structure should take constant time. Binary search algorithm divide the search space into two halves by finding the middle index mid. Compare the middle of the search space with the key. If the key is found at middle, the process is terminated. If the key is not found at middle, choose which half will be used as the next search space. If the key is smaller than the middle, then the left side is used for next search. If the key is larger than the middle, then the side is used for next search. This process is continued until the key is found or the total search space is exhausted. How does binary search algorithm work? To understand the working of binary search, consider the following illustration. Consider an array R equals open brace 2, 5, 8, 12, 16, 23, 38, 56, 72, 91. Close brace and the target equals 23, binary dash, search dash 2 dot web BP, binary dash search dash 2 dot web. How to implement binary search? It can be implemented in the following two ways, iterative binary search, algorithm recursive, binary search, algorithm, iterative algorithm, o log n, time in o 1 space.",
+  "timestamps": [
+    {
+      "start": 0.0,
+      "end": 6.24,
+      "text": "Binary search is a searching algorithm that operates on a sorted or monotonic search space repeatedly"
+    },
+    {
+      "start": 6.24,
+      "end": 12.32,
+      "text": "dividing it into halves to find a target value or optimal answer in logarithmic time O log N."
+    },
+    {
+      "start": 13.52,
+      "end": 19.12,
+      "text": "Frame underscore one conditions to apply binary search algorithm in a data structure."
+    },
+    {
+      "start": 20.0,
+      "end": 25.2,
+      "text": "The data structure must be sorted, access to any element of the data structure should take"
+    },
+    {
+      "start": 25.2,
+      "end": 32.56,
+      "text": "constant time. Binary search algorithm divide the search space into two halves by finding the"
+    },
+    {
+      "start": 32.56,
+      "end": 39.04,
+      "text": "middle index mid. Compare the middle of the search space with the key. If the key is found"
+    },
+    {
+      "start": 39.04,
+      "end": 44.64,
+      "text": "at middle, the process is terminated. If the key is not found at middle, choose which half will"
+    },
+    {
+      "start": 44.64,
+      "end": 50.08,
+      "text": "be used as the next search space. If the key is smaller than the middle, then the left side is"
+    },
+    {
+      "start": 50.08,
+      "end": 55.6,
+      "text": "used for next search. If the key is larger than the middle, then the side is used for next"
+    },
+    {
+      "start": 55.6,
+      "end": 61.839999999999996,
+      "text": "search. This process is continued until the key is found or the total search space is exhausted."
+    },
+    {
+      "start": 62.8,
+      "end": 68.64,
+      "text": "How does binary search algorithm work? To understand the working of binary search, consider the"
+    },
+    {
+      "start": 68.64,
+      "end": 79.36,
+      "text": "following illustration. Consider an array R equals open brace 2, 5, 8, 12, 16, 23, 38, 56, 72, 91."
+    },
+    {
+      "start": 80.32,
+      "end": 88.72,
+      "text": "Close brace and the target equals 23, binary dash, search dash 2 dot web BP, binary dash search"
+    },
+    {
+      "start": 88.72,
+      "end": 95.68,
+      "text": "dash 2 dot web. How to implement binary search? It can be implemented in the following two ways,"
+    },
+    {
+      "start": 96.4,
+      "end": 105.52000000000001,
+      "text": "iterative binary search, algorithm recursive, binary search, algorithm, iterative algorithm,"
+    },
+    {
+      "start": 105.52,
+      "end": 115.36,
+      "text": "o log n, time in o 1 space."
+    }
+  ],
+  "combined_text": "Binary search is a searching algorithm that operates on a sorted or monotonic search space repeatedly dividing it into halves to find a target value or optimal answer in logarithmic time O log N. Frame underscore one conditions to apply binary search algorithm in a data structure. The data structure must be sorted, access to any element of the data structure should take constant time. Binary search algorithm divide the search space into two halves by finding the middle index mid. Compare the middle of the search space with the key. If the key is found at middle, the process is terminated. If the key is not found at middle, choose which half will be used as the next search space. If the key is smaller than the middle, then the left side is used for next search. If the key is larger than the middle, then the side is used for next search. This process is continued until the key is found or the total search space is exhausted. How does binary search algorithm work? To understand the working of binary search, consider the following illustration. Consider an array R equals open brace 2, 5, 8, 12, 16, 23, 38, 56, 72, 91. Close brace and the target equals 23, binary dash, search dash 2 dot web BP, binary dash search dash 2 dot web. How to implement binary search? It can be implemented in the following two ways, iterative binary search, algorithm recursive, binary search, algorithm, iterative algorithm, o log n, time in o 1 space."
+}

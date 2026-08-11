@@ -1,0 +1,6369 @@
+--- Page 1 ---
+Important Resources: 
+Revisiting C++: 
+https://docs.google.com/document/d/18-j-pOXVdCyzIL5r5FiwslXJIbQl_z3PSTR11sZjKD4/edit?usp=sharing 
+ 
+Just as the JEE (Joint Entrance Examination) is the gateway to prestigious 
+engineering institutes like IITs, and the CAT (Common Admission Test) is the key to 
+top management schools like IIMs, Data Structures and Algorithms (DSA) form the 
+foundation for securing roles in top IT companies. DSA is the backbone of 
+problem-solving in software development, enabling efficient, scalable, and optimized 
+solutions to real-world problems. These notes explore why DSA is critical for IT 
+companies, how it impacts hiring, and why mastering it is essential for aspiring 
+software engineers. 
+ 
+ 
+ 
+Definition 
+●​ Data Structures: Organized formats for storing, managing, and retrieving data 
+efficiently (e.g., arrays, linked lists, trees, graphs, hash tables). 
+●​ Algorithms: Step-by-step procedures or rules to solve computational problems 
+(e.g., sorting, searching, graph traversal, dynamic programming). 
+●​ Together, DSA provides the tools to design efficient systems, much like how 
+JEE tests problem-solving for engineering or CAT tests analytical skills for 
+management. 
+Why is it Important? 
+●​ DSA is the core skill for writing efficient code that powers applications, from 
+small-scale apps to massive systems like Google Search or Amazon’s 
+recommendation engine. 
+It enables developers to optimize time (how fast a program runs) and space (how 
+much memory it uses), which directly impacts a company’s performance, user 
+experience, and costs.
+
+--- Page 2 ---
+IT companies, from startups to tech giants like Google, Amazon, Microsoft, and Meta, 
+prioritize DSA proficiency because it directly correlates with a candidate’s ability to 
+solve complex problems efficiently. Here’s why DSA is as critical as JEE for IITs or 
+CAT for IIMs: 
+1. Problem-Solving Foundation 
+●​ Analogy: Just as JEE tests a student’s ability to solve physics, chemistry, and 
+math problems to prove their engineering aptitude, DSA tests a candidate’s 
+ability to solve computational problems logically and efficiently. 
+●​ Real-World Example: Imagine a company like Uber needs to find the shortest 
+route for a driver to pick up a passenger. This requires knowledge of graph 
+algorithms (e.g., Dijkstra’s Algorithm) to minimize travel time. Without DSA, 
+developers might write slow, inefficient code, leading to poor user experiences. 
+●​ Why Companies Care: Efficient problem-solving reduces development time 
+and improves product performance, directly impacting customer satisfaction. 
+2. Scalability and Performance 
+●​ Analogy: CAT evaluates a candidate’s ability to handle complex quantitative 
+and logical problems, ensuring they can manage large-scale business 
+challenges. Similarly, DSA ensures developers can build systems that scale to 
+millions of users. 
+●​ Example: For a social media platform like Twitter (X), handling millions of posts 
+requires efficient data retrieval. Using a hash table for quick lookups or a trie 
+for autocomplete search suggestions ensures low latency, even with massive 
+data. 
+●​ Why Companies Care: Scalable systems save computational resources, 
+reduce server costs, and ensure smooth performance under heavy loads. 
+3. Competitive Edge in Hiring 
+●​ Analogy: Clearing JEE or CAT sets candidates apart as top talent for IITs or 
+IIMs. Similarly, strong DSA skills distinguish candidates in IT company 
+interviews. 
+●​ Example: In coding interviews, companies like Google often ask questions like 
+“Find the median of two sorted arrays” or “Implement a LRU Cache.” These 
+require knowledge of binary search or hash maps with doubly linked lists. 
+Candidates who excel in DSA stand out.
+
+--- Page 3 ---
+●​ Why Companies Care: DSA proficiency signals a candidate’s ability to think 
+critically, write clean code, and tackle real-world challenges, making them 
+valuable hires. 
+4. Cost Optimization 
+●​ Analogy: Just as IIT graduates design efficient engineering solutions to save 
+resources, DSA expertise helps IT companies save on infrastructure costs. 
+●​ Example: Amazon processes millions of transactions daily. Using efficient 
+algorithms (e.g., sorting and searching for inventory management) reduces 
+server load, saving millions in cloud computing costs. 
+●​ Why Companies Care: Optimized code reduces the need for additional 
+servers, lowering operational expenses and improving profit margins. 
+ 
+ 
+A data structure is a specialized format for organizing, storing, and managing data in 
+a computer so that it can be accessed and modified efficiently. It provides a 
+systematic way to arrange data, enabling specific operations like insertion, deletion, 
+searching, and traversal to be performed with optimal time and space efficiency. Data 
+structures act as the backbone of algorithms, providing a foundation for solving 
+computational problems effectively. 
+Why Do We Use Data Structures? 
+Data structures are essential because they: 
+●​ Optimize Operations: Allow efficient storage and retrieval of data, reducing the 
+time and resources needed for computations. 
+●​ Organize Data: Provide a structured way to manage data, making it easier to 
+process and manipulate. 
+●​ Enable Scalability: Support handling large datasets efficiently, critical for 
+real-world applications like databases or social networks. 
+●​ Solve Complex Problems: Facilitate the design of algorithms for tasks like 
+searching, sorting, or graph traversal by providing appropriate data 
+organization. 
+●​ Improve Code Readability: Well-chosen data structures make code more 
+intuitive and maintainable. 
+Real-Life Examples of Data Structures
+
+--- Page 4 ---
+To understand why data structures are vital, let’s explore some real-world analogies 
+and applications: 
+1.​ Library Management (Array-like Structure):​
+ 
+○​ Scenario: A small library has a fixed number of shelves, each holding 
+books in a specific order (e.g., by book ID). You can quickly find a book if 
+you know its shelf number. 
+○​ Data Structure Analogy: This is similar to an array, where data is stored 
+in contiguous memory locations, and accessing an element by index is 
+fast (O(1)). 
+○​ Why Use It?: Arrays are ideal when the size is fixed, and quick access to 
+elements is needed. For example, a library might store 100 books in a 
+fixed array, allowing instant retrieval of the 50th book. 
+○​ Limitation: Add- 
+2.​ To-Do List App (Linked List):​
+ 
+○​ Scenario: You maintain a to-do list where tasks are added or removed 
+dynamically (e.g., “Buy groceries,” “Call mom”). Each task points to the 
+next one, and you can easily insert or delete tasks without rearranging 
+the entire list. 
+○​ Data Structure Analogy: This resembles a linked list, where each node 
+(task) contains data and a reference to the next node. 
+○​ Why Use It?: Linked lists are perfect for dynamic data where the size 
+changes frequently, as insertion and deletion are efficient (O(1) if the 
+position is known). 
+○​ Limitation: Finding a specific task requires traversing the list from the 
+start (O(n)). 
+3.​ Call Stack in a Calculator (Stack):​
+ 
+○​ Scenario: When using a calculator to evaluate an expression like (3 + 
+5) * 2, the calculator processes operations in a Last-In-First-Out (LIFO) 
+order, storing intermediate results. 
+○​ Data Structure Analogy: This is like a stack, where elements are 
+pushed onto the top and popped off in reverse order. 
+○​ Why Use It?: Stacks are used for managing function calls, undo 
+operations, or expression evaluation because they maintain a strict LIFO 
+order. 
+○​ Example Application: In a text editor, the “undo” feature uses a stack to 
+store actions, allowing you to revert the last change. 
+4.​ Ticket Queue at a Movie Theater (Queue):​
+
+--- Page 5 ---
+○​ Scenario: People line up to buy movie tickets, and the first person in line 
+is served first (First-In-First-Out, FIFO). 
+○​ Data Structure Analogy: This mirrors a queue, where elements are 
+added at the rear and removed from the front. 
+○​ Why Use It?: Queues are ideal for scenarios requiring sequential 
+processing, like task scheduling in operating systems or print job 
+management. 
+○​ Example Application: A customer support system queues incoming calls 
+to ensure fair handling. 
+5.​ Family Tree (Tree):​
+ 
+○​ Scenario: A family tree shows relationships, with a grandparent at the top 
+and children branching out below. 
+○​ Data Structure Analogy: This is a tree, a hierarchical structure where 
+each node (person) can have multiple children but one parent. 
+○​ Why Use It?: Trees are used for hierarchical data, like file systems 
+(directories and subdirectories) or organizational charts. 
+○​ Example Application: A file explorer on your computer uses a tree to 
+navigate folders. 
+6.​ Social Network (Graph):​
+ 
+○​ Scenario: In a social network like X, users are connected by friendships 
+or follows, forming a complex network of relationships. 
+○​ Data Structure Analogy: This is a graph, where nodes (users) are 
+connected by edges (relationships). 
+○​ Why Use It?: Graphs model complex relationships, enabling tasks like 
+finding the shortest path (e.g., navigation apps) or recommending friends. 
+○​ Example Application: Google Maps uses a graph to find the shortest 
+route between two locations. 
+These examples illustrate that data structures are not abstract concepts but practical 
+tools that mirror real-world organization systems, making computations faster and 
+more manageable. 
+Basic Terminology 
+Understanding the terminology is key to mastering data structures. Below are the core 
+terms: 
+1 Data 
+●​ Definition: Raw facts or values that a computer processes, such as numbers, 
+strings, or objects. 
+●​ Example: A student’s name (“Alice”), age (20), or grades ([85, 90, 88]).
+
+--- Page 6 ---
+●​ Analogy: Data is like raw ingredients in a kitchen, ready to be organized and 
+processed. 
+2 Data Structure 
+●​ Definition: A way to organize and store data for efficient operations. 
+●​ Example: An array storing exam scores or a linked list storing a playlist. 
+●​ Analogy: A data structure is like a filing cabinet, organizing documents (data) 
+for quick access. 
+3 Abstract Data Type (ADT) 
+●​ Definition: A high-level specification of a data structure’s behavior (operations) 
+without detailing its implementation. 
+●​ Example: A Stack ADT defines push, pop, and peek operations, implemented 
+using an array or linked list. 
+●​ Analogy: An ADT is like a vending machine interface—you know what buttons 
+to press (operations) without knowing how the machine works internally. 
+4 Time Complexity 
+●​ Definition: The computational time an algorithm or operation takes as a 
+function of input size (n), expressed in Big-O notation (e.g., O(1), O(n), O(n²)). 
+●​ Example: Accessing an array element by index is O(1), while searching an 
+unsorted list is O(n). 
+●​ Analogy: Time complexity is like estimating how long it takes to find a book in a 
+library—faster if sorted, slower if unsorted. 
+5 Space Complexity 
+●​ Definition: The amount of memory used by a data structure or algorithm as a 
+function of input size. 
+●​ Example: An array of n elements uses O(n) space; a recursive algorithm may 
+use O(n) stack space. 
+●​ Analogy: Space complexity is like the storage space needed for boxes in a 
+warehouse. 
+6 Static vs. Dynamic Data Structures 
+●​ Static: Fixed size, cannot change during runtime. 
+○​ Example: Arrays (int arr[10]). 
+○​ Pros: Fast access (O(1)). 
+○​ Cons: Inflexible size. 
+●​ Dynamic: Can grow or shrink during runtime. 
+○​ Example: Linked Lists, ArrayLists.
+
+--- Page 7 ---
+○​ Pros: Flexible size. 
+○​ Cons: Slower access for some operations. 
+●​ Analogy: Static is a fixed-size notebook; dynamic is a binder with removable 
+pages. 
+7 Primitive vs. Non-Primitive Data Structures 
+●​ Primitive: Basic data types like int, float, char, bool. 
+○​ Example: Storing a single number (int x = 5). 
+●​ Non-Primitive: Complex structures built from primitives, like arrays, linked lists, 
+or trees. 
+○​ Example: A list of student records. 
+●​ Analogy: Primitives are individual LEGO pieces; non-primitive structures are 
+models built from them. 
+Types of Data Structures 
+ 
+Data structures are classified into Linear and Non-Linear based on how data is 
+organized. 
+1 Linear Data Structures 
+Data elements are arranged sequentially, with each element connected to the next (or 
+previous). 
+1.1 Array
+
+--- Page 8 ---
+●​ Definition: A collection of elements of the same type stored in contiguous 
+memory, accessed by indices. 
+●​ Example: int scores[5] = {85, 90, 78, 92, 88};. 
+●​ Operations: 
+○​ Access: O(1) via index. 
+○​ Insertion/Deletion: O(n) due to shifting. 
+●​ Use Case: Storing a fixed list of temperatures. 
+●​ Analogy: A row of numbered mailboxes, each holding one item. 
+1.2 Linked List 
+ 
+●​ Definition: A chain of nodes, each containing data and a pointer to the next 
+node. 
+●​ Example: A playlist where each song links to the next. 
+●​ Operations: 
+○​ Access: O(n) (traverse from head). 
+○​ Insertion/Deletion: O(1) if position known, O(n) to find position. 
+●​ Use Case: Dynamic task lists. 
+●​ Analogy: A scavenger hunt with clues pointing to the next location. 
+1.3 Stack
+
+--- Page 9 ---
+●​ Definition: A LIFO structure where elements are added/removed from the top. 
+●​ Example: A stack of pancakes—only the top one is accessible. 
+●​ Operations: 
+○​ Push: O(1). 
+○​ Pop: O(1). 
+○​ Peek: O(1). 
+●​ Use Case: Browser history (back button pops the last page). 
+●​ Analogy: A stack of trays in a cafeteria. 
+1.4 Queue 
+ 
+●​ Definition: A FIFO structure where elements are added at the rear and removed 
+from the front. 
+●​ Example: A line at a bus stop. 
+●​ Operations: 
+○​ Enqueue: O(1). 
+○​ Dequeue: O(1). 
+○​ Front: O(1). 
+●​ Use Case: Printer job queue. 
+●​ Analogy: A queue at a bank counter.
+
+--- Page 10 ---
+2 Non-Linear Data Structures 
+Data elements are organized in a hierarchical or networked manner. 
+2.1 Tree 
+ 
+●​ Definition: A hierarchical structure with a root and child nodes. 
+●​ Example: A company’s organizational chart. 
+●​ Operations: 
+○​ Traversal: O(n) (e.g., preorder, inorder). 
+○​ Insertion/Deletion: O(log n) for balanced trees, O(n) for unbalanced. 
+●​ Use Case: File systems. 
+●​ Analogy: A family tree with parents and children. 
+2.2 Graph 
+ 
+●​ Definition: Nodes (vertices) connected by edges, representing relationships. 
+●​ Example: A road network connecting cities.
+
+--- Page 11 ---
+●​ Operations: 
+○​ Traversal: BFS/DFS (O(V + E)). 
+○​ Shortest Path: Dijkstra’s (O((V + E) log V)). 
+●​ Use Case: Social media friend recommendations. 
+●​ Analogy: A map with cities (nodes) and roads (edges). 
+2.3 Hash Table 
+ 
+●​ Definition: Maps keys to values using a hash function for fast retrieval. 
+●​ Example: A phonebook mapping names to numbers. 
+●​ Operations: 
+○​ Insert/Search/Delete: O(1) average, O(n) worst case (collisions). 
+●​ Use Case: Database indexing. 
+●​ Analogy: A library catalog for quick book lookup. 
+Elementary Data Organization 
+Data organization refers to how data is arranged in a structure to support specific 
+operations. The choice of organization impacts efficiency. 
+1 Sequential Organization 
+●​ Definition: Data is stored in a linear, sequential manner. 
+●​ Examples: Arrays, Linked Lists, Stacks, Queues. 
+●​ Pros: Simple to implement; good for sequential access. 
+●​ Cons: Inefficient for random access or frequent insertions in some cases. 
+●​ Example: A playlist stored as a linked list for sequential playback. 
+2 Hierarchical Organization 
+●​ Definition: Data is organized in a tree-like structure with parent-child 
+relationships. 
+●​ Examples: Trees, Heaps.
+
+--- Page 12 ---
+●​ Pros: Efficient for hierarchical data and searching (e.g., O(log n) in balanced 
+trees). 
+●​ Cons: Complex to implement and maintain. 
+●​ Example: A file system with directories and subdirectories. 
+3 Networked Organization 
+●​ Definition: Data is organized as a network of interconnected nodes. 
+●​ Examples: Graphs, Hash Tables. 
+●​ Pros: Models complex relationships; fast lookup in hash tables. 
+●​ Cons: Complex traversal and maintenance. 
+●​ Example: A social network graph connecting users. 
+Data Structures and Operations 
+Each data structure supports specific operations, optimized for different use cases. 
+Below are common operations and their complexities: 
+1 Common Operations 
+●​ Access: Retrieve data at a specific position. 
+○​ Array: O(1) by index. 
+○​ Linked List: O(n) by traversal. 
+●​ Insertion: Add a new element. 
+○​ Array: O(n) (shifting required). 
+○​ Linked List: O(1) if position known. 
+●​ Deletion: Remove an element. 
+○​ Array: O(n) (shifting required). 
+○​ Linked List: O(1) if position known. 
+●​ Search: Find an element. 
+○​ Array (unsorted): O(n). 
+○​ Binary Search Tree (balanced): O(log n). 
+●​ Traversal: Visit all elements. 
+○​ Array/Linked List: O(n). 
+○​ Tree/Graph: O(n) or O(V + E). 
+●​ Sorting: Arrange elements in order. 
+○​ Array: O(n log n) with efficient algorithms like QuickSort.
+
+--- Page 13 ---
+An algorithm is a step-by-step procedure or set of instructions designed to solve a 
+specific problem or perform a task. Think of it as a recipe for your favorite dish: it tells 
+you exactly what ingredients to use and what steps to follow to get the desired result. 
+Key Characteristics 
+●​ Input: Algorithms take some input (e.g., a list of numbers). 
+●​ Output: They produce a result (e.g., a sorted list). 
+●​ Finite Steps: They have a clear beginning and end. 
+●​ Unambiguous: Each step is clear and precise. 
+●​ Effective: They solve the problem correctly and efficiently. 
+Analogy 
+Imagine you’re trying to find a specific book in a messy library: 
+●​ Without an Algorithm:You randomly check every shelf, which could take 
+hours. 
+●​ With an Algorithm: You follow a method, like checking the catalog or searching 
+by category, making the process faster and organized. 
+ 
+2. Why Do We Need Algorithms?
+
+--- Page 14 ---
+Algorithms are the backbone of computer science and software development. They 
+are essential for solving problems efficiently and are used in every piece of technology 
+you interact with daily. Here’s why we need algorithms: 
+2.1. Solving Problems Efficiently 
+●​ What It Means: Algorithms provide a systematic way to solve problems, saving 
+time and resources. 
+●​ Example: To sort a list of 1,000 names, an inefficient method like comparing 
+every pair (bubble sort) might take thousands of steps, while a smart algorithm 
+like quicksort can do it much faster. 
+●​ Real-World: Google uses algorithms to rank search results quickly, ensuring 
+you get relevant results in milliseconds. 
+2.2. Handling Large Data 
+●​ What It Means: Modern applications deal with massive amounts of data (e.g., 
+millions of users on Instagram). Algorithms help process this data efficiently. 
+●​ Example: Finding a friend’s profile on a social media platform with millions of 
+users requires a fast algorithm like binary search or hash tables to avoid slow 
+searches. 
+●​ Real-World: Amazon uses algorithms to recommend products from a catalog of 
+millions, instantly. 
+2.3. Optimizing Resources 
+●​ What It Means: Algorithms reduce the time (how fast a program runs) and 
+space (how much memory it uses) needed to complete a task.
+
+--- Page 15 ---
+●​ Example: In a navigation app like Google Maps, an algorithm like Dijkstra’s 
+finds the shortest route, saving fuel and time for drivers. 
+●​ Real-World: Companies like Uber rely on algorithms to match drivers and riders 
+efficiently, reducing wait times and operational costs. 
+2.4. Enabling Automation 
+●​ What It Means: Algorithms allow computers to perform tasks automatically 
+without human intervention. 
+●​ Example: A spam filter algorithm in your email sorts out junk emails based on 
+patterns, saving you from manually checking each one. 
+●​ Real-World: Netflix’s recommendation algorithm suggests shows based on 
+your viewing history, automating personalized content delivery. 
+2.5. Standardizing Solutions 
+●​ What It Means: Algorithms provide reusable, proven methods to solve common 
+problems. 
+●​ Example: The merge sort algorithm can be used to sort anything—numbers, 
+names, or dates—without reinventing the wheel. 
+●​ Real-World: Developers use standard algorithms in libraries (e.g., Python’s 
+sorted() function) to save time and ensure reliability. 
+ 
+3. Importance of Algorithms in IT Companies 
+Just as exams like JEE (for IITs) or CAT (for IIMs) test your ability to solve complex 
+problems, algorithms are critical for IT companies because they: 
+●​ Drive Performance: Fast algorithms improve user experience (e.g., quick 
+search results). 
+●​ Reduce Costs: Efficient algorithms use fewer computational resources, saving 
+money on servers. 
+●​ Enable Innovation: Algorithms power cutting-edge technologies like AI, 
+machine learning, and self-driving cars. 
+●​ Filter Talent: In interviews, companies like Google and Microsoft test algorithm 
+knowledge to identify strong problem-solvers. 
+Example: Google Search 
+●​ Problem: Find relevant web pages for a user’s query among billions of pages. 
+●​ Algorithm: Google uses an inverted index (a data structure) and PageRank 
+(a graph algorithm) to rank pages efficiently.
+
+--- Page 16 ---
+●​ Impact: Without algorithms, searches would be too slow, and users would 
+abandon the platform. 
+ 
+4. Types of Algorithms 
+Algorithms come in various categories, each suited for specific problems. Here are 
+some common types with beginner-friendly examples: 
+4.1. Searching Algorithms 
+●​ Purpose: Find an element in a dataset. 
+●​ Example: Linear Search (check each element) vs. Binary Search (divide a 
+sorted list in half repeatedly). 
+●​ Real-World: Searching for a contact in your phone (sorted list → binary search 
+is faster). 
+4.2. Sorting Algorithms 
+●​ Purpose: Arrange data in a specific order (e.g., ascending or descending). 
+●​ Example: Bubble Sort (swap adjacent elements) vs. Merge Sort (divide and 
+conquer). 
+●​ Real-World: Sorting products by price on an e-commerce site like Amazon. 
+4.3. Graph Algorithms 
+●​ Purpose: Solve problems involving networks (e.g., roads, social connections). 
+●​ Example: Breadth-First Search (BFS) to find the shortest path in a maze. 
+●​ Real-World: GPS apps use Dijkstra’s Algorithm to find the shortest route. 
+4.4. Dynamic Programming 
+●​ Purpose: Solve complex problems by breaking them into smaller subproblems. 
+●​ Example: Finding the longest common subsequence in two strings (used in 
+DNA matching). 
+●​ Real-World: Optimizing delivery routes for logistics companies like FedEx. 
+ 
+5. How Algorithms Work 
+Let’s walk through a basic algorithm to find the largest number in a list. 
+Problem
+
+--- Page 17 ---
+Given a list of numbers [3, 1, 4, 1, 5, 9, 2], find the largest number. 
+Algorithm (Step-by-Step) 
+1.​ Start with the first number as the “largest” (e.g., 3). 
+2.​ Compare it with the next number (e.g., 1). If the next number is larger, update 
+the “largest.” 
+3.​ Repeat for all numbers in the list. 
+4.​ Return the largest number found (e.g., 9). 
+Pseudocode 
+Algorithm FindMax(numbers): 
+    max = numbers[0]          // Set first number as max 
+    For each num in numbers: 
+        If num > max: 
+            max = num         // Update max if current number is larger 
+    Return max 
+ 
+Why It’s Useful 
+This algorithm ensures you check every number exactly once, making it efficient for 
+small lists. For larger lists, you might optimize it further (e.g., using parallel 
+processing). 
+ 
+6. Real-World Applications of Algorithms 
+Algorithms power the technology around us. Here are some examples: 
+●​ Google Maps: Uses Dijkstra’s Algorithm or A Search* to find the shortest 
+path. 
+●​ YouTube: Uses recommendation algorithms to suggest videos based on your 
+watch history. 
+●​ Online Shopping: Sorting algorithms display products by price, and search 
+algorithms find items quickly. 
+●​ Games: Pathfinding algorithms (e.g., A*) help characters navigate game 
+worlds.
+
+--- Page 18 ---
+8. Common Misconceptions for Beginners 
+●​ Myth: Algorithms are only for advanced programmers. 
+○​ Truth: Anyone can learn algorithms with practice, starting with simple 
+ones. 
+●​ Myth: Algorithms are only for interviews. 
+○​ Truth: They’re used in real-world software to improve performance and 
+user experience. 
+●​ Myth: You need to memorize all algorithms. 
+○​ Truth: Focus on understanding concepts and patterns; you can always 
+look up details. 
+ 
+Key Differences Between Algorithm and Program 
+ 
+●​ Algorithm: A treasure map with instructions (e.g., “Go north 10 steps, turn left, dig”). 
+It’s the plan, not the action. 
+●​ Program: The actual journey where you follow the map using specific tools (e.g., a 
+shovel, compass) in a particular environment (e.g., a forest). 
+ 
+Feature 
+Algorithm 
+Program 
+Definition 
+ 
+A step-by-step procedure to solve a 
+problem. 
+A set of instructions written in a 
+programming language to perform a 
+task. 
+Purpose 
+Helps in designing the logic or approach 
+to solve a problem. 
+Implements the logic using actual 
+code for execution by a computer. 
+Nature 
+Conceptual and logical 
+Practical and executable 
+Language Used 
+Plain English, pseudocode, or 
+flowchart 
+Programming language (Python, 
+Java, C++, etc.) 
+Readability 
+Easy to read and understand for 
+Readable mainly by those who
+
+--- Page 19 ---
+Feature 
+Algorithm 
+Program 
+everyone 
+understand the programming 
+language 
+Execution 
+Cannot be executed by a computer 
+directly 
+Can be compiled or interpreted and 
+executed by a computer 
+Phase Used In 
+Design phase of software development 
+Implementation (coding) phase 
+Focus 
+Focuses on what steps to follow 
+Focuses on how to perform those 
+steps on a computer 
+Error Checking 
+No real-time error checking 
+Syntax and runtime errors are 
+checked by the compiler/interpreter 
+Hardware 
+Dependency 
+Not dependent on hardware 
+May be dependent on hardware and 
+software environment 
+Analysis 
+Method 
+Analyzed using asymptotic notations 
+(Big O, Ω, Θ) for efficiency 
+Tested using test cases for 
+correctness and output 
+Performance 
+Focused on time and space complexity 
+(Big O) 
+Focused on correctness, speed, 
+and memory usage during runtime 
+Example 
+(Addition) 
+1. Start 
+2. Input A, B 
+3. Sum = A + B 
+4. Output Sum 
+5. End 
+a = int(input()) 
+b = int(input()) 
+print(a + b) 
+ 
+Time and Space Complexity Analysis 
+Time and space complexity are essential concepts in computer science for 
+analyzing the efficiency of algorithms. They help in understanding the resources an 
+algorithm will consume during execution, which is crucial for making informed 
+decisions when designing or choosing algorithms. Time Complexity measures how 
+fast an algorithm runs, while Space Complexity measures how much memory it 
+uses. Analyzing these complexities helps us choose the best algorithm for a task, 
+much like choosing the fastest route for a trip or the smallest bag for packing. 
+1. What is Time and Space Complexity? 
+1.1 Time Complexity 
+●​ Definition: Time complexity measures how the running time of an algorithm 
+grows as the input size (denoted as n) increases. It’s not about exact 
+seconds but about how the number of operations scales with input size.
+
+--- Page 20 ---
+●​ Analogy: Imagine walking to school. If the distance doubles (larger input), the 
+time taken might double (linear growth) or increase differently depending on 
+your method (e.g., walking vs. biking). 
+●​ Why It Matters: Faster algorithms improve user experience (e.g., quick search 
+results on Google) and reduce computational costs. 
+1.2 Space Complexity 
+●​ Definition: Space complexity measures how much memory an algorithm uses 
+as the input size (n) grows. It includes: 
+○​ Fixed Space: Memory for variables, constants, etc., that don’t depend on 
+input size. 
+○​ Variable Space: Memory that grows with input size (e.g., arrays, 
+recursive call stacks). 
+●​ Analogy: Packing for a trip. Fixed space is your backpack’s size (constant), 
+while variable space is the number of clothes you pack (depends on trip length). 
+●​ Why It Matters: Efficient memory use is critical for devices with limited 
+resources (e.g., smartphones) or large-scale systems (e.g., cloud servers). 
+1.3 Example 
+●​ Problem: Write a program to print the main diagonal elements of a square 
+matrix. 
+ 
+Solutions: 
+ 
+Code 1:​
+ 
+   
+  for (int i = 0; i < n; i++) { 
+    cout << arr[i][i] << " "; 
+  } 
+ 
+ 
+Code 2:​
+
+--- Page 21 ---
+for (int i = 0; i < n; i++) { 
+      for (int j = 0; j < n; j++) { 
+         if (i == j) { 
+             cout << arr[i][j] << " "; 
+         } 
+     } 
+   }Complexity: O(n) (loop runs n times, each iteration is O(1)). 
+ 
+ 
+Feature 
+Code 1 
+Code 2 
+Loop Structure 
+Single for loop 
+Nested for loops 
+Total Iterations 
+n 
+n × n = n² 
+Condition Check 
+None 
+Checks if (i == j) every 
+time 
+Output 
+Same 
+Same 
+Preferred by Coders 
+Yes (faster, cleaner) 
+No (redundant work) 
+Conclusion: Why Code 1 is Preferred 
+Although both codes produce the same output, we did not execute them to 
+measure the exact run-time. However, based on time complexity analysis, we can 
+confidently decide which one is better. 
+Note: 
+The code with fewer iterations and lower time complexity will always be 
+preferred in terms of performance. 
+Hypothetical Execution Times: 
+Let’s assume: 
+●​ Code 1 (C₁) takes 10 seconds 
+●​ Code 2 (C₂) takes 1 minute 
+Therefore: 
+∴ C1 is preferred over C2
+
+--- Page 22 ---
+Because it is faster, more efficient, and has lower time complexity. 
+ 
+Without actually running the code, if we are able to determine how much time or 
+space an algorithm will take based on its structure, this is known as Apriori Analysis. 
+To understand this better, let’s explore the types of complexity analysis. 
+2. Types of Complexity Analysis 
+There are two main approaches to analyze an algorithm’s time and space complexity: 
+Posterior Analysis and Apriori Analysis. These differ in how and when the analysis 
+is performed. 
+ 
+2.1 Posterior Analysis (Empirical Analysis) 
+●​ Definition: Posterior analysis involves measuring an algorithm’s performance 
+by running it on a computer and collecting actual data (e.g., execution time, 
+memory usage). 
+●​ How It Works: 
+○​ Run the program with different input sizes. 
+○​ Measure metrics like running time (in seconds) or memory usage (in 
+bytes) using profiling tools. 
+○​ Analyze how these metrics change as input size grows. 
+●​ Characteristics: 
+○​ Data-Driven: Based on actual execution. 
+○​ Hardware-Dependent: Results vary depending on the computer, 
+programming language, or compiler. 
+○​ Practical but Limited: Useful for real-world testing but may not 
+generalize across systems. 
+●​ Analogy: Cooking a dish and timing how long it takes with different quantities of 
+ingredients. The time depends on your kitchen tools (hardware). 
+●​ Example: 
+○​ Problem: Measure the time to sort an array using bubble sort.
+
+--- Page 23 ---
+○​ Method: Run a bubble sort program on arrays of sizes 100, 1000, and 
+10000, and record the time (e.g., 0.01s, 1s, 100s). 
+○​ Result: You observe the time grows quadratically (approximately n²), 
+confirming O(n²) time complexity. 
+○​ Limitation: Results depend on the computer’s speed, so they’re not 
+universal. 
+2.2 Apriori Analysis (Theoretical Analysis) 
+●​ Definition: Apriori analysis involves calculating an algorithm’s time and space 
+complexity theoretically, before running it, by analyzing its steps mathematically. 
+●​ How It Works: 
+○​ Count the number of basic operations (e.g., comparisons, assignments) 
+as a function of input size (n). 
+○​ Use asymptotic notations to express complexity. 
+○​ Focus on the algorithm’s logic, not the hardware or language. 
+●​ Characteristics: 
+○​ Abstract: Independent of hardware, language, or compiler. 
+○​ Mathematical: Based on counting operations and modeling growth. 
+○​ Generalizable: Results apply across all systems. 
+●​ Analogy: Estimating how long it will take to cook a dish by analyzing the recipe 
+steps, without actually cooking. The estimate holds regardless of the kitchen. 
+●​ Example: 
+○​ Problem: Analyze the time complexity of bubble sort. 
+○​ Method: 
+■​ Bubble sort uses two nested loops: 
+■​ Outer loop: Runs n times. 
+■​ Inner loop: Runs approximately n-i times for each i. 
+■​ Total comparisons: ≈ n(n-1)/2 ≈ n²/2. 
+■​ Dominant term is n², so time complexity is O(n²). 
+○​ Advantage: No need to run the program; the result is universal. 
+2.3 Posterior vs. Apriori Analysis 
+Aspect 
+Posterior Analysis 
+Apriori Analysis 
+Definition 
+Measures performance by running 
+the program. 
+Calculates performance theoretically 
+before running. 
+Approach 
+Empirical (based on actual 
+execution data). 
+Mathematical (based on algorithm 
+steps). 
+Dependency 
+Depends on hardware, language, 
+and compiler. 
+Independent of hardware or language.
+
+--- Page 24 ---
+Tools 
+Profiling tools (e.g., timers, memory 
+profilers). 
+Pen-and-paper or pseudocode 
+analysis. 
+Accuracy 
+Accurate for specific systems but 
+not universal. 
+General estimate, not tied to specific 
+systems. 
+Use Case 
+Testing real-world performance on 
+specific hardware. 
+Designing and comparing algorithms 
+theoretically. 
+Example 
+Timing bubble sort on a 
+1000-element array (e.g., 1s). 
+Calculating bubble sort’s complexity 
+as O(n²). 
+2.4 When to Use Each 
+●​ Posterior Analysis: Use when optimizing a program for a specific system (e.g., testing an app 
+on a smartphone to ensure it runs smoothly). 
+●​ Apriori Analysis: Use when designing algorithms or preparing for coding interviews, as it 
+provides a universal way to compare efficiency. 
+ 
+ 
+Time-Space Tradeoff 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+What is It? 
+The time-space tradeoff is the balance between time and space efficiency. Sometimes, using more 
+memory can make an algorithm faster, or saving memory can slow it down. 
+Analogy
+
+--- Page 25 ---
+Imagine studying for an exam: 
+●​ Option 1: Memorize all formulas (uses more “memory” in your brain, but you solve questions 
+faster). 
+●​ Option 2: Derive formulas during the exam (saves “memory” but takes more time). 
+Example: Storing a Lookup Table 
+●​ Problem: Check if a number exists in a large dataset frequently. 
+●​ Option 1 (Slow, Less Space): Linear search through the dataset each time. 
+○​ Time Complexity: O(n) 
+○​ Space Complexity: O(1) 
+●​ Option 2 (Fast, More Space): Store the dataset in a hash table for quick lookups. 
+○​ Time Complexity: O(1) 
+○​ Space Complexity: O(n) (for the hash table). 
+●​ Tradeoff: Option 2 is faster but uses more memory. If memory is limited (e.g., on a small 
+device), Option 1 might be better. 
+#include <iostream> 
+#include <map> 
+using namespace std; 
+ 
+int main(){ 
+ 
+    //Problem: Check if a number exists in an array 
+frequently. 
+ 
+    //Option 1: 
+    int nums[] = {1,2,3,4,5,6,7}; 
+    int size = 7; 
+    int findNumber = 6; 
+ 
+    //Time Complexity: loop will run n time 
+ 
+    //Option 2: 
+    //map<int, int> numbers = {1:1, 2:2,3:3, 4:4, 5:5, 6:6, 
+7:7} 
+    //numbers[findNumber] //constant time. 
+} 
+Real-World Example
+
+--- Page 26 ---
+●​ Google Search: Uses large indexes (high space) to deliver fast search results (low time). 
+●​ Embedded Systems: Devices like smartwatches use less memory (low space) even if it 
+means slower processing (higher time). 
+Asymptotic Notations (O, Ω, Θ) 
+Asymptotic notations are mathematical tools to describe how an algorithm’s time or 
+space complexity grows as the input size (n) becomes very large. They focus on the 
+“big picture” rather than exact numbers, making it easier to compare algorithms. 
+1.​ Assumption:​
+ We assume the input size (n) is very large and always positive.​
+ Typical ranges: 
+ Goal:​
+ As the input size increases, we analyze how the code behaves — especially 
+how its running time or resource usage scales.​
+ 
+2.​ Time Complexity Representation:​
+ To represent this scaling, we use the concept of a mathematical function that 
+expresses the Time Complexity (T.C.) in terms of n. 
+Example: 
+If an algorithm takes n2 steps to process input of size n, we write: 
+T(n) = O(n2) 
+1 Analogy 
+Think of asymptotic notations as describing a car’s speed on a long trip: 
+●​ Big-OH (O): The slowest speed in heavy traffic (worst case). 
+●​ Omega (Ω): The fastest speed on an empty highway (best case). 
+●​ Theta (Θ): The typical speed under normal conditions (average or exact case). 
+2 Big-Oh Notation (O)
+
+--- Page 27 ---
+O(g(n)) = { f(n): there exist positive constants c and n0 
+            such that 0 ≤ f(n) ≤ cg(n) for all n ≥ n0 } 
+ 
+●​ Definition: Represents the upper bound of an algorithm’s time or space 
+complexity, describing the worst-case scenario. 
+●​ What It Means: The algorithm will take at most this much time or space as n 
+grows. 
+●​  
+●​ Example: 
+○​ Linear Search: 
+■​ Problem: Find a number in an unsorted array of size n. 
+■​ Worst Case: The number is at the end or not in the array, requiring 
+n checks. 
+■​ Time Complexity: O(n) (at most n steps). 
+Big-O Notation Proof: f(n) = O(g(n)) 
+We write: 
+f(n)=O(g(n)) 
+if there exist positive constants c and n₀ such that: 
+0 ≤ f(n) ≤ c⋅g(n) for all n ≥ n0 
+ 
+What This Means
+
+--- Page 28 ---
+●​ We're saying that f(n) doesn't grow faster than a constant multiple of g(n). 
+●​ In other words, g(n) is an upper bound on the growth of f(n) for large values of 
+n. 
+●​ This describes the worst-case growth rate. 
+f(n) = 3n + 5 is O(n)
+ 
+Step-by-Step Proof 
+We need to find constants c and n₀ such that: 
+3n + 5 ≤  c⋅n for all n ≥ n0 
+Let’s simplify: 
+3n + 5 ≤ c⋅n⇒ (3n+5)/n ≤ c ⇒ 3+5/n ≤ c  
+As n increases, the term 5/n becomes very small. 
+Let’s pick: 
+●​ n₀ = 1, then 5/n ≤ 5 
+●​ So: 3 + 5/n ≤ 3 + 5 => 8 
+Hence, for all n ≥ 1, we have: 
+3n + 5 ≤ 8n 
+So, take c = 8 and n₀ = 1 
+Therefore, 
+f(n) = 3n+5 = O(n) 
+Student Tasks: 
+ 
+Task 1: 
+Prove that: 
+f(n) = 4n + 10 is O(n) 
+Hint: Use the definition of Big-O and find constants c and n₀ such that:
+
+--- Page 29 ---
+f(n) ≤ c⋅n for all n ≥ n0
+ 
+Task 2: 
+Prove that: 
+f(n)=2n2 + 7n + 1 is O(n2) 
+Hint: Try simplifying f(n) / n2​, then find appropriate c and n₀. 
+3 Omega Notation (Ω) 
+≤ 
+ 
+   Ω(g(n)) = { f(n): there exist positive constants c and n0 
+            such that 0 ≤ cg(n) ≤ f(n) for all n ≥ n0 } 
+ 
+ 
+●​ Definition: Represents the lower bound of an algorithm’s time or space 
+complexity, describing the best-case scenario. 
+●​ What It Means: The algorithm will take at least this much time or space. 
+●​ Example: 
+○​ Linear Search: 
+■​ Best Case: The number is the first element, requiring 1 check. 
+■​ Time Complexity: Ω(1) (constant time in the best case). 
+○​ Real-World: If the book is on the first shelf you check, you’re done 
+instantly. 
+●​ Apriori Analysis: Ω(1) (best case is a single comparison).
+
+--- Page 30 ---
+●​ Posterior Analysis: Running the program might show near-constant time for 
+best-case inputs. 
+Omega (Ω) Notation Proof: f(n) = Ω(g(n)) 
+We write: 
+f(n) = Ω(g(n))  
+if there exist positive constants c and n₀ such that: 
+0 ≤ c⋅g(n) ≤ f(n) for all n ≥ n0 
+ 
+What This Means 
+●​ We're saying that f(n) grows at least as fast as a constant multiple of g(n). 
+●​ So, g(n) is a lower bound on the growth of f(n). 
+●​ This describes the best-case growth rate. 
+ 
+Example Proof 
+Let’s prove: 
+f(n) = 3n+5 is Ω(n)
+ 
+Step-by-Step Proof 
+We need to find constants c and n₀ such that: 
+c⋅n ≤ 3n+5 for all n ≥ n0 
+Let’s simplify: 
+c⋅n ≤ 3n + 5 ⇒ c ≤ 3 + 5/n 
+As n increases, 5/n becomes smaller. 
+Let’s pick: 
+●​ n₀ = 1, then 5/n ≤ 5​
+ 
+●​ So: 3 + 5/n ≤ 3 + 5 = 8, and we want c less than or equal to that
+
+--- Page 31 ---
+Choose c = 2, then: 
+2n ≤ 3n + 5 for all n ≥ 1 
+So, for c = 2 and n₀ = 1, the condition holds. 
+Therefore, 
+f(n) = 3n + 5 = Ω(n) 
+Student Tasks: 
+ 
+Task 1: 
+Prove that: 
+f(n) = 5n−3 is Ω(n)  
+Hint: Show c⋅n ≤ 5n−3 for some c and n₀. 
+ 
+Task 2: 
+Prove that: 
+f(n) = n2 + 4n is Ω(n2) 
+Hint: Use lower bound idea:​
+Find c such that c⋅n^2 ≤ f(n)  
+4 Theta Notation (Θ)
+
+--- Page 32 ---
+Θ(g(n)) = { f(n): there exist positive constants c1, c2 and n0 
+            such that 0 ≤ c1g(n) ≤ f(n) ≤ c2g(n) for all n ≥ n0 } 
+ 
+ 
+●​ Definition: Represents the tight bound of an algorithm’s time or space 
+complexity, meaning the best and worst cases are the same or very close. 
+●​ What It Means: The algorithm’s performance is exactly or approximately this. 
+●​ Example: 
+○​ Merge Sort: 
+■​ Problem: Sort an array of size n. 
+■​ Behavior: Always divides the array into halves and merges, 
+requiring n log n steps. 
+■​ Time Complexity: Θ(n log n) (same for best, worst, and average 
+cases). 
+Theta (Θ) Notation Proof: f(n) = Θ(g(n)) 
+We write: 
+f(n) = Θ(g(n)) 
+if there exist positive constants c₁, c₂, and n₀ such that: 
+0 ≤ c1⋅g(n) ≤ f(n) ≤ c2⋅g(n) for all n ≥ n0
+ 
+What This Means
+
+--- Page 33 ---
+●​ f(n) grows at the same rate as g(n) (both upper and lower bound). 
+●​ This gives us the tight bound or exact growth rate of an algorithm. 
+●​ So, we’re saying:​
+​
+f(n) is neither faster nor slower than g(n) — it’s just right. 
+ 
+Example Proof 
+Let’s prove: 
+f(n) = 3n+5 is Θ(n)
+ 
+Step-by-Step Proof 
+We need to find constants c₁, c₂, and n₀ such that: 
+c1⋅n ≤ 3n + 5 ≤ c2⋅n for all n ≥ n0 
+Let’s split into two parts: 
+ 
+Upper Bound (Big-O Part) 
+Already shown: 
+●​ 3n+5 ≤ 8n for all n≥1 
+●​ So, c₂ = 8, n₀ = 1 
+ 
+Lower Bound (Omega Part) 
+Already shown: 
+●​ 2n ≤ 3n + 5 for all n ≥ 1 
+●​ So, c₁ = 2, n₀ = 1 
+ 
+Combine Both: 
+2n ≤ 3n+5 ≤ 8n for all n ≥ 1 
+Therefore:
+
+--- Page 34 ---
+●​ f(n) = 3n + 5 
+●​ g(n) = n 
+●​ Constants: c1 = 2, c2 = 8, n0 = 1​
+ 
+f(n) = Θ(n) 
+Student Tasks: 
+ 
+Task 5: 
+Prove that: 
+f(n)=6n + 9 is Θ(n) 
+Hint: Prove both: 
+●​ Upper bound: f(n) ≤ c2⋅n 
+●​ Lower bound: c1⋅n ≤ f(n) 
+ 
+Task 6: 
+Prove that: 
+f(n) = 2n2 + 3n is Θ(n2) 
+Hint: Prove: 
+c1⋅n2   ≤ f(n) ≤ c2⋅n2  for some c1, c2, n0 
+ 
+Why Big-O is Preferred for Time/Space Complexity 
+●​ Reliability: Big-O guarantees the algorithm won’t take longer than the stated 
+time, even in the worst case. This is critical for: 
+○​ Real-World Systems: Ensures apps (e.g., Google Search) perform 
+reliably under heavy load. 
+○​ Coding Interviews: Companies like Amazon use Big-O to assess if 
+candidates can optimize for worst-case scenarios. 
+●​ Standardization: Big-O is the universal standard in DSA for comparing 
+algorithms, making it easier to communicate efficiency (e.g., linear search O(n) 
+vs. binary search O(log n)).
+
+--- Page 35 ---
+●​ Conservative Planning: By focusing on the worst case, Big-O avoids 
+surprises, like an algorithm slowing down unexpectedly for certain inputs. 
+●​ Simplicity: Big-O simplifies analysis by focusing on the dominant term, ignoring 
+constants and smaller terms (e.g., 3n² + 5n becomes O(n²)). 
+When to Use Ω and Θ 
+●​ Omega (Ω): Used in theoretical studies or when analyzing best-case 
+performance (e.g., to show an algorithm’s potential speed). Rarely used in 
+practice because best cases are not guaranteed. 
+●​ Theta (Θ): Used for algorithms with consistent performance across all cases 
+(e.g., merge sort, matrix multiplication). Less common because many 
+algorithms (e.g., linear search, quicksort) have varying best and worst cases. 
+ 
+Simple Example: Linear Search 
+Problem: Find a number in an unsorted array (e.g., find 7 in [3, 1, 4, 7, 5]). 
+Algorithm:
+ 
+Time Complexity Analysis: 
+●​ Big-O (O(n)): 
+○​ Worst Case: The target is at the end or not in the array (e.g., search for 9 
+in [3, 1, 4, 7, 5]). 
+○​ Takes n steps (check all elements). 
+○​ Why Use O(n)?: Guarantees the search won’t take longer than n steps, 
+critical for planning (e.g., ensuring a website search is fast enough). 
+●​ Omega (Ω(1)):
+
+--- Page 36 ---
+○​ Best Case: The target is the first element (e.g., search for 3 in [3, 1, 
+4, 7, 5]). 
+○​ Takes 1 step. 
+○​ Why Rarely Used?: Best case is unlikely, so it’s not reliable for design or 
+guarantees. 
+●​ Theta (Θ(n)): 
+○​ Average Case: On average, you find the target after checking about n/2 
+elements. 
+○​ Simplified to Θ(n) for asymptotic analysis. 
+○​ Why Less Common?: Average case is useful but less critical than 
+worst-case reliability. 
+Why Report O(n)?: 
+●​ If you’re building a website, you need to ensure searches are fast even in the 
+worst case (e.g., user not found). Reporting O(n) helps developers plan for this 
+and consider faster alternatives (e.g., hash tables with O(1) average case). 
+ 
+Steps to Analyze Time and Space Complexity 
+Big-O Notation is a mathematical tool used to represent the upper bound of an 
+algorithm's time or space complexity, describing how the algorithm's resource usage 
+grows as a function of the input size n. 
+In time complexity analysis 
+we express an algorithm's running time as a function of the input size n. When this 
+function contains multiple terms, we simplify it to a single term using Big-O Notation, 
+which represents the upper bound by focusing on the dominant term—the one that 
+grows the fastest as n becomes large. 
+For example: 
+●​ For the function f₁(n) = 3n² + n, we simplify to O(n²), as the 3n² term dominates 
+over n for large n. 
+●​ For the function f₂(n) = 2n² + √n + log n + 2, we simplify to O(n²), as 2n² grows 
+faster than √n, log n, and the constant 2. 
+Let’s understand how have we analysed above: 
+Let’s say we’re given a function:​
+ f(x) = 6x⁴ − 2x³ + 5
+
+--- Page 37 ---
+We want to simplify this to understand how the function grows when x (or n) becomes 
+large. 
+Simple Steps to Calculate Big-O 
+1.​ List All Terms​
+ Look at each term in the function:​
+ 
+○​ 6x⁴ 
+○​ −2x³ 
+○​ 5​
+ 
+2.​ Find the Highest Power​
+ The growth of each term depends on the exponent:​
+ 
+○​ 6x⁴ → grows fastest (power 4) 
+○​ −2x³ → slower (power 3) 
+○​ 5 → constant (power 0)​
+ 
+3.​ Keep Only the Fastest-Growing Term​
+ For large values of x, the highest-power term dominates. So:​
+ 
+○​ Ignore −2x³ and 5 
+○​ Keep 6x⁴​
+ 
+4.​ Drop the Coefficient​
+ Constants like 6 don’t affect Big-O notation. So: 
+○​ 6x⁴ becomes just x⁴​
+ 
+5.​ Write the Big-O Notation​
+ Final Answer: O(x⁴)​
+ (Or O(n⁴) when writing in terms of input size n) 
+ 
+Analogy: Function Growth as a Race 
+Imagine the terms are cars in a race: 
+●​ 6x⁴ is a race car  → extremely fast 
+●​ −2x³ is a bicycle  → slower 
+●​ 5 is walking  → very slow​
+
+--- Page 38 ---
+In a long race (large x), the fastest one always wins.​
+That’s why we only consider the highest-power term in Big-O. 
+ 
+Why This Works (With an Example) 
+Let’s say x = 100: 
+●​ 6x⁴ = 6 × (100)⁴ = 6,000,000,000 
+●​ −2x³ = −2 × (100)³ = −2,000,000 
+●​ 5 = 5​
+ 
+Clearly, 6x⁴ is way bigger than the others.​
+That’s why it dominates the function’s growth, and we only keep that for Big-O. 
+Example in Code 
+Say you're writing code that involves 4 nested loops (e.g., for processing a 4D 
+matrix): 
+  
+  for (int i = 0; i < n; i++) 
+    for (int j = 0; j < n; j++) 
+      for (int k = 0; k < n; k++) 
+        for (int l = 0; l < n; l++) 
+           doSomething(); 
+ 
+ 
+●​ This runs n⁴ times. 
+●​ So, Time Complexity: O(n⁴) 
+ 
+Going forward to say the T.C. (Time Complexity) of any code,​
+we not only use functions but also use Big-OH notation [O()].
+
+--- Page 39 ---
+Time 
+Complexities: Best to Worst (in increasing order)
+
+--- Page 40 ---
+Note: Most DSA algorithms are built on these time complexities. 
+Constant Time — O(1) 
+Lowest possible time complexity 
+Examples: 
+●​ cout(), break, continue, return 
+●​ Basic operators: +, -, *, /, %, &&, ||, etc. 
+●​ Control structures: if-else, switch(), etc. 
+ 
+Important Concept: Input Size (n) 
+●​ What is n?​
+ n is the size of the input. 
+●​ Can n be negative?​
+ No, input size can never be negative. 
+ 
+Example Comparison of Code Complexities 
+ C₁ → O(√n) 
+ C₂ → O(n²) 
+ 
+Which one is preferred? 
+Answer:​
+ C₁ is preferred because O(√n) grows much slower than O(n²). 
+More Comparison Examples 
+ C₁ → O(log n)
+
+--- Page 41 ---
+C₂ → O(n) 
+ 
+Preferred: C₁ 
+Reason: Logarithmic is faster than linear. 
+  
+ C₁ → O(n log n) 
+ C₂ → O(n²) 
+ 
+Preferred: C₁ 
+Reason: `n log n` grows slower than `n²`. 
+ 
+ C₁ → O(n³) 
+ C₂ → O(2^n) 
+ 
+Preferred: C₁ 
+Reason: Polynomial is better than exponential. 
+ 
+Student Tasks: 
+Question 1: 
+You are given the following three functions: 
+●​ f1(n) = 1,000,000 
+●​ f2(n) = 2n² + 3logn + c 
+●​ f3(n) = Sum of first ‘n’ natural numbers​
+ 
+Analyze the time complexity of each function and determine which one is more efficient. 
+ 
+Answer:
+
+--- Page 42 ---
+f1(n) = 1,000,000 
+●​ This is a constant value, independent of input size n. 
+●​ No matter what value of n you pass, the output remains the same. 
+●​ Time Complexity: O(1) — Constant time.​
+ 
+ 
+f2(n) = 2n² + 3logn + c 
+●​ This function has multiple terms:​
+ 
+○​ 2n² is quadratic, 
+○​ 3logn is logarithmic, 
+○​ c is a constant.​
+ 
+●​ For large values of n, the quadratic term 2n² dominates the growth. 
+●​ Hence, we ignore the smaller terms and constant. 
+●​ Time Complexity: O(n²) — Quadratic time.​
+ 
+ 
+f3(n) = Sum of first ‘n’ natural numbers 
+●​ Formula: n(n+1)/2 
+●​ This is a direct formula that executes in constant time, regardless of input size.​
+ 
+●​ Time Complexity: O(1) — Constant time.​
+ (If implemented using a loop, it would be O(n), but here we assume the formula is 
+used.) 
+Preferred: f1(n) or f3(n) 
+Reason: 
+Both have O(1) time complexity, which means their execution time does not increase with 
+the input size.​
+On the other hand, f2(n) takes O(n²) time, which grows rapidly as n increases.
+ 
+Question 2: 
+You are given the following functions:​
+ f1(n) = n​
+
+--- Page 43 ---
+f2(n) = log n​
+ f3(n) = n log n 
+Analyze the time complexity and choose the most efficient. 
+Answer: 
+f1(n) = O(n) — Linear​
+ f2(n) = O(log n) — Logarithmic​
+ f3(n) = O(n log n) — Linearithmic 
+Preferred: f2(n)​
+Reason: Logarithmic growth is the slowest among the three, hence most efficient. 
+ 
+Question 3: 
+You are given the following functions:​
+ f1(n) = 5n³ + 2n​
+ f2(n) = n² log n​
+ f3(n) = 100n² 
+Analyze their time complexity and determine the most efficient. 
+Answer: 
+f1(n) = O(n³)​
+ f2(n) = O(n² log n)​
+ f3(n) = O(n²) 
+Preferred: f3(n)​
+Reason: Quadratic time grows slower than n² log n and n³ for large inputs. 
+ 
+Question 4: 
+You are given:​
+ f1(n) = n + log n​
+ f2(n) = √n​
+ f3(n) = log(n²) 
+Determine time complexities and the most efficient one. 
+Answer:
+
+--- Page 44 ---
+f1(n) = O(n)​
+f2(n) = O(√n)​
+f3(n) = O(log n) (since log(n²) = 2 log n) 
+Preferred: f3(n)​
+Reason: Logarithmic time is slower-growing than square root and linear time. 
+ 
+Question 5: 
+Given functions:​
+ f1(n) = n!​
+ f2(n) = 2ⁿ​
+ f3(n) = n³ + n² 
+Analyze time complexity and choose the best. 
+Answer: 
+f1(n) = O(n!) — Factorial​
+f2(n) = O(2ⁿ) — Exponential​
+f3(n) = O(n³) — Cubic 
+Preferred: f3(n3)​
+Reason: Polynomial (cubic) is significantly more efficient than exponential or factorial time. 
+ 
+Question 6: 
+You are given:​
+f1(n) = n log n + n²​
+f2(n) = n²​
+f3(n) = log n + √n 
+Answer: 
+f1(n) = O(n²) (n² dominates n log n)​
+f2(n) = O(n²)​
+f3(n) = O(√n) (since √n dominates log n slightly) 
+Preferred: f3(√n)​
+Reason: Sub-linear time (O(√n)) is more efficient than quadratic time for large input.
+
+--- Page 45 ---
+Question 7: 
+Functions:​
+ f1(n) = log n​
+ f2(n) = n / 2​
+ f3(n) = n 
+Answer: 
+f1(n) = O(log n)​
+f2(n) = O(n)​
+f3(n) = O(n) 
+Preferred: f1(n)​
+Reason: Logarithmic time is the most efficient. 
+ 
+Question 8: 
+Functions:​
+f1(n) = 3ⁿ​
+f2(n) = n * 2ⁿ​
+f3(n) = n! 
+Answer: 
+f1(n) = O(3ⁿ)​
+f2(n) = O(n * 2ⁿ)​
+f3(n) = O(n!) 
+Preferred: f2(n)​
+Reason: Although all are inefficient, n * 2ⁿ grows slower than factorial and 3ⁿ. 
+ 
+Question 9: 
+Functions:​
+f1(n) = n + n log n​
+f2(n) = n log n​
+f3(n) = n² log n 
+Answer:
+
+--- Page 46 ---
+f1(n) = O(n log n)​
+f2(n) = O(n log n)​
+f3(n) = O(n² log n) 
+Preferred: f2(n) or f1(n)​
+Reason: Both have the same efficient time complexity of n log n, which is better than n² 
+log n. 
+ 
+Question 10: 
+Functions:​
+f1(n) = 2ⁿ + n³​
+f2(n) = n³​
+f3(n) = n² + n log n 
+Answer: 
+f1(n) = O(2ⁿ)​
+f2(n) = O(n³)​
+f3(n) = O(n²) 
+Preferred: f3(n2)​
+Reason: Among all, quadratic time is the most efficient for large input sizes. 
+ 
+Exploring Time Complexity in Real Programs 
+Understanding What Takes O(1) Time 
+The following operations typically take constant time, i.e., O(1): 
+●​ Function calls like print() 
+●​ Conditional checks like if(condition) 
+●​ Keywords like else, break, continue, return 
+●​ Basic operations: +, -, *, /, %, etc. 
+●​ Initialization statements like int i = 0;​
+ 
+These are single-step operations, regardless of the input size.
+
+--- Page 47 ---
+Key Principles of Time Complexity Analysis 
+1.​ When we say O():​
+ 
+○​ Exact details are not required. 
+○​ We look for an approximation of growth as n increases.​
+ 
+2.​ Constants are ignored:​
+ 
+○​ In Big-O, O(3n) and O(n) are considered the same. 
+○​ We drop constant factors because they don't affect the growth trend.​
+ 
+3.​ Focus on loop count:​
+ 
+○​ The number of times a loop runs is the most important part of analysis. 
+○​ For nested loops, multiply loop counts (e.g., 2 loops from 0 to n → O(n²)). 
+ 
+Example 1: 
+if (n > 100) { 
+    print("Large"); 
+} else { 
+    print("Small"); 
+} 
+Time Complexity: 
+●​ One comparison: O(1) 
+●​ One print: O(1) 
+Total Time Complexity: O(1) 
+ 
+Example 2: 
+if (n < 10) {
+
+--- Page 48 ---
+print("Single digit"); 
+} else if (n < 100) { 
+    print("Two digits"); 
+} else { 
+    print("Three or more digits"); 
+} 
+Time Complexity: 
+●​ At most 2–3 checks → each O(1) 
+●​ Only one block executes 
+Total Time Complexity: O(1) 
+ 
+Example 3: Ternary Operator 
+string result = (n % 2 == 0) ? "Even" : "Odd"; 
+Time Complexity: 
+●​ One modulus operation → O(1) 
+●​ One comparison → O(1) 
+●​ One assignment → O(1) 
+Total Time Complexity: O(1) 
+ 
+Example 4: Arithmetic and Logical Operations 
+int result = (a + b) * (c - d) && (x > y); 
+Time Complexity: 
+●​ All arithmetic and logical operations are constant time 
+Total Time Complexity: O(1)
+
+--- Page 49 ---
+Example 5: Switch Case Statement 
+switch(day) { 
+    case 1: print("Monday"); break; 
+    case 2: print("Tuesday"); break; 
+    case 3: print("Wednesday"); break; 
+    // ... 
+    default: print("Invalid"); 
+} 
+Time Complexity: 
+●​ switch usually performs jump based on value → like O(1) 
+●​ Only one case executes 
+Total Time Complexity: O(1) 
+ 
+Example 6: 
+if (a > b) { 
+    if (a > c) { 
+        print("a is greatest"); 
+    } 
+} 
+Time Complexity:
+
+--- Page 50 ---
+●​ Few nested conditions, all constant operations 
+Total Time Complexity: O(1) 
+ 
+Loop 1: 
+for (i = 1; i <= n; i++) { 
+    print("*"); 
+} 
+●​ Initialization (i = 1) → O(1) 
+●​ Condition (i <= n) → O(1), runs ~n times 
+●​ Increment (i++) → O(1), runs ~n times 
+●​ Body (print("*")) → O(1), runs n times 
+Total Time: n × O(1) = O(n) 
+ 
+Loop 2: 
+for (i = 1; i <= n; i += 2) { 
+    print("*"); 
+} 
+ 
+●​ Initialization → O(1) 
+●​ Condition → O(1), runs ~n/2 times 
+●​ Increment (i += 2) → O(1) 
+●​ Body → O(1)​
+ 
+Total Time: ~n/2 × O(1) = O(n)​
+ (Note: Constants like 1/2 are ignored in Big-O)
+
+--- Page 51 ---
+Loop 3: 
+for (i = n; i >= 0; i--) { 
+    print("*"); 
+} 
+●​ Initialization (i = n) → O(1) 
+●​ Condition (i >= 0) → O(1), runs ~n+1 times 
+●​ Decrement (i--) → O(1) 
+●​ Body → O(1)​
+ 
+Total Time: (n+1) × O(1) = O(n) 
+ 
+Loop 4: 
+for (i = 1; i <= n; i += a) { 
+    print("*"); 
+} 
+(Assume a is constant like 3 or 5) 
+●​ Initialization → O(1) 
+●​ Condition (i <= n) → O(1), runs ~n/a times 
+●​ Increment (i += a) → O(1) 
+●​ Body → O(1)​
+ 
+Total Time: ~n/a × O(1) = O(n) 
+ 
+Loop 5: 
+int i = 1;
+
+--- Page 52 ---
+while (i <= n) { 
+    print("*"); 
+    i++; 
+} 
+Initialization: i = 1 → O(1)​
+Condition check: i <= n → runs n times​
+Increment: i++ → O(1) each time​
+Body: print("*") → O(1) 
+Total Iterations: n​
+Time Complexity: O(n) 
+ 
+Loop 6: 
+int i = 1; 
+while (i <= n) { 
+    print("*"); 
+    i *= 2; 
+} 
+i values: 1, 2, 4, 8, ..., up to n​
+Let i = 2^k​
+The loop stops when 2^k > n → k = log₂(n) 
+Total Iterations: log₂(n)​
+Time Complexity: O(log n) 
+ 
+Loop 7: 
+int i = n;
+
+--- Page 53 ---
+while (i > 0) { 
+    print("*"); 
+    i = i / 2; 
+} 
+i values: n, n/2, n/4, ..., until < 1​
+Let i = n / 2^k​
+Loop stops when n / 2^k < 1 → 2^k > n → k = log₂(n) 
+Total Iterations: log₂(n)​
+Time Complexity: O(log n) 
+ 
+Loop 8: 
+int i = 1; 
+do { 
+    print("*"); 
+    i++; 
+} while (i <= n); 
+ 
+i values: 1 to n​
+Runs n times, always executes at least once 
+Time Complexity: O(n) 
+ 
+Loop 9: 
+int i = 0; 
+while (i <= n) {
+
+--- Page 54 ---
+print("*"); 
+    i += 3; 
+} 
+i values: 0, 3, 6, 9, ..., up to n​
+Total steps: n / 3​
+We ignore constants in Big-O 
+Time Complexity: O(n) 
+ 
+Loop 10: 
+int i = 1; 
+while (i * i <= n) { 
+    print("*"); 
+    i++; 
+} 
+Condition: i² ≤ n → i ≤ √n 
+Total Iterations: up to √n​
+Time Complexity: O(√n) 
+ 
+Nested Loop 1: 
+for (int i = 0; i < n; i++) { 
+    for (int j = 0; j < n; j++) { 
+        print("*"); 
+    }
+
+--- Page 55 ---
+} 
+ 
+Analysis: 
+●​ Outer loop runs n times 
+●​ Inner loop runs n times for each outer iteration 
+●​ Total iterations: n × n = n²​
+ 
+Time Complexity: O(n²) 
+ 
+Nested Loop 2: 
+for (int i = 0; i < n; i++) { 
+    for (int j = 0; j <= i; j++) { 
+        print("*"); 
+    } 
+} 
+ 
+Analysis: 
+●​ Inner loop runs: 1, 2, 3, ..., n times 
+●​ Total operations: 1 + 2 + 3 + ... + n = n(n+1)/2​
+ 
+Time Complexity: O(n²)​
+ Type: Triangular pattern 
+ 
+Nested Loop 3: 
+for (int i = n; i > 0; i--) {
+
+--- Page 56 ---
+for (int j = 1; j <= i; j++) { 
+        print("*"); 
+    } 
+} 
+Analysis: 
+●​ Inner loop runs: n, n-1, ..., 1 
+●​ Total: n(n+1)/2​
+ 
+Time Complexity: O(n²) 
+ 
+Nested Loop 4: 
+for (int i = 0; i < n; i++) { 
+    for (int j = 1; j < n; j *= 2) { 
+        print("*"); 
+    } 
+} 
+Analysis: 
+●​ Outer loop runs n times 
+●​ Inner loop runs log₂(n) times 
+●​ Total = n × log n​
+ 
+Time Complexity: O(n log n) 
+ 
+Nested Loop 5:
+
+--- Page 57 ---
+for (int i = 1; i < n; i *= 2) { 
+    for (int j = 1; j < n; j *= 2) { 
+        print("*"); 
+    } 
+} 
+Analysis: 
+●​ Both loops run log n times 
+●​ Total = log n × log n​
+ 
+Time Complexity: O((log n)²) 
+ 
+Nested Loop 6: 
+for (int i = n; i > 0; i /= 2) { 
+    for (int j = 0; j < i; j++) { 
+        print("*"); 
+    } 
+} 
+ 
+Analysis: 
+●​ Outer loop runs log n times (i halves each time) 
+●​ Inner loop runs: n, n/2, n/4, ..., 1 
+●​ Total: n + n/2 + n/4 + ... ≈ 2n​
+ 
+Time Complexity: O(n)
+
+--- Page 58 ---
+Nested Loop 7: 
+for (int i = 0; i < n; i++) { 
+    for (int j = 0; j < 10; j++) { 
+        print("*"); 
+    } 
+} 
+Analysis: 
+●​ Inner loop runs 10 times → O(1) 
+●​ Outer loop runs n times​
+ 
+Time Complexity: O(n) 
+ 
+Nested Loop 8: 
+for (int i = 0; i < m; i++) { 
+    for (int j = 0; j < n; j++) { 
+        print("*"); 
+    } 
+} 
+Analysis: 
+●​ Outer loop runs m times 
+●​ Inner loop runs n times per outer loop 
+●​ Total = m × n​
+ 
+Time Complexity: O(m × n)​
+ (Different input sizes)
+
+--- Page 59 ---
+Nested Loop 10: 
+for (int i = 0; i < n; i++) { 
+    for (int j = 0; j < n; j++) { 
+        for (int k = 0; k < n; k++) { 
+            print("*"); 
+        } 
+    } 
+} 
+Analysis: 
+●​ Runs n × n × n = n³ times 
+Time Complexity: O(n³) 
+ 
+Nested Loop 10: 
+for (int i = 0; i < n; i++) { 
+    for (int j = 0; j < n; j++) { 
+        if (i == j) print("*"); 
+    } 
+} 
+Analysis: 
+●​ Runs n² comparisons 
+●​ But only prints n times when i == j 
+●​ Still, condition check happens every time
+
+--- Page 60 ---
+Time Complexity: O(n²) 
+ 
+Nested Loop 11: 
+int i = 0; 
+while (i < n) { 
+    int j = 0; 
+    while (j < n) { 
+        print("*"); 
+        j++; 
+    } 
+    i++; 
+} 
+Analysis: 
+●​ Outer loop: runs n times 
+●​ Inner loop: runs n times per outer 
+●​ Total = n × n 
+Time Complexity: O(n²) 
+ 
+Nested Loop 12: 
+int i = 0; 
+while (i < n) { 
+    int j = 0;
+
+--- Page 61 ---
+while (j <= i) { 
+        print("*"); 
+        j++; 
+    } 
+    i++; 
+} 
+Analysis: 
+●​ Inner loop runs 1 + 2 + 3 + ... + n = n(n+1)/2 
+Time Complexity: O(n²) 
+ 
+Nested Loop 13: 
+int i = 0; 
+while (i < n) { 
+    int j = 1; 
+    while (j < n) { 
+        print("*"); 
+        j *= 2; 
+    } 
+    i++; 
+} 
+Analysis:
+
+--- Page 62 ---
+●​ Outer: n times 
+●​ Inner: log(n) times per outer​
+ 
+Total: n × log n = O(n log n) 
+ 
+Nested Loop 14: 
+int i = n; 
+while (i > 0) { 
+    int j = 0; 
+    while (j < i) { 
+        print("*"); 
+        j++; 
+    } 
+    i /= 2; 
+} 
+Analysis: 
+●​ Outer loop: log n times (i halves) 
+●​ Inner loop: runs i times → n + n/2 + n/4 + ... ≈ 2n 
+Time Complexity: O(n) 
+ 
+Nested Loop 15: 
+int i = 1; 
+while (i < n) {
+
+--- Page 63 ---
+int j = 1; 
+    while (j < n) { 
+        print("*"); 
+        j *= 2; 
+    } 
+    i *= 2; 
+} 
+Analysis: 
+●​ Outer: log n 
+●​ Inner: log n per outer 
+Time Complexity: O((log n)²) 
+ 
+Nested Loop 16: 
+int i = 1; 
+while (i < n) { 
+    int j = 1; 
+    while (j <= i) { 
+        print("*"); 
+        j++; 
+    } 
+    i *= 2; 
+}
+
+--- Page 64 ---
+Analysis: 
+●​ Outer: log n times (i doubles) 
+●​ Inner: runs i times → 1 + 2 + 4 + ... < 2n​
+ 
+Total: O(n) 
+ 
+ 
+In Data Structures and Algorithms (DSA), an array is one of the simplest and most 
+fundamental data structures. It’s like a row of lockers in a school, where each locker 
+holds one item, and you can quickly find an item if you know its locker number. Arrays 
+are widely used because they allow efficient storage and access to data.  
+1. What is an Array? 
+ 
+1.1 Definition 
+An array is a collection of elements, all of the same data type (e.g., integers, floats, 
+characters), stored in contiguous memory locations. Each element is accessed 
+using an index, which acts like a unique address or locker number. 
+1.2 Key Characteristics 
+●​ Fixed Size: The size of an array is defined when it’s created and cannot change 
+(in most programming languages, like C++). 
+●​ Same Data Type: All elements must be of the same type (e.g., all integers or all 
+strings).
+
+--- Page 65 ---
+●​ Indexed Access: Elements are accessed using indices, starting from 0 in most 
+languages (e.g., arr[0] is the first element). 
+●​ Contiguous Storage: Elements are stored next to each other in memory, 
+making access fast. 
+1.3 Analogy 
+Imagine a row of lockers in your school hallway: 
+●​ Each locker holds one item (e.g., a book, like how an array holds one value). 
+●​ Each locker has a number (e.g., 1, 2, 3), like an array’s indices (0, 1, 2). 
+●​ You can quickly open locker #5 to get its item, just like accessing arr[5]. 
+●​ All lockers are in a straight line (contiguous), making it easy to find any locker. 
+1.4 Example 
+Suppose you’re storing the marks of 5 students in a class: 
+●​ Array: [85, 90, 78, 92, 88] 
+●​ Each mark is stored in a specific position: 
+○​ arr[0] = 85 (first student’s mark). 
+○​ arr[1] = 90 (second student’s mark), and so on. 
+●​ You can quickly check any student’s mark by their index. 
+1.5 Why Use Arrays? 
+●​ Fast Access: Accessing an element by index (e.g., arr[3]) is super 
+fast—O(1) time complexity. 
+●​ Simple Organization: Great for storing lists like scores, names, or 
+temperatures. 
+●​ Efficient for Iteration: Easy to loop through elements (e.g., to find the average 
+of marks). 
+●​ Real-World Use: Used in apps (e.g., storing a playlist in a music app), games, 
+and data analysis. 
+1.6 Code Example (C++) 
+#include <iostream> 
+#include <vector> // For dynamic arrays in C++ 
+using namespace std; 
+ 
+int main() { 
+ // Declare a fixed-size array 
+ int marks[5] = {85, 90, 78, 92, 88};
+
+--- Page 66 ---
+// Access elements 
+cout << "First student's mark: " << marks[0] << std::endl; // 
+Output: 85 
+cout << "Third student's mark: " << marks[2] << std::endl; // 
+Output: 78 
+    // Loop through array 
+for (int i = 0; i < 5; i++) { 
+cout << "Student " << i + 1 << ": " << marks[i] << std::endl; 
+    } 
+    return 0; 
+} 
+ 
+Output:​
+First student's mark: 85 
+Third student's mark: 78 
+Student 1: 85 
+Student 2: 90 
+Student 3: 78 
+Student 4: 92 
+Student 5: 88
+2. Types of Arrays 
+Arrays can be classified based on their structure and dimensions. Understanding the 
+types helps students choose the right array for a problem. 
+2.1 One-Dimensional Array (1D Array) 
+ 
+●​ Definition: A single row of elements, like a list. Also called a linear array.
+
+--- Page 67 ---
+●​ Use Case: Storing a sequence of data, like student marks or temperatures. 
+●​ Analogy: A single row of lockers in a hallway, each holding one item. 
+●​ Example: 
+○​ Array: [10, 20, 30, 40] 
+○​ Access: arr[2] = 30 (third element). 
+●​ Code (C++):​
+int arr[4] = {10, 20, 30, 40}; 
+2.2 Two-Dimensional Array (2D Array
+ 
+●​ Definition: A grid or matrix with rows and columns, like a spreadsheet. 
+●​ Use Case: Representing a chessboard, image pixels, or a seating chart. 
+●​ Analogy: A grid of lockers in a gym, where you need a row and column number 
+(e.g., row 2, column 3). 
+●​ Example: 
+2D Array (3x2 matrix):​
+   [ [1, 2], 
+     [3, 4], 
+     [5, 6] ] 
+Access: arr[1][0] = 3 (second row, first column). 
+Code (C++): 
+int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}}; 
+cout << arr[1][0]; // Output: 3​
+2.3 Multi-Dimensional Array (3D Array) and Beyond
+
+--- Page 68 ---
+●​ Definition: Arrays with three or more dimensions, like a cube or stack of 
+matrices. 
+●​ Use Case: 3D graphics, scientific simulations (e.g., modeling a 3D space). 
+●​ Analogy: A 3D storage room with lockers organized by row, column, and depth. 
+●​ Example: 
+3D Array (2x2x2):​
+[ [ [1, 2], [3, 4] ], 
+[ [5, 6], [7, 8] ] ] 
+          Access: arr[0][1][0] = 3 (first block, second row, first column). 
+Code (C++):​
+int arr[2][2][2] = {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}}; 
+cout << arr[0][1][0]; // Output: 3 
+2.4 Static vs. Dynamic Arrays 
+●​ Static Array: 
+○​ Fixed size, defined at creation (e.g., int arr[5] in C++). 
+○​ Cannot resize during runtime. 
+○​ Use Case: When the size is known and fixed (e.g., days of the week). 
+●​ Dynamic Array: 
+○​ Size can change during runtime (e.g., vector in C++, lists in Python). 
+○​ Use Case: When the size is unknown or needs to grow (e.g., a list of user 
+inputs).
+
+--- Page 69 ---
+Example (Dynamic Array in C++): 
+#include <vector> 
+vector<int> arr = {10, 20, 30}; 
+arr.push_back(40); // Adds 40, resizing dynamically 
+​
+2.5 Jagged Arrays (Array of Arrays) 
+●​ Definition: A multi-dimensional array where rows can have different lengths 
+(not a perfect rectangle). 
+●​ Use Case: Storing irregular data, like a list of student names where each class 
+has a different number of students. 
+●​ Analogy: A set of lockers where each row has a different number of lockers. 
+Example (C++):​
+vector<vector<int>> jagged = {{1, 2}, {3, 4, 5}, {6}}; 
+cout << jagged[1][2]; // Output: 5 
+ 
+2. Representation of Linear Arrays in Memory 
+2.1 What is a Linear Array? 
+A linear array is a one-dimensional array where elements are stored in a single, 
+continuous sequence in memory. It’s called “linear” because the elements are 
+arranged in a straight line, like a row of lockers. 
+2.2 How Arrays are Stored in Memory 
+●​ Contiguous Memory: Arrays are stored in consecutive memory locations. 
+Each element occupies a fixed amount of memory (based on its data type), and 
+the elements are placed right next to each other. 
+●​ Base Address: The memory location of the first element (arr[0]) is called the 
+base address. All other elements are located at predictable offsets from this 
+address. 
+●​ Index-Based Access: The memory address of an element at index i is 
+calculated as:​
+[ {Address of arr[i]} = {Base Address} + i times {Size of Data Type} ]
+
+--- Page 70 ---
+○​ Size of Data Type: Depends on the type (e.g., int is typically 4 bytes in 
+C++, float is 4 bytes, etc.). 
+●​ Why It’s Fast: The computer can calculate the exact memory address of any 
+element using the formula above, making access O(1). 
+2.3 Analogy 
+Think of memory as a long street with houses numbered sequentially: 
+●​ The array’s base address is the address of the first house (e.g., 1000). 
+●​ Each house (element) takes up the same space (e.g., 4 units for an int). 
+●​ To find the third house (index 2), you calculate: 1000 + 2 * 4 = 1008. 
+●​ The houses are right next to each other (contiguous), so you can jump to any 
+house instantly if you know its number. 
+2.4 Example: Memory Representation 
+ 
+Suppose you have an array int arr[5] = {10, 20, 30, 40, 50}; in C++: 
+●​ Data Type: int (assume 4 bytes per integer). 
+●​ Base Address: Let’s say the first element (arr[0]) is stored at memory 
+address 1000. 
+●​ Memory Layout: 
+○​ arr[0] (10): Address 1000 (base address). 
+○​ arr[1] (20): Address 1000 + 1 * 4 = 1004. 
+○​ arr[2] (30): Address 1000 + 2 * 4 = 1008. 
+○​ arr[3] (40): Address 1000 + 3 * 4 = 1012. 
+○​ arr[4] (50): Address 1000 + 4 * 4 = 1016. 
+Visual Representation:​
+Memory Address: 1000   1004   1008   1012   1016 
+Array Index:           arr[0]  arr[1]  arr[2]   arr[3]   arr[4] 
+Value:                     10      20       30       40        50
+
+--- Page 71 ---
+●​ Accessing an Element: To get arr[2], the computer calculates 1000 + 2 * 
+4 = 1008 and retrieves the value 30 directly. 
+2.5 Why Contiguous Memory Matters 
+●​ Speed: Since elements are next to each other, the computer can access them 
+quickly using simple math. 
+●​ Predictability: The fixed offset (e.g., 4 bytes per int) makes it easy to locate 
+any element. 
+●​ Cache Efficiency: Modern computers load memory in blocks (cache lines). 
+Contiguous storage means nearby elements are loaded together, speeding up 
+access. 
+2.6 Code Example: Memory Address in C++ 
+#include <iostream> 
+using namespace std; 
+int main() { 
+int arr[5] = {10, 20, 30, 40, 50}; 
+    
+    // Print memory addresses of array elements 
+for (int i = 0; i < 5; i++) { 
+cout << "Address of arr[" << i << "]: " << &arr[i] << ", 
+Value: " << arr[i] << std::endl; 
+    } 
+    return 0; 
+} 
+ 
+Sample Output (addresses depend on the system): 
+​
+Address of arr[0]: 0x7ffee4c0a4a0, Value: 10 
+Address of arr[1]: 0x7ffee4c0a4a4, Value: 20 
+Address of arr[2]: 0x7ffee4c0a4a8, Value: 30 
+Address of arr[3]: 0x7ffee4c0a4ac, Value: 40 
+Address of arr[4]: 0x7ffee4c0a4b0, Value: 50 
+●​ Observation: Each address increases by 4 bytes (size of int), showing 
+contiguous storage.
+
+--- Page 72 ---
+3. Key Operations on Arrays 
+Arrays support several operations, each with its own time complexity: 
+1.​ Accessing an Element (e.g., arr[i]): 
+○​ Time Complexity: O(1) (constant time, due to direct address calculation). 
+2.​ Updating an Element (e.g., arr[i] = value): 
+○​ Time Complexity: O(1) (direct access to index). 
+3.​ Deleting at the End (if space is available): 
+○​ Time Complexity: O(1). 
+4.​ Inserting/Deleting in the Middle: 
+○​ Time Complexity: O(n) (requires shifting elements to make space or fill 
+gaps). 
+5.​ Traversing the Array (e.g., looping through all elements): 
+○​ Time Complexity: O(n) (visit each element once). 
+Example: Calculating the Sum of an Array 
+int arraySum(const int arr[], int size) { 
+    int total = 0;           // O(1) 
+    for (int i = 0; i < size; i++) { // O(n) 
+    total += arr[i];     // O(1) per iteration 
+    } 
+    return total;  // O(1) 
+} 
+●​ Time Complexity: O(n) (loop runs n times). 
+●​ Space Complexity: O(1) (only uses one variable, total). 
+Examples: 
+Problem 1: Accessing an Element at Index
+
+--- Page 73 ---
+void accessingTheElementAtIndex(vector<int> &nums, int  index){ 
+     if(index >= nums.size()){ 
+         cout <<"Index out of bound."<<endl; 
+     }else{ 
+         cout <<"Element at "<<index<<" is "<<nums[index]<<endl; 
+     } 
+ } 
+ 
+Time Complexity: O(1) – Accessing an element at a specific index in a vector takes constant 
+time. 
+Space Complexity: O(1) – No extra space is used regardless of input size. 
+ 
+Problem 2: Finding an Element in the Array 
+  
+ void findElementInArray(vector<int> &nums, int target) { 
+    bool found = false; 
+    for(int i = 0; i < nums.size(); i++) { 
+        if(nums[i] == target) { 
+            cout << "Element " << target << " found at index " << i << endl; 
+            found = true; 
+            break; 
+        } 
+    } 
+    if(!found) { 
+        cout << "Element " << target << " not found in the array." << endl;
+
+--- Page 74 ---
+} 
+ } 
+ 
+ 
+Problem 3: Updating an Element at index 
+ 
+ void updateElementAtIndex(vector<int> &nums, int index, int newValue) { 
+     if(index >= nums.size()) { 
+         cout << "Index out of bound." << endl; 
+     } else { 
+         nums[index] = newValue; 
+         cout << "Element at " << index << " updated to " << newValue << endl; 
+     } 
+ } 
+ 
+Time Complexity: O(1) – Updating an element at a specific index in a vector takes constant 
+time. 
+Space Complexity: O(1) – No extra space is used regardless of input size. 
+Problem 4: Insert an element at index 
+ 
+ void insertElementAtIndex(vector<int> &nums, int value, int index){ 
+    
+   if(index > nums.size()) { 
+        cout << "Invalid index." << endl; 
+        return; 
+    }
+
+--- Page 75 ---
+nums.push_back(0); // Increase size by one 
+ 
+    // Shift elements to the right from the end to the index 
+    for(int i = nums.size() - 1; i > index; i--) { 
+        nums[i] = nums[i - 1]; 
+    } 
+ 
+    nums[index] = value; // Insert the new element 
+    cout << "Element " << value << " inserted at index " << index << endl; 
+ 
+ 
+ } 
+ 
+Time Complexity: O(n) – Elements from the index to the end must be shifted one position to 
+the right.​
+ Space Complexity: O(1) – No extra space is used apart from modifying the existing vector. 
+Problem 5: Insert an Element at Index (Normal Array) 
+ 
+ void insertAtIndex(int arr[], int &n, int index, int value, int capacity) { 
+    if(n >= capacity) { 
+        cout << "Array is full. Cannot insert." << endl; 
+        return; 
+    } 
+ 
+    if(index > n || index < 0) { 
+        cout << "Invalid index." << endl; 
+        return;
+
+--- Page 76 ---
+} 
+ 
+    // Shift elements to the right 
+    for(int i = n; i > index; i--) { 
+        arr[i] = arr[i - 1]; 
+    } 
+ 
+    arr[index] = value; 
+    n++; // Increase the size 
+    cout << "Element " << value << " inserted at index " << index << endl; 
+ } 
+ 
+Time Complexity: O(n) – Elements from index to end are shifted right. 
+Space Complexity: O(1) – No extra space used; works within the existing array. 
+Problem 6: Delete an Element at Index (Vector) 
+ 
+ void deleteElementAtIndex(vector<int> &nums, int index){ 
+ 
+    if(index >= nums.size() || index < 0) { 
+        cout << "Invalid index." << endl; 
+        return; 
+    } 
+ 
+    // Shift elements to the left 
+    for(int i = index + 1; i < nums.size(); i++) { 
+        nums[i - 1] = nums[i];
+
+--- Page 77 ---
+} 
+ 
+    nums.pop_back(); // Remove the last duplicate element 
+    cout << "Element at index " << index << " deleted." << endl; 
+ 
+ } 
+ 
+Time Complexity: O(n) – Elements after the deleted index need to be shifted left. 
+Space Complexity: O(1) – No extra space used beyond the vector's internal structure. 
+Problem 7: Delete an Element at Index (Normal Array) 
+ 
+ void deleteAtIndex(int arr[], int &n, int index) { 
+    if(index >= n || index < 0) { 
+        cout << "Invalid index." << endl; 
+        return; 
+    } 
+ 
+    // Shift elements to the left 
+    for(int i = index; i < n - 1; i++) { 
+        arr[i] = arr[i + 1]; 
+    } 
+ 
+    n--; // Reduce array size by one 
+    cout << "Element at index " << index << " deleted." << endl; 
+ }
+
+--- Page 78 ---
+Time Complexity: O(n) – All elements after the index must be shifted left. 
+Space Complexity: O(1) – No extra space used; done in-place. 
+ 
+Representation of Arrays: Row Major and Column Major 
+Order 
+Multidimensional arrays are stored in a single contiguous block of memory, but the 
+order in which elements are arranged depends on the memory layout: row major or 
+column major. 
+1 Row Major Order 
+●​ Definition: Elements are stored row by row, so all elements of the first row are 
+stored, then the second row, and so on. 
+●​ Address Calculation (for 2D array arr[m][n]): [ {Address of arr[i][j]} = {Base 
+Address} + (i times n + j) * {Size of Data Type} ] 
+○​ m: Number of rows, n: Number of columns. 
+●​ Example: 
+○​ For int arr[2][3] = {{1, 2, 3}, {4, 5, 6}}, base address = 1000, int = 4 bytes: 
+■​ Memory layout: 1 (1000), 2 (1004), 3 (1008), 4 (1012), 5 (1016), 6 
+(1020). 
+■​ arr[1][1] address: 1000 + (1 * 3 + 1) * 4 = 1000 + 16 = 1016 (value: 
+5). 
+●​ Used By: C, C++, Python (default in most languages). 
+2 Column Major Order 
+●​ Definition: Elements are stored column by column, so all elements of the first 
+column are stored, then the second column, and so on. 
+●​ Address Calculation (for 2D array arr[m][n]): [ {Address of arr[i][j]} = {Base 
+Address} + (j times m + i) times {Size of Data Type} ] 
+●​ Example: 
+○​ For the same array, memory layout: 1 (1000), 4 (1004), 2 (1008), 5 
+(1012), 3 (1016), 6 (1020). 
+○​ arr[1][1] address: 1000 + (1 * 2 + 1) * 4 = 1000 + 12 = 1012 (value: 5). 
+●​ Used By: Fortran, MATLAB, R. 
+3 Analogy 
+●​ Row Major: Reading a book left-to-right, row by row, like reading a table. 
+●​ Column Major: Reading a book top-to-bottom, column by column, like a phone 
+contact list.
+
+--- Page 79 ---
+4 Code Example: Row Major Order 
+ #include <iostream> 
+ int main() { 
+     int arr[2][3] = {{1, 2, 3}, {4, 5, 6}}; 
+     // Print addresses to show row-major order 
+     for (int i = 0; i < 2; i++) { 
+         for (int j = 0; j < 3; j++) { 
+             cout << "arr[" << i << "][" << j << "] address: " << &arr[i][j] 
+                      << ", value: " << arr[i][j] << endl; 
+         } 
+     } 
+     return 0; 
+ } 
+Output (addresses vary): 
+  
+ arr[0][0] address: 0x7ffee4c0a4a0, value: 1 
+ arr[0][1] address: 0x7ffee4c0a4a4, value: 2 
+ arr[0][2] address: 0x7ffee4c0a4a8, value: 3 
+ arr[1][0] address: 0x7ffee4c0a4ac, value: 4 
+ arr[1][1] address: 0x7ffee4c0a4b0, value: 5 
+ arr[1][2] address: 0x7ffee4c0a4b4, value: 6 
+ 
+●​ Observation: Addresses increase by 4 bytes (for int), showing row-major order 
+in C++. 
+Column Major Order: 
+  
+ #include <iostream> 
+ using namespace std;
+
+--- Page 80 ---
+int main() { 
+     int arr[2][3] = {{1, 2, 3}, {4, 5, 6}}; 
+ 
+     // Simulate column-major order: column outer, row inner 
+     for (int j = 0; j < 3; j++) {         // columns first 
+         for (int i = 0; i < 2; i++) {     // then rows 
+             cout << "arr[" << i << "][" << j << "] address: " << &arr[i][j] 
+                  << ", value: " << arr[i][j] << endl; 
+         } 
+     } 
+ 
+     return 0; 
+ } 
+ 
+Output: 
+ 
+ arr[0][0] address: 0x61fefc, value: 1 
+ arr[1][0] address: 0x61ff08, value: 4 
+ arr[0][1] address: 0x61ff00, value: 2 
+ arr[1][1] address: 0x61ff0c, value: 5 
+ arr[0][2] address: 0x61ff04, value: 3 
+ arr[1][2] address: 0x61ff10, value: 6 
+ 
+ 
+Applications of Arrays 
+Arrays are versatile and used in various domains due to their simplicity and efficiency. 
+Below are 13-14 key applications: 
+1.​ Storing Lists: Store sequences like student grades, temperatures, or prices 
+(1D arrays). 
+2.​ Matrices: Represent mathematical matrices for operations like addition or 
+multiplication (2D arrays). 
+3.​ Game Boards: Model chessboards, tic-tac-toe, or Sudoku grids (2D arrays). 
+4.​ Image Processing: Store pixel values in images (2D or 3D arrays for RGB 
+channels). 
+5.​ Graphs: Represent adjacency matrices for graphs (2D arrays). 
+6.​ Dynamic Programming: Store intermediate results (e.g., Fibonacci numbers, 
+knapsack problems). 
+7.​ Hash Tables: Use arrays as the backbone for storing key-value pairs.
+
+--- Page 81 ---
+8.​ Stacks and Queues: Implement these data structures using arrays. 
+9.​ Sorting and Searching: Arrays are ideal for algorithms like merge sort (O(n log 
+n)) or binary search (O(log n)). 
+10.​
+Lookup Tables: Store precomputed values (e.g., sine values for angles). 
+11.​Database Records: Store tabular data like employee records. 
+12.​
+Simulation: Model real-world systems (e.g., weather data in grids). 
+13.​
+Signal Processing: Store audio or video data samples. 
+14.​
+Machine Learning: Store feature vectors or weights in neural networks. 
+Analogy 
+Arrays are like a toolbox: simple but essential, used to build everything from small 
+gadgets (lists) to complex machines (graphs, images). 
+ 
+ 
+ 
+A Sparse Matrix is a 2D array where the number of zero (default) elements is more 
+than non-zero elements.​
+ It is generally defined as a matrix where: 
+No. of zero elements ≥ 50% of the total elements 
+ 
+Why Optimize Sparse Matrix? 
+Problems with Normal 2D Matrix: 
+1.​ Memory Wastage: Unnecessary space is used to store zeroes. 
+2.​ Performance Issue: Unnecessary traversal over many zeroes reduces speed. 
+Example: 
+Matrix:
+
+--- Page 82 ---
+Arr  =​   [0, 0, 0, 5, 4] 
+      [0, 9, 0, 8, 0] 
+      [0, 0, 0, 0, 0] 
+      [3, 4, 0, 0, 0] 
+●​ Dimensions: 4 × 5 = 20 elements 
+●​ Non-zero elements: 6 
+●​ Space used: 20 × 4 = 80 bytes 
+●​ Ideal space (only for non-zero): 6 × 4 = 24 bytes​
+ ⇒ Memory waste = 80 - 24 = 56 bytes 
+ 
+Sparse Matrix Representations 
+COO (Coordinate List / Triplet Format) 
+ 
+Stores data in the form of triplets:​
+ (row_index, col_index, value) 
+vector<vector<int>> cooMatrix; 
+for(int i = 0; i < row; i++) { 
+    for(int j = 0; j < column; j++) { 
+        if(arr[i][j] != 0) { 
+            cooMatrix.push_back({i, j, arr[i][j]}); 
+        } 
+    }
+
+--- Page 83 ---
+} 
+ 
+// Printing triplet 
+for(auto &triplet : cooMatrix) { 
+  cout << triplet[0] << " " << triplet[1] << " " << triplet[2] 
+<< endl; 
+} 
+Output (Triplet Table): 
+ Row  |  Col  |  Value 
+   0         3        5 
+   0         4        4 
+   1         1        9 
+   1         3        8 
+   3         0        3 
+   3         1        4
+ 
+CSR (Compressed Sparse Row) 
+ 
+Best when accessing by row 
+Stores 3 arrays: 
+●​ values[] → All non-zero elements 
+●​ colIndex[] → Column index of each value 
+●​ rowPtr[] → Starting index of each row in values[] 
+Matrix:
+
+--- Page 84 ---
+Arr =       [0, 0, 0, 5, 4] 
+       [0, 9, 0, 8, 0] 
+       [0, 0, 0, 0, 0] 
+       [3, 4, 0, 0, 0] 
+Arrays: 
+values[]   = [5, 4, 9, 8, 3, 4] 
+colIndex[] = [3, 4, 1, 3, 0, 1] 
+rowPtr[]   = [0, 2, 4, 4, 6] 
+                     ↑  ↑  ↑  ↑  ↑ 
+            Row 0 r1  r2  r3  r4 
+vector<int> values, colIndex, rowPtr; 
+int count = 0; 
+rowPtr.push_back(count); 
+for(int i = 0; i < row; i++) { 
+    for(int j = 0; j < column; j++) { 
+        if(arr[i][j] != 0) { 
+            values.push_back(arr[i][j]); 
+            colIndex.push_back(j); 
+            count++; 
+        } 
+    } 
+    rowPtr.push_back(count); 
+} 
+Accessing Row 3:
+
+--- Page 85 ---
+int row = 3; 
+int start = rowPtr[row];     // 4 
+int end = rowPtr[row + 1];   // 6 
+for(int i = start; i < end; i++) { 
+    cout << values[i] << " "; 
+} 
+Output: 3 4 
+ 
+CSC (Compressed Sparse Column) 
+ 
+Best when accessing by column 
+Stores 3 arrays: 
+●​ values[] → All non-zero elements (column-wise) 
+●​ rowIndex[] → Row index of each value 
+●​ colPtr[] → Starting index of each column in values[] 
+Arrays: 
+values[]    = [3, 9, 4, 5, 8, 4] 
+rowIndex[]  = [3, 1, 3, 0, 1, 0]
+
+--- Page 86 ---
+colPtr[]    = [0, 1, 3, 3, 5, 6] 
+                     ↑  ↑  ↑  ↑  ↑  ↑ 
+              Col 0 c1 c2 c3 c4 c5 
+vector<int> values, rowIndex, colPtr(column + 1, 0); 
+Step 1: Count non-zero in each column 
+for(int j = 0; j < column; j++) { 
+    for(int i = 0; i < row; i++) { 
+        if(arr[i][j] != 0) { 
+            values.push_back(arr[i][j]); 
+            rowIndex.push_back(i); 
+            colPtr[j + 1]++; 
+        } 
+    } 
+} 
+Step 2: Update colPtr to point to correct start indices 
+for(int i = 1; i <= column; i++) { 
+    colPtr[i] += colPtr[i - 1]; 
+} 
+Accessing Column 3: 
+int col = 3; 
+int start = colPtr[col];     // 3
+
+--- Page 87 ---
+int end = colPtr[col + 1];   // 5 
+for(int i = start; i < end; i++) { 
+    cout << values[i] << " "; 
+} 
+Output: 5 8 
+ 
+When to Use Which? 
+Format 
+Best For 
+Memory Efficient 
+Row/Column Traversal 
+COO 
+Simple ops or storage ✅ Easy 
+❌ Slow in access 
+CSR 
+Row-based 
+operations 
+✅✅ 
+✅ Fast row access 
+CSC 
+Column-based ops 
+✅✅ 
+✅ Fast col access 
+ 
+Advantages and Disadvantages of Arrays 
+Advantages of Arrays in DSA​
+ 
+Following are the benefits of using arrays in data structures and algorithms: 
+●​ Random Access: Arrays provide constant time access to any element, as each 
+element can be accessed directly using its index. 
+●​ Efficiency: Storing elements contiguously in memory makes arrays very 
+memory-efficient and optimizes performance. 
+●​ Simplicity: Arrays have a simple and straightforward structure, making them 
+easy to understand and implement. 
+●​ Basis for Other Structures: Arrays serve as the foundational building block for 
+constructing other complex data structures like heaps, hash tables, stacks, and 
+queues.
+
+--- Page 88 ---
+●​ Good for Fixed-Size Collections: When the size of the dataset is known and 
+not expected to change, arrays are an excellent choice due to their static 
+nature. 
+●​ Performance in Iterative Processes: Due to their contiguous memory 
+allocation, arrays allow fast iteration over elements, making them ideal for loops 
+and algorithmic processing. 
+●​ Cache-Friendliness: The contiguous allocation of memory makes arrays 
+cache-friendly, enhancing performance by reducing cache misses during 
+operations that access array elements sequentially. 
+●​ Ease of Manipulation: Basic operations like sorting and searching are 
+well-understood and easily implemented on arrays, benefiting from direct 
+element access. 
+●​ Predictable Memory Allocation: Memory for arrays is allocated at the time of 
+array creation, which simplifies memory management in environments with 
+limited resources or where performance predictability is critical. 
+Disadvantages (Limitations) of Arrays in DSA​
+ 
+While arrays are widely used and offer many benefits, they also have some inherent 
+disadvantages or limitations that can impact their suitability for certain applications: 
+●​ Fixed Size: Once an array is declared, its size cannot be changed. This static 
+nature can lead to inefficiencies, such as wasted memory if the array is not fully 
+utilized or insufficient capacity if more space is needed. 
+●​ Costly Insertions and Deletions: Adding or removing elements from an array, 
+especially in the middle, is costly because it requires shifting elements to 
+maintain the order. This operation has a time complexity of O(n), making it 
+inefficient for large datasets. 
+●​ Single Data Type: Standard arrays are homogeneous, meaning all elements 
+must be of the same data type. This can limit their use in applications requiring 
+a heterogeneous collection of data. 
+●​ Overhead with Low-Level Management in Some Languages: In languages 
+like C and C++, managing arrays involves more low-level operations, which can 
+increase the complexity of the code and the potential for bugs, such as buffer 
+overflows. 
+ 
+1D Array Good Problems: 
+1. Find Maximum and Minimum 
+Problem Statement:​
+ Given an array, find and print the maximum and minimum elements.
+
+--- Page 89 ---
+Input Description: 
+●​ First line: An integer n 
+●​ Second line: n space-separated integers​
+ 
+Output Description: 
+●​ Maximum and minimum elements 
+Constraints: 
+●​ 1 ≤ n ≤ 1000​
+ 
+Sample Input: 
+6   
+7 3 9 1 6 4   
+Sample Output: 
+Max: 9   
+Min: 1   
+ 
+2. Reverse the Array 
+Problem Statement:​
+Reverse the array elements and print them. 
+Input Description: 
+●​ First line: Integer n 
+●​ Second line: n integers​
+ 
+Output Description: 
+●​ Reversed array 
+Constraints: 
+●​ 1 ≤ n ≤ 1000​
+ 
+Sample Input:
+
+--- Page 90 ---
+4   
+1 2 3 4   
+ 
+Sample Output: 
+4 3 2 1   
+ 
+6. Left Rotate by K​
+Rotate the array to the left by K positions. 
+Input Description: 
+●​ First line: n 
+●​ Second line: n integers​
+ 
+●​ Third line: Integer k​
+ 
+Output Description: 
+●​ Rotated array​
+ 
+Constraints: 
+●​ 1 ≤ n ≤ 1000​
+ 
+●​ 0 ≤ k < n​
+ 
+Sample Input: 
+5   
+1 2 3 4 5   
+2   
+ 
+Sample Output: 
+3 4 5 1 2
+
+--- Page 91 ---
+7. Frequency of Elements (0 to n-1) 
+Problem Statement:​
+ Print frequency of each element assuming all elements are in range 0 to n-1. 
+Input Description: 
+●​ First line: n 
+●​ Second line: n integers​
+ 
+Output Description: 
+●​ Each line: element -> frequency​
+ 
+Constraints: 
+●​ 1 ≤ n ≤ 100​
+ 
+●​ 0 ≤ element < n​
+ 
+Sample Input: 
+6   
+2 3 1 2 2 3   
+ 
+Sample Output: 
+0 -> 0   
+1 -> 1   
+2 -> 3   
+3 -> 2   
+4 -> 0   
+5 -> 0
+
+--- Page 92 ---
+8. Move Zeros to End 
+Problem Statement:​
+ Move all 0's to the end of the array while maintaining the order of non-zero elements. 
+Input Description: 
+●​ First line: n 
+●​ Second line: n integers​
+ 
+Output Description: 
+●​ Updated array 
+Constraints: 
+●​ 1 ≤ n ≤ 1000 
+Sample Input: 
+6   
+0 1 0 3 12 0   
+ 
+Sample Output: 
+1 3 12 0 0 0   
+ 
+ 
+9. Find Second Largest Element 
+Problem Statement:​
+ Find and print the second largest element in the array. 
+Input Description: 
+●​ First line: n​
+ 
+●​ Second line: n integers​
+ 
+Output Description:
+
+--- Page 93 ---
+●​ Second largest element​
+ 
+Constraints: 
+●​ 2 ≤ n ≤ 1000​
+ 
+Sample Input: 
+5   
+10 20 5 30 25   
+ 
+Sample Output: 
+Second Largest: 25   
+ 
+ 
+10. Check if Array is Palindrome 
+Problem Statement:​
+ Check whether the given array is a palindrome. 
+Input Description: 
+●​ First line: n 
+●​ Second line: n integers 
+Output Description: 
+●​ "Palindrome" or "Not Palindrome" 
+Constraints: 
+●​ 1 ≤ n ≤ 1000 
+Sample Input: 
+5   
+1 2 3 2 1   
+Sample Output: 
+Palindrome
+
+--- Page 94 ---
+2D Array Good Problems: 
+1. Input and Print 2D Array 
+Problem Statement:​
+ Take input for a 2D array and print it in matrix format. 
+Input Description: 
+●​ First line: Two integers r and c (rows and columns)​
+ 
+●​ Next r lines: Each line has c integers​
+ 
+Output Description: 
+●​ Print the matrix row by row 
+Constraints: 
+●​ 1 ≤ r, c ≤ 100​
+ 
+Sample Input: 
+2 3   
+1 2 3   
+4 5 6   
+ 
+Sample Output: 
+1 2 3   
+4 5 6   
+ 
+2. Print Transpose of Matrix 
+Problem Statement:​
+ Print the transpose of the given matrix.
+
+--- Page 95 ---
+Input Description: 
+●​ First line: Integers r and c 
+●​ Next r lines: Matrix input 
+Output Description: 
+●​ Transposed matrix (columns become rows) 
+Constraints: 
+●​ 1 ≤ r, c ≤ 100​
+ 
+Sample Input: 
+2 3   
+1 2 3   
+4 5 6   
+Sample Output: 
+1 4   
+2 5   
+3 6   
+ 
+ 
+3. Sum of All Elements 
+Problem Statement:​
+ Find and print the sum of all elements in a 2D array. 
+Input Description: 
+●​ First line: r and c 
+●​ Matrix input​
+ 
+Output Description:
+
+--- Page 96 ---
+●​ Single integer sum​
+ 
+Constraints: 
+●​ 1 ≤ r, c ≤ 100 
+Sample Input: 
+2 2   
+1 2   
+3 4   
+ 
+Sample Output: 
+10   
+ 
+ 
+4. Row-wise and Column-wise Sum 
+Problem Statement:​
+ Print the sum of each row and each column. 
+Input Description: 
+●​ First line: r and c 
+●​ Matrix input​
+ 
+Output Description: 
+●​ First r lines: Row sums 
+●​ Then c values: Column sums​
+ 
+Sample Input: 
+2 3   
+1 2 3
+
+--- Page 97 ---
+4 5 6   
+ 
+Sample Output: 
+6   
+15   
+5 7 9   
+ 
+ 
+5. Search an Element in Matrix 
+Problem Statement:​
+ Check if a given element exists in the matrix. 
+Input Description: 
+●​ First line: r, c 
+●​ Matrix input​
+ 
+●​ Last line: Element to search 
+Output Description: 
+●​ "Found" or "Not Found"​
+ 
+Constraints: 
+●​ 1 ≤ r, c ≤ 100​
+ 
+Sample Input: 
+2 2   
+1 2   
+3 4   
+3
+
+--- Page 98 ---
+Sample Output: 
+Found   
+ 
+ 
+6. Diagonal Sum of Square Matrix 
+Problem Statement:​
+ Print the sum of primary and secondary diagonals. 
+Input Description: 
+●​ First line: n (square matrix) 
+●​ Matrix input 
+Output Description: 
+●​ Two integers: primary diagonal sum and secondary diagonal sum 
+Constraints: 
+●​ 1 ≤ n ≤ 100​
+ 
+Sample Input: 
+3   
+1 2 3   
+4 5 6   
+7 8 9   
+ 
+Sample Output: 
+15 15   
+ 
+ 
+7. Rotate Matrix by 90 Degrees Clockwise
+
+--- Page 99 ---
+Problem Statement:​
+ Rotate the matrix by 90 degrees clockwise. 
+Input Description: 
+●​ First line: n (square matrix)​
+ 
+●​ Matrix input​
+ 
+Output Description: 
+●​ Rotated matrix​
+ 
+Constraints: 
+●​ 1 ≤ n ≤ 50​
+ 
+Sample Input: 
+3   
+1 2 3   
+4 5 6   
+7 8 9   
+ 
+Sample Output: 
+7 4 1   
+8 5 2   
+9 6 3   
+ 
+ 
+8. Spiral Order Print 
+Problem Statement:​
+ Print matrix elements in spiral order.
+
+--- Page 100 ---
+Input Description: 
+●​ First line: r and c 
+●​ Matrix input​
+ 
+Output Description: 
+●​ Elements in spiral order (space-separated) 
+Constraints: 
+●​ 1 ≤ r, c ≤ 100​
+ 
+Sample Input: 
+3 3   
+1 2 3   
+4 5 6   
+7 8 9   
+ 
+Sample Output: 
+1 2 3 6 9 8 7 4 5   
+ 
+ 
+9. Find Row with Maximum 1s in Binary Matrix 
+Problem Statement:​
+ Each row is sorted in a binary matrix (only 0s and 1s). Find the index of the row with 
+the most 1s. 
+Input Description: 
+●​ First line: r and c​
+ 
+●​ Binary matrix​
+
+--- Page 101 ---
+Output Description: 
+●​ Index of the row with maximum 1s​
+ 
+Constraints: 
+●​ 1 ≤ r, c ≤ 100​
+ 
+Sample Input: 
+3 4   
+0 0 1 1   
+0 1 1 1   
+0 0 0 1   
+ 
+Sample Output: 
+1   
+ 
+ 
+10. Set Matrix Zero 
+Problem Statement:​
+ If any cell in the matrix is 0, set its entire row and column to 0. 
+Input Description: 
+●​ First line: r and c 
+●​ Matrix input​
+ 
+Output Description: 
+●​ Updated matrix​
+ 
+Constraints:
+
+--- Page 102 ---
+●​ 1 ≤ r, c ≤ 100​
+ 
+Sample Input: 
+3 3   
+1 2 3   
+4 0 6   
+7 8 9   
+ 
+Sample Output: 
+1 0 3   
+0 0 0   
+7 0 9   
+ 
+ 
+DSA Approaches: Brute Force and Optimal 
+In Data Structures and Algorithms (DSA), solving a problem involves choosing the 
+right approach—a strategy to tackle the problem efficiently. There are two main types 
+of approaches: Brute Force and Optimal.
+ 
+1. What are DSA Approaches? 
+An approach in DSA is a method or strategy to solve a problem. Think of it like 
+planning how to get to school: 
+●​ You could take the long, obvious route (like checking every possible path), 
+which is Brute Force. 
+●​ Or, you could use a map to find the shortest path, which is Optimal.​
+The choice of approach affects the time complexity (how fast the solution 
+runs) and space complexity (how much memory it uses). 
+Types of Approaches
+
+--- Page 103 ---
+1.​ Brute Force: A straightforward method that tries all possible solutions without 
+much cleverness, like using strength to solve a puzzle. 
+2.​ Optimal: A smarter method that uses techniques (e.g., divide-and-conquer, 
+dynamic programming) to solve the problem faster or with less memory. 
+ 
+2. Brute Force Approach 
+2.1 Definition 
+The Brute Force approach is a simple, direct method to solve a problem by trying all 
+possible solutions or combinations until the correct one is found. It relies on 
+strength (computing power) rather than clever algorithms or shortcuts. 
+●​ Provided Definition: 
+1.​ A method of accomplishing something primarily by means of strength, 
+without the use of great skill, mechanical aids, or thought. 
+■​ Example: "We lifted the car by brute force." (Using raw effort to 
+move the car, not tools or planning.) 
+2.​ (Computer Science) A method of computation wherein the computer is let 
+to try all permutations of a problem until one is found that provides a 
+solution, in contrast to the implementation of a more intelligent algorithm. 
+■​ Example: Checking every possible password combination to crack 
+a code. 
+2.2 Characteristics 
+●​ Simple to Understand: No need for complex logic or advanced techniques. 
+●​ Exhaustive: Tests every possible solution, ensuring correctness if implemented 
+properly. 
+●​ Slow for Large Inputs: Often has high time complexity (e.g., O(n²), O(n!), 
+O(2ⁿ)) because it doesn’t optimize. 
+●​ High Resource Usage: May require significant time or memory for large 
+datasets. 
+●​ Guaranteed Solution: If a solution exists, brute force will find it (but may take a 
+long time). 
+2.3 Analogy 
+Imagine you lost your key in a room with 100 boxes: 
+●​ Brute Force: Open every box one by one until you find the key. It’s simple but 
+takes a lot of effort if there are many boxes.
+
+--- Page 104 ---
+●​ Optimal: Use a clue (e.g., “the key is in a red box”) to check only the red boxes, 
+saving time. 
+2.4 When to Use Brute Force 
+●​ Small Inputs: When the input size (n) is small, brute force is fast enough. 
+●​ No Better Solution Known: When you can’t think of an optimized algorithm. 
+●​ Prototyping: To quickly test if a solution works before optimizing. 
+●​ Guaranteed Correctness: When you need to ensure all possibilities are 
+checked (e.g., in cryptography). 
+2.5 Example: Finding a Pair with a Given Sum 
+●​ Problem: Given an array of integers, find two numbers that add up to a target 
+sum. 
+●​ Input: Array = [2, 7, 11, 15], Target = 9 
+●​ Output: Indices [0, 1] (because 2 + 7 = 9) 
+Brute Force Approach 
+●​ Check every possible pair of numbers in the array to see if their sum equals the 
+target. 
+●​ Steps: 
+1.​ Loop through each element i (0 to n-1). 
+2.​ For each i, loop through each element j (i+1 to n-1). 
+3.​ If arr[i] + arr[j] == target, return their indices. 
+Code Implementation (C++) 
+ #include <iostream> 
+ #include <vector> 
+ using namespace std; 
+ 
+ vector<int> findPairSum(const vector<int>& arr, int target) { 
+    int n = arr.size(); 
+    // Check all pairs 
+    for (int i = 0; i < n; i++) { 
+        for (int j = i + 1; j < n; j++) { 
+            if (arr[i] + arr[j] == target) {
+
+--- Page 105 ---
+return {i, j}; // Return indices of the pair 
+            } 
+        } 
+    } 
+    return {}; // No pair found 
+ } 
+ 
+ int main() { 
+     vector<int> arr = {2, 7, 11, 15}; 
+     int target = 9; 
+    
+     vector<int> result = findPairSum(arr, target); 
+    if (!result.empty()) { 
+        cout << "Indices: [" << result[0] << ", " << result[1] << "]" << endl; 
+    } else { 
+        cout << "No pair found!" << endl; 
+    } 
+    
+    return 0; 
+ } 
+●​ Output: Indices: [0, 1] 
+●​ Explanation: Checks pairs like (2,7), (2,11), (2,15), (7,11), etc., finding 
+2 + 7 = 9. 
+Time and Space Complexity 
+●​ Time Complexity: O(n²) 
+○​ Two nested loops: outer loop runs n times, inner loop runs n-1, n-2, ..., 
+giving approximately n * n = n². 
+●​ Space Complexity: O(1)
+
+--- Page 106 ---
+○​ Only uses a few variables (indices, result vector), excluding the input 
+array. 
+Drawbacks 
+●​ For large n (e.g., 10,000), checking all pairs (100 million comparisons) is slow. 
+●​ Not practical for real-world applications with big datasets. 
+ 
+1. What Are Constraints? 
+Constraints define the range of values for input variables in a problem. They help 
+you understand: 
+●​ What size of input (n) is allowed 
+●​ What time and space efficiency is expected 
+●​ Whether brute force will work or not 
+Example: 
+1 ≤ n ≤ 10⁵   
+1 ≤ arr[i] ≤ 10⁹   
+Means: Input array can be of size up to 100,000 and elements up to 1 billion. 
+ 
+2. Why Are Constraints Important? 
+Understanding constraints allows you to: 
+●​ Predict the correct algorithm complexity 
+●​ Decide whether brute force, DP, or optimized techniques are needed 
+●​ Avoid TLE (Time Limit Exceeded) or MLE (Memory Limit Exceeded) 
+●​ Estimate how many operations per second are allowed 
+ 
+3. Time Limit vs Acceptable Complexity (With Proofs) 
+Time Limit 
+Acceptable Complexity 
+Proof & Reasoning
+
+--- Page 107 ---
+≤ 10⁸ ops (1s) 
+O(n), O(n log n) 
+CPU handles ~10⁸ ops/sec. For n = 10⁶, log n ≈ 
+20 → 10⁶ × 20 = 2×10⁷ ✔️ 
+≤ 10⁷ ops 
+O(n log n), O(n √n) 
+For n = 10⁵, log n ≈ 17 → 1.7×10⁶ ops ✔️ For n 
+= 10⁵, √n ≈ 316 → 3.1×10⁷ ops ✔️ 
+≤ 10⁶ ops 
+O(n²) 
+For n = 1000 → 10⁶ operations = acceptable 
+≤ 10⁵ ops 
+O(n²), O(n√n) (small 
+constants) 
+For n = 300 ⇒ 90,000 ops ✔️ For n = 1000, √n 
+= 31 → 31,000 ops ✔️ 
+≤ 10⁴ ops 
+O(n³), O(n² log n) 
+For n = 100 ⇒ 10⁶ ops  For n = 300: 90,000 × 
+log n ≈ 9×10⁵ ✔️ 
+Use this to estimate complexity just from time limit and n.
+
+--- Page 108 ---
+
+
+--- Page 109 ---
+4. Based on n, Choose Algorithm Type
+
+--- Page 110 ---
+n (Input Size) 
+Max Acceptable 
+Complexity 
+Suitable Algorithms 
+n ≤ 10 
+O(n!), O(2ⁿ) 
+Backtracking, Recursion, Subsets 
+n ≤ 100 
+O(n³) 
+DP, Brute Force, Triple Loops 
+n ≤ 1,000 
+O(n²) 
+Nested Loops, DP 
+n ≤ 10⁵ 
+O(n log n), O(n) 
+Binary Search, Sorting, Hashing 
+n ≤ 10⁶ 
+O(n), O(n log n) 
+Sliding Window, Prefix Sum 
+n > 10⁶ 
+O(n), O(1) (very optimized) 
+Mathematical, Bit Tricks 
+ 
+5. Number of Loops Based on n 
+n Size 
+Max Nested Loops Allowed 
+n ≤ 100 
+Up to 3 loops (O(n³)) 
+n ≤ 1,000 
+2 loops (O(n²)) 
+n ≤ 10⁵ 
+Single loop only (O(n)) 
+n > 10⁶ 
+Only fast O(n) or better 
+ 
+6. Math for Estimating Time Complexities 
+Complexity 
+Safe Max n 
+Explanation 
+O(n) 
+10⁸ 
+10⁸ iterations in 1 second 
+O(n log n) 
+10⁶ 
+10⁶ × 20 = 2×10⁷ ops 
+O(n²) 
+10³ 
+10³ × 10³ = 10⁶ 
+O(n³) 
+100 
+100³ = 10⁶ 
+O(2ⁿ), O(n!) 
+15–20 
+2²⁰ ≈ 10⁶, 20! ≈ 10¹⁸ → too slow
+
+--- Page 111 ---
+7. Strategy: How to Decide the Approach? 
+Step 1: Read n from constraints 
+→ Immediately estimate allowed complexity 
+Step 2: Map to Algorithm 
+Complexity 
+Possible Algorithms 
+O(n), O(n log n) 
+Sorting, Hashing, Greedy, Prefix Sum 
+O(n²) 
+2 loops, Matrix traversal, DP 
+O(n³) 
+Matrix Chains, Floyd-Warshall 
+O(2ⁿ) 
+Subsets, Recursion, Backtracking 
+Step 3: Count number of loops/recursion depth allowed 
+●​ Small n → You can go brute force 
+●​ Big n → You must optimize​
+ 
+ 
+8. Real Examples 
+🔹 Example 1: 
+n = 10⁵, find max subarray​
+ Use: Kadane’s Algorithm O(n)​
+ Avoid: Brute force O(n²) 
+ 
+🔹 Example 2: 
+n = 15, generate all permutations​
+ Use: Backtracking (O(n!))​
+ Avoid: DP or linear approach
+
+--- Page 112 ---
+🔹 Example 3: 
+ n = 500, process matrix​
+ Use: 2 nested loops (O(n²))​
+ Avoid: 3 nested loops (O(n³)) 
+ 
+Final Cheat Sheet 
+n size 
+Time Complexity 
+Allowed 
+Recommended Approaches 
+≤ 20 
+O(2ⁿ), O(n!) 
+Backtracking, Brute Force 
+≤ 100 
+O(n³) 
+Nested Loops, Small DP 
+≤ 1,000 
+O(n²) 
+2D Matrix, Pair-wise Comparison 
+≤ 10⁵ 
+O(n log n), O(n) 
+Sorting, Hashing, Prefix Sum 
+≤ 10⁶ 
+O(n), O(n log n) 
+Sliding Window, Binary Search 
+> 10⁶ 
+O(n) or optimized O(1) 
+Mathematical tricks, formulas 
+ 
+3. Optimal Approach 
+3.1 Definition 
+The Optimal approach uses clever techniques or data structures to solve a problem 
+more efficiently than brute force, reducing time or space complexity. It leverages 
+insights about the problem to avoid unnecessary work. 
+3.2 Characteristics 
+●​ Efficient: Lower time complexity (e.g., O(n), O(log n)) by using smart 
+algorithms. 
+●​ Complex Logic: Often requires understanding patterns or properties of the 
+problem. 
+●​ Problem-Specific: Depends on the problem’s structure (e.g., sorting, hashing). 
+●​ Examples of Techniques: 
+○​ Divide-and-Conquer (e.g., merge sort). 
+○​ Greedy Algorithms (e.g., Kruskal’s algorithm). 
+○​ Dynamic Programming (e.g., knapsack problem).
+
+--- Page 113 ---
+○​ Hashing or Binary Search for faster lookups. 
+3.3 Analogy 
+Instead of opening every box to find your key (brute force), you use a clue (e.g., “the 
+key is in a box numbered less than 50”) and perform a binary search, checking fewer 
+boxes. 
+3.4 Example: Optimal Solution for Pair Sum 
+●​ Problem: Same as above (find two numbers in an array that sum to a target). 
+●​ Optimal Approach: Use a hash map to store numbers and their indices. 
+●​ Steps: 
+1.​ Iterate through the array. 
+2.​ For each element arr[i], check if target - arr[i] exists in the 
+hash map. 
+3.​ If found, return the indices; otherwise, add arr[i] and its index to the 
+hash map. 
+Code Implementation (C++) 
+ #include <iostream> 
+ #include <vector> 
+ #include <unordered_map> 
+ 
+ using namespace std; 
+ 
+ vector<int> findPairSumOptimal(const vector<int>& arr, int target) { 
+    unordered_map<int, int> numMap; // Maps value to index 
+    for (int i = 0; i < arr.size(); i++) { 
+        int complement = target - arr[i]; 
+        if (numMap.find(complement) != numMap.end()) { 
+            return {numMap[complement], i}; // Found pair 
+        } 
+        numMap[arr[i]] = i; // Store current element
+
+--- Page 114 ---
+} 
+    return {}; // No pair found 
+ } 
+ 
+ int main() { 
+    vector<int> arr = {2, 7, 11, 15}; 
+    int target = 9; 
+    
+    vector<int> result = findPairSumOptimal(arr, target); 
+    if (!result.empty()) { 
+        cout << "Indices: [" << result[0] << ", " << result[1] << "]" << endl; 
+    } else { 
+        cout << "No pair found!" << endl; 
+    } 
+    
+    return 0; 
+ } 
+●​ Output: Indices: [0, 1] 
+●​ Explanation: Uses a hash map to check for target - arr[i] in O(1) time 
+per lookup. 
+Time and Space Complexity 
+●​ Time Complexity: O(n) 
+○​ Single loop through the array, with O(1) average-case hash map 
+operations. 
+●​ Space Complexity: O(n) 
+○​ Stores up to n elements in the hash map. 
+●​ Advantage: Much faster than O(n²) for large n.
+
+--- Page 115 ---
+4. Brute Force vs. Optimal: Comparison 
+Aspect 
+Brute Force 
+Optimal 
+Complexity 
+High (e.g., O(n²), O(n!)) 
+Lower (e.g., O(n), O(log n)) 
+Ease of Use 
+Simple to code, no deep 
+thinking 
+Requires problem-specific 
+insights 
+Performance 
+Slow for large inputs 
+Fast, scalable 
+Use Case 
+Small inputs, prototyping 
+Large inputs, production 
+code 
+Example (Pair Sum) 
+O(n²) nested loops 
+O(n) with hash map 
+Classroom Analogy 
+●​ Brute Force: Checking every desk in the classroom to find a lost pencil. 
+●​ Optimal: Asking the teacher, who knows it’s in the front row, saving time. 
+ 
+Two Pointer Technique
+
+--- Page 116 ---
+The Two Pointer Technique is a powerful algorithmic approach where we use two 
+pointers (indexes) to solve problems efficiently, often reducing the time complexity 
+from O(n2) to O(n). 
+ 
+When to Use: 
+●​ The input is an array or string. 
+●​ You are asked to find a pair or a subarray. 
+●​ The array is sorted (especially for opposite direction type). 
+●​ You're solving search, sum, or window-based problems. 
+ 
+Types of Two Pointer Techniques 
+1. Opposite Direction 
+ 
+●​ Pointers start at both ends and move towards each other. 
+●​ Used when the array is sorted (e.g. sum-related problems, palindrome check). 
+2. Same Direction
+
+--- Page 117 ---
+●​ Both pointers move from start to end, useful in sliding window or prefix sum 
+type problems.​
+ 
+ 
+Additional Pointer Use 
+●​ Three Pointers: For problems like finding triplets or merging 3 arrays. 
+●​ Four Pointers: For problems involving 2 pairs from 2 arrays (e.g. 4Sum). 
+Misconceptions: 
+"Two pointers only work on sorted arrays" - False. It works best for opposite 
+direction problems if the array is sorted. For same direction, array need not be 
+sorted (e.g., sliding window, subarrays). 
+ 
+Opposite Direction Problems (Array should be sorted) 
+1. Two Sum (Find if any two numbers add up to K) 
+Find if there exist two numbers in a sorted array that sum up to the target. 
+Input: arr = [1, 2, 4, 7, 11, 15], target = 15 
+Output: true (4 + 11) 
+bool hasTwoSum(vector<int>& arr, int k) { 
+    int left = 0, right = arr.size() - 1; 
+    while (left < right) { 
+        int sum = arr[left] + arr[right]; 
+        if (sum == k) return true; 
+        else if (sum < k) left++; 
+        else right--; 
+    } 
+    return false;
+
+--- Page 118 ---
+} 
+Dry Run: arr = [1, 2, 3, 4, 6], k = 10​
+Start: left = 0, right = 4 => 1+6 = 7 < 10 => left++ 
+ 
+2. Find Triplet with Target K 
+Check if a given string is a palindrome. 
+Input: str = "madam" 
+Output: true 
+bool findTriplet(vector<int>& arr, int k) { 
+    sort(arr.begin(), arr.end()); 
+    for (int i = 0; i < arr.size() - 2; i++) { 
+        int left = i + 1, right = arr.size() - 1; 
+        while (left < right) { 
+            int sum = arr[i] + arr[left] + arr[right]; 
+            if (sum == k) return true; 
+            else if (sum < k) left++; 
+            else right--; 
+        } 
+    } 
+    return false; 
+} 
+ 
+ 
+3. Reverse an Array In-Place 
+Reverse the elements of an array in-place.
+
+--- Page 119 ---
+Input: arr = [1, 2, 3, 4] 
+Output: arr = [4, 3, 2, 1] 
+void reverseArray(vector<int>& arr) { 
+    int left = 0, right = arr.size() - 1; 
+    while (left < right) { 
+        swap(arr[left++], arr[right--]); 
+    } 
+} 
+ 
+ 
+4. Check if String is Palindrome 
+bool isPalindrome(string s) { 
+    int left = 0, right = s.length() - 1; 
+    while (left < right) { 
+        if (!isalnum(s[left])) left++; 
+        else if (!isalnum(s[right])) right--; 
+        else if (tolower(s[left++]) != tolower(s[right--])) 
+return false; 
+    } 
+    return true; 
+} 
+ 
+ 
+5. Separate 0s and 1s
+
+--- Page 120 ---
+Given a binary array, move all 0s to the left and 1s to the right. 
+Input: arr = [0, 1, 0, 1, 1, 0] 
+Output: arr = [0, 0, 0, 1, 1, 1] 
+void separateZeroOne(vector<int>& arr) { 
+    int left = 0, right = arr.size() - 1; 
+    while (left < right) { 
+        if (arr[left] == 1 && arr[right] == 0) 
+            swap(arr[left++], arr[right--]); 
+        if (arr[left] == 0) left++; 
+        if (arr[right] == 1) right--; 
+    } 
+} 
+ Problem 6: Triplet Sum to Target 
+Given a sorted array, find if any 3 numbers sum up to a target. 
+Input: arr = [1, 2, 4, 6, 8, 10], target = 18 
+Output: true (2 + 6 + 10) 
+bool findTriplet(vector<int>& arr, int target) { 
+    for (int i = 0; i < arr.size() - 2; i++) { 
+        int left = i + 1, right = arr.size() - 1; 
+        while (left < right) { 
+            int sum = arr[i] + arr[left] + arr[right]; 
+            if (sum == target) return true; 
+            else if (sum < target) left++; 
+            else right--;
+
+--- Page 121 ---
+} 
+    } 
+    return false; 
+} 
+ 
+Same Direction Problems (Does not require sorted array) 
+1. Merge Two Sorted Arrays (From End) 
+Merge two sorted arrays into one sorted array. 
+Input: arr1 = [1, 3, 5], arr2 = [2, 4, 6] 
+Output: [1, 2, 3, 4, 5, 6] 
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int 
+n) { 
+    int i = m - 1, j = n - 1, k = m + n - 1; 
+    while (i >= 0 && j >= 0) 
+        nums1[k--] = nums1[i] > nums2[j] ? nums1[i--] : 
+nums2[j--]; 
+    while (j >= 0) 
+        nums1[k--] = nums2[j--]; 
+} 
+ 
+ 
+2. Remove Duplicates from Sorted Array 
+Remove duplicates from a sorted array in-place. 
+Input: arr = [1, 1, 2, 3, 3, 4]
+
+--- Page 122 ---
+Output: [1, 2, 3, 4] 
+int removeDuplicates(vector<int>& nums) { 
+    if (nums.empty()) return 0; 
+    int i = 0; 
+    for (int j = 1; j < nums.size(); ++j) 
+        if (nums[j] != nums[i]) 
+            nums[++i] = nums[j]; 
+    return i + 1; 
+} 
+ 
+ 
+3. Longest Subarray with Sum <= K 
+int longestSubarray(vector<int>& arr, int k) { 
+    int left = 0, sum = 0, maxLen = 0; 
+    for (int right = 0; right < arr.size(); ++right) { 
+        sum += arr[right]; 
+        while (sum > k) sum -= arr[left++]; 
+        maxLen = max(maxLen, right - left + 1); 
+    } 
+    return maxLen; 
+} 
+ 
+ 
+4. Minimum Size Subarray Sum ≥ K
+
+--- Page 123 ---
+int minSubArrayLen(int k, vector<int>& nums) { 
+    int left = 0, sum = 0, minLen = INT_MAX; 
+    for (int right = 0; right < nums.size(); right++) { 
+        sum += nums[right]; 
+        while (sum >= k) { 
+            minLen = min(minLen, right - left + 1); 
+            sum -= nums[left++]; 
+        } 
+    } 
+    return minLen == INT_MAX ? 0 : minLen; 
+} 
+ 
+5. Count Number of Nice Subarrays (with k odd) 
+int atMost(vector<int>& nums, int k) { 
+    int left = 0, count = 0, res = 0; 
+    for (int right = 0; right < nums.size(); ++right) { 
+        if (nums[right] % 2 == 1) k--; 
+        while (k < 0) { 
+            if (nums[left++] % 2 == 1) k++; 
+        } 
+        res += right - left + 1; 
+    } 
+    return res;
+
+--- Page 124 ---
+} 
+int numberOfSubarrays(vector<int>& nums, int k) { 
+    return atMost(nums, k) - atMost(nums, k - 1); 
+} 
+6: Longest Substring Without Repeating Characters 
+Return the length of the longest substring without repeating characters. 
+Input: str = "abcabcbb" 
+Output: 3 (substring: "abc") 
+int lengthOfLongestSubstring(string s) { 
+    unordered_set<char> seen; 
+    int l = 0, r = 0, maxLen = 0; 
+    while (r < s.length()) { 
+        if (!seen.count(s[r])) { 
+            seen.insert(s[r++]); 
+            maxLen = max(maxLen, r - l); 
+        } else { 
+            seen.erase(s[l++]); 
+        } 
+    } 
+    return maxLen; 
+} 
+ 
+7: Container With Most Water 
+Find two lines that together with the x-axis form a container that holds the most water.
+
+--- Page 125 ---
+Input: height = [1, 8, 6, 2, 5, 4, 8, 3, 7] 
+Output: 49 
+int maxArea(vector<int>& height) { 
+    int l = 0, r = height.size() - 1, maxA = 0; 
+    while (l < r) { 
+        maxA = max(maxA, min(height[l], height[r]) * (r - l)); 
+        if (height[l] < height[r]) l++; 
+        else r--; 
+    } 
+    return maxA; 
+} 
+ 
+7: Max Consecutive Ones 
+Given a binary array, find the maximum number of consecutive 1s. 
+Input: arr = [1,1,0,1,1,1] 
+Output: 3 
+int findMaxConsecutiveOnes(vector<int>& nums) { 
+    int count = 0, maxCount = 0; 
+    for (int i = 0; i < nums.size(); i++) { 
+        if (nums[i] == 1) count++; 
+        else count = 0; 
+        maxCount = max(maxCount, count); 
+    } 
+    return maxCount;
+
+--- Page 126 ---
+} 
+ 
+Opposite Direction (Sorted Array / String) 
+# 
+Problem Name 
+Platform 
+Link 
+1 
+Two Sum II – Input Array 
+Is Sorted 
+LeetCode #167 
+LeetCode: Two Sum II 
+(leetcode.com) 
+2 
+3Sum (Find Triplets with 
+Target Sum) 
+LeetCode #15 
+https://leetcode.com/problems
+/3sum/ 
+3 
+Valid Palindrome 
+LeetCode #125 
+https://leetcode.com/problems
+/valid-palindrome/ 
+4 
+Reverse String 
+LeetCode #344 
+https://leetcode.com/problems
+/reverse-string/ 
+5 
+Sort Colors (Dutch 
+National Flag Problem) 
+LeetCode #75 
+https://leetcode.com/problems
+/sort-colors/ 
+ 
+Same Direction (Sliding Window / Merge / Frequency) 
+# 
+Problem Name 
+Platform 
+Link 
+6 
+Merge Sorted Array 
+LeetCode 
+#88 
+https://leetcode.com/problems/m
+erge-sorted-array/ 
+7 
+Remove Duplicates 
+from Sorted Array 
+LeetCode 
+#26 
+https://leetcode.com/problems/re
+move-duplicates-from-sorted-arra
+y/ 
+8 
+Longest Substring 
+Without Repeating 
+Characters 
+LeetCode #3 LeetCode: Longest Substring 
+(walkccc.me, leetcode.com)
+
+--- Page 127 ---
+9 
+Container With Most 
+Water 
+LeetCode 
+#11 
+https://leetcode.com/problems/co
+ntainer-with-most-water/ 
+10 
+Max Consecutive Ones 
+II (at Most K Zero 
+Flips) 
+LeetCode 
+#1004 
+https://leetcode.com/problems/m
+ax-consecutive-ones-ii/ 
+ 
+Sliding Window Technique 
+ 
+The Sliding Window technique is used to optimize brute-force solutions that 
+involve checking all contiguous subarrays or substrings.​
+ Instead of recalculating everything for each subarray, we slide a window over the 
+data to reuse previous results. 
+ 
+When to Use: 
+Use when: 
+●​ You are dealing with arrays or strings. 
+●​ You are calculating something on contiguous elements. 
+●​ You want to optimize a nested loop (brute-force O(n²) → O(n)). 
+ 
+Types of Sliding Window
+
+--- Page 128 ---
+Type 
+Description 
+Window 
+Size 
+Fixed Window The window size k is given/fixed. 
+Fixed 
+Variable 
+Window 
+The window size changes based on conditions 
+(e.g., sum ≤ k). 
+Dynamic 
+ 
+Fixed Sliding Window Example 
+Problem: Maximum Sum Subarray of Size K 
+Given an array of integers and a number k, find the maximum sum of a subarray of 
+size k. 
+int maxSum(vector<int>& nums, int k) { 
+    int max_sum = 0, window_sum = 0; 
+    for (int i = 0; i < k; i++) window_sum += nums[i]; 
+    max_sum = window_sum; 
+    for (int i = k; i < nums.size(); i++) { 
+        window_sum += nums[i] - nums[i - k]; // slide window 
+        max_sum = max(max_sum, window_sum); 
+    } 
+    return max_sum; 
+} 
+Dry Run: 
+Input: [1, 4, 2, 10, 2, 3], k = 3 
+Initial sum = 1+4+2 = 7 
+Next: 4+2+10 = 16 → max updated 
+Slide window by 1 each time, removing leftmost, adding right
+
+--- Page 129 ---
+Variable Sliding Window Example 
+Problem: Longest Substring Without Repeating Characters 
+Find the length of the longest substring without repeating characters. 
+int lengthOfLongestSubstring(string s) { 
+    unordered_set<char> seen; 
+    int left = 0, right = 0, max_len = 0; 
+    while (right < s.length()) { 
+        if (seen.find(s[right]) == seen.end()) { 
+            seen.insert(s[right++]); 
+            max_len = max(max_len, right - left); 
+        } else { 
+            seen.erase(s[left++]); // shrink window 
+        } 
+    } 
+    return max_len; 
+} 
+Dry Run: 
+Input: "abcabcbb" 
+Step 1: expand window to "abc" (no repeat) 
+On 'a' again → shrink window → continue 
+Max length found = 3
+
+--- Page 130 ---
+Key Template (Pseudocode Style) 
+Fixed Window 
+int window_sum = 0; 
+for (int i = 0; i < k; i++) window_sum += arr[i]; 
+for (int i = k; i < n; i++) { 
+    window_sum += arr[i] - arr[i - k]; 
+    max_sum = max(max_sum, window_sum); 
+} 
+ 
+Variable Window 
+while (right < n) { 
+    // Expand window 
+    if (valid) { 
+        update answer 
+        right++; 
+    } else { 
+        // Shrink window 
+        left++; 
+    } 
+} 
+ 
+Best Sliding Window Problems 
+Fixed 
+Maximum Sum Subarray of Size K (GFG)
+
+--- Page 131 ---
+Fixed 
+Max Consecutive Ones III - LeetCode 
+#1004 
+ 
+Fixed 
+Maximum Average Subarray I - LeetCode 
+#643 
+ 
+Variable 
+Longest Substring Without Repeating Chars 
+- LeetCode #3 
+ 
+Variable 
+Minimum Window Substring - LeetCode 
+#76 
+ 
+Variable 
+Longest Substring with At Most K Distinct 
+Chars - LeetCode #340 
+ 
+Variable 
+Fruit Into Baskets - LeetCode #904 
+ 
+Variable 
+Subarray Product Less Than K - LeetCode 
+#713 
+ 
+​
+Prefix Sum and Postfix (Suffix) Sum 
+They are techniques to preprocess cumulative sums in an array to help solve 
+problems involving range-based queries efficiently. 
+Prefix Sum​
+ Prefix sum of an array is an array where each element at index i is the sum of all 
+elements from index 0 to i of the original array. 
+Formula: 
+prefix[i] = prefix[i - 1] + arr[i]; 
+Use Cases: 
+●​ Range sum queries 
+●​ Subarray sum 
+●​ Equilibrium index 
+●​ Number of subarrays with a given sum 
+●​ XOR of range (with prefix XOR)​
+ 
+Example:
+
+--- Page 132 ---
+vector<int> prefixSum(vector<int>& arr) { 
+    int n = arr.size(); 
+    vector<int> prefix(n); 
+    prefix[0] = arr[0]; 
+    for (int i = 1; i < n; i++) { 
+        prefix[i] = prefix[i - 1] + arr[i]; 
+    } 
+    return prefix; 
+} 
+Range Sum from index l to r: 
+int rangeSum = prefix[r] - (l > 0 ? prefix[l - 1] : 0); 
+ 
+Postfix Sum (Suffix Sum)​
+ Postfix (Suffix) sum is the reverse idea: each element at index i is the sum of all 
+elements from index i to the end of the array. 
+Formula: 
+suffix[i] = suffix[i + 1] + arr[i]; 
+Use Cases: 
+●​ Range sum from i to n 
+●​ Balancing prefix and suffix sum 
+●​ Finding trailing patterns​
+ 
+Example: 
+vector<int> suffixSum(vector<int>& arr) { 
+    int n = arr.size(); 
+    vector<int> suffix(n);
+
+--- Page 133 ---
+suffix[n - 1] = arr[n - 1]; 
+    for (int i = n - 2; i >= 0; i--) { 
+        suffix[i] = suffix[i + 1] + arr[i]; 
+    } 
+    return suffix; 
+} 
+ 
+Problems You Can Solve with Prefix/Postfix: 
+1.​ Range sum queries (LC: Range Sum Query - Immutable) 
+2.​ Subarray sum equals K (LC: Subarray Sum Equals K) 
+3.​ Find equilibrium index 
+4.​ Count subarrays with given sum 
+5.​ Maximum sum subarray of size K (also Sliding Window) 
+6.​ XOR of elements in range (Prefix XOR) 
+7.​ Binary array with equal 0 and 1 (using prefix sum trick) 
+ 
+Binary Search 
+Binary Search is a searching algorithm used to find the position of a target element in a 
+sorted array. It works by repeatedly dividing the search interval in half. 
+ 
+Why Do We Need Binary Search? 
+●​ Linear Search takes O(n) time in the worst case. 
+●​ Binary Search reduces the time complexity to O(log n). 
+●​ Suitable when the array is sorted. 
+ 
+ 
+ 
+Why Binary Search is Better Than Linear Search:
+
+--- Page 134 ---
+Feature 
+Linear Search 
+Binary Search 
+Time Complexity 
+O(n) 
+O(log n) 
+Works on Unsorted 
+Yes 
+No 
+Performance on large 
+data 
+Slow 
+Fast 
+Approach 
+Sequential 
+Divide & Conquer 
+ 
+Examples 
+Example 1: Find First Occurrence of an Element​
+ Given a sorted array with duplicate elements, find the first occurrence of a given element. 
+Input:​
+ arr = [1, 2, 2, 2, 3, 4], target = 2 
+Output:​
+ 1 
+int firstOccurrence(vector<int>& arr, int target) { 
+    int low = 0, high = arr.size() - 1, result = -1; 
+    while (low <= high) { 
+        int mid = (low + high) / 2; 
+        if (arr[mid] == target) { 
+            result = mid; 
+            high = mid - 1; // keep searching on left 
+        } else if (arr[mid] < target) { 
+            low = mid + 1; 
+        } else { 
+            high = mid - 1;
+
+--- Page 135 ---
+} 
+    } 
+    return result; 
+} 
+ 
+Dry Run:​
+ For arr = [1, 2, 2, 2, 3, 4], target = 2 
+1. mid = 2 → arr[2] = 2 → result = 2 → high = 1 
+2. mid = 0 → arr[0] = 1 → low = 1 
+3. mid = 1 → arr[1] = 2 → result = 1 → high = 0 
+Final result = 1 
+ 
+ 
+Example 2: Find Floor of Square Root​
+ Find the floor of the square root of a number without using built-in functions. 
+Input:​
+ x = 10 
+Output:​
+ 3 
+int sqrtFloor(int x) { 
+    int low = 0, high = x, ans = -1; 
+    while (low <= high) { 
+        int mid = (low + high) / 2; 
+        if ((long long)mid * mid <= x) { 
+            ans = mid; 
+            low = mid + 1; 
+        } else {
+
+--- Page 136 ---
+high = mid - 1; 
+        } 
+    } 
+    return ans; 
+} 
+ 
+Dry Run: 
+1. mid = 5 → 25 > 10 → high = 4 
+2. mid = 2 → 4 <= 10 → ans = 2 → low = 3 
+3. mid = 3 → 9 <= 10 → ans = 3 → low = 4 
+4. mid = 4 → 16 > 10 → high = 3 
+Final result = 3 
+ 
+ 
+Example 3: Find Any Peak Element​
+ A peak element is greater than or equal to its neighbors. Return any peak. 
+Input:​
+ arr = [1, 3, 20, 4, 1, 0] 
+Output:​
+ 20 
+int findPeakElement(vector<int>& arr) { 
+    int low = 0, high = arr.size() - 1; 
+    while (low <= high) { 
+        int mid = (low + high) / 2; 
+        if ((mid == 0 || arr[mid - 1] <= arr[mid]) && 
+            (mid == arr.size() - 1 || arr[mid + 1] <= arr[mid])) 
+            return arr[mid];
+
+--- Page 137 ---
+else if (mid > 0 && arr[mid - 1] > arr[mid]) 
+            high = mid - 1; 
+        else 
+            low = mid + 1; 
+    } 
+    return -1; 
+} 
+Dry Run (Simplified): 
+mid = 2 → arr[2] = 20 
+left = 3 ≤ 20, right = 4 ≤ 20 → 20 is a peak → return 20 
+ 
+ 
+Example 4: Minimum in Rotated Sorted Array​
+Find the minimum element in a rotated sorted array. 
+Input:​
+ arr = [4, 5, 6, 7, 0, 1, 2] 
+Output:​
+ 0 
+int findMin(vector<int>& arr) { 
+    int low = 0, high = arr.size() - 1; 
+    while (low < high) { 
+        int mid = (low + high) / 2; 
+        if (arr[mid] > arr[high]) { 
+            low = mid + 1; 
+        } else { 
+            high = mid;
+
+--- Page 138 ---
+} 
+    } 
+    return arr[low]; 
+} 
+ 
+Dry Run: 
+1. mid = 3 → arr[3]=7 > arr[6]=2 → low = 4 
+2. mid = 5 → arr[5]=1 <= arr[6]=2 → high = 5 
+3. mid = 4 → arr[4]=0 <= arr[5]=1 → high = 4 
+low == high → arr[4] = 0 → return 0 
+ 
+Example 5: Count Elements ≤ Target​
+Count how many elements are less than or equal to x in a sorted array. 
+Input:​
+ arr = [1, 2, 4, 4, 5], x = 4 
+Output:​
+ 4 
+int countLessEqual(vector<int>& arr, int x) { 
+    int low = 0, high = arr.size() - 1, res = -1; 
+    while (low <= high) { 
+        int mid = (low + high) / 2; 
+        if (arr[mid] <= x) { 
+            res = mid; 
+            low = mid + 1; 
+        } else { 
+            high = mid - 1;
+
+--- Page 139 ---
+} 
+    } 
+    return res + 1; 
+} 
+ 
+Dry Run: 
+1. mid = 2 → arr[2] = 4 ≤ x → res = 2 → low = 3 
+2. mid = 3 → arr[3] = 4 ≤ x → res = 3 → low = 4 
+3. mid = 4 → arr[4] = 5 > x → high = 3 
+Return res + 1 = 4 
+ 
+Table of Good Level Binary Search Problems from LeetCode: 
+Problem Name 
+Link 
+Binary Search 
+https://leetcode.com/problems/binary-search/ 
+First Bad Version 
+https://leetcode.com/problems/first-bad-version/ 
+Search in Rotated Sorted 
+Array 
+https://leetcode.com/problems/search-in-rotated-sorted
+-array/ 
+Find Minimum in Rotated 
+Sorted Array 
+https://leetcode.com/problems/find-minimum-in-rotated
+-sorted-array/ 
+Median of Two Sorted 
+Arrays 
+https://leetcode.com/problems/median-of-two-sorted-ar
+rays/ 
+Capacity to Ship Packages 
+Within D Days 
+https://leetcode.com/problems/capacity-to-ship-packag
+es-within-d-days/ 
+Find Peak Element 
+https://leetcode.com/problems/find-peak-element/ 
+Koko Eating Bananas 
+https://leetcode.com/problems/koko-eating-bananas/ 
+Search a 2D Matrix 
+https://leetcode.com/problems/search-a-2d-matrix/
+
+--- Page 140 ---
+Aggressive Cows (GFG) 
+https://www.geeksforgeeks.org/aggressive-cows-dyna
+mic-programming/ 
+ 
+Sorting Algorithms 
+ 
+Sorting is a fundamental operation in Data Structures and Algorithms (DSA) that 
+arranges elements in a specific order (e.g., ascending or descending). It’s like 
+organizing books on a shelf by title or height. Sorting algorithms are essential for tasks 
+like searching, data analysis, and database management. 
+ 
+1. Selection Sort 
+1.1 What is Selection Sort? 
+Selection Sort finds the smallest (or largest) element in the unsorted portion of the 
+array and places it at the beginning. It repeats this process until the entire array is 
+sorted. 
+1.2 Analogy 
+Imagine you’re picking players for a team: 
+●​ You scan the group to find the shortest player and place them first. 
+●​ Then, from the remaining players, find the next shortest and place them 
+second, and so on. 
+1.3 How It Works 
+1.​ Start with the first index as the boundary of the unsorted portion. 
+2.​ Find the minimum element in the unsorted portion. 
+3.​ Swap it with the first element of the unsorted portion. 
+4.​ Move the boundary one position forward. 
+5.​ Repeat until the array is sorted.
+
+--- Page 141 ---
+1.4 Example 
+Sort [64, 34, 25, 12, 22] in ascending order: 
+●​
+Step 1: Find min in [64, 34, 25, 12, 22] = 12. Swap with 64. Array: [12, 34, 25, 64, 22]. 
+●​
+Step 2: Find min in [34, 25, 64, 22] = 22. Swap with 34. Array: [12, 22, 25, 64, 34]. 
+●​
+Step 3: Find min in [25, 64, 34] = 25. No swap needed. Array: [12, 22, 25, 64, 34]. 
+●​
+Step 4: Find min in [64, 34] = 34. Swap with 64. Array: [12, 22, 25, 34, 64]. 
+●​
+Result: [12, 22, 25, 34, 64]. 
+1.5 Code Implementation (C++) 
+#include <iostream> 
+#include <vector> 
+ 
+using namespace std; 
+ 
+void selectionSort(vector<int>& arr) { 
+    int n = arr.size(); 
+    for (int i = 0; i < n - 1; i++) { 
+        int minIndex = i; // Assume first element is minimum 
+        for (int j = i + 1; j < n; j++) { 
+            if (arr[j] < arr[minIndex]) { 
+                minIndex = j; // Update minimum index 
+            } 
+        } 
+        swap(arr[i], arr[minIndex]); // Swap with first element 
+    } 
+} 
+ 
+int main() { 
+    vector<int> arr = {64, 34, 25, 12, 22}; 
+    selectionSort(arr); 
+    cout << "Sorted array: "; 
+    for (int num : arr) std::cout << num << " "; 
+    cout << std::endl; 
+    return 0; 
+} 
+●​ Output: Sorted array: 12 22 25 34 64
+
+--- Page 142 ---
+1.6 Time and Space Complexity 
+●​ Time Complexity: 
+○​ Best Case: O(n²) (always scans the entire unsorted portion). 
+○​ Average Case: O(n²). 
+○​ Worst Case: O(n²). 
+●​ Space Complexity: O(1) (in-place, only uses a few variables). 
+●​ Why O(n²)?: For each of n elements, it scans up to n elements to find the 
+minimum. 
+1.7 Advantages 
+●​ Simple to implement. 
+●​ In-place sorting (no extra memory). 
+●​ Good for small arrays (n ≤ 50). 
+1.8 Disadvantages 
+●​ Inefficient for large arrays (O(n²)). 
+●​ Doesn’t adapt to partially sorted data. 
+ 
+2. Insertion Sort 
+2.1 What is Insertion Sort? 
+Insertion Sort builds a sorted portion of the array by taking one element and inserting 
+it into its correct position in the sorted portion. 
+2.2 Analogy 
+Think of sorting a hand of cards: 
+●​ Pick a card and insert it in the right spot among the sorted cards in your hand. 
+●​ Repeat for each new card, shifting others as needed. 
+2.3 How It Works 
+1.​ Start with the second element (index 1) as the key. 
+2.​ Compare the key with elements in the sorted portion (to its left). 
+3.​ Shift larger elements right to make space. 
+4.​ Insert the key in its correct position. 
+5.​ Move to the next element and repeat. 
+2.4 Example
+
+--- Page 143 ---
+Sort [64, 34, 25, 12, 22]: 
+●​ Step 1: Key = 34. Insert before 64. Array: [34, 64, 25, 12, 22]. 
+●​ Step 2: Key = 25. Insert before 34. Array: [25, 34, 64, 12, 22]. 
+●​ Step 3: Key = 12. Insert at start. Array: [12, 25, 34, 64, 22]. 
+●​ Step 4: Key = 22. Insert after 12. Array: [12, 22, 25, 34, 64]. 
+●​ Result: [12, 22, 25, 34, 64]. 
+2.5 Code Implementation (C++) 
+#include <iostream> 
+#include <vector> 
+ 
+using namespace std; 
+ 
+void insertionSort(vector<int>& arr) { 
+    int n = arr.size(); 
+    for (int i = 1; i < n; i++) { 
+        int key = arr[i]; 
+        int j = i - 1; 
+        while (j >= 0 && arr[j] > key) { 
+            arr[j + 1] = arr[j]; // Shift larger elements 
+            j--; 
+        } 
+        arr[j + 1] = key; // Insert key 
+    } 
+} 
+ 
+int main() { 
+    vector<int> arr = {64, 34, 25, 12, 22}; 
+    insertionSort(arr); 
+    cout << "Sorted array: "; 
+    for (int num : arr) cout << num << " "; 
+    cout << std::endl; 
+    return 0; 
+} 
+ 
+●​ Output: Sorted array: 12 22 25 34 64
+
+--- Page 144 ---
+2.6 Time and Space Complexity 
+●​ Time Complexity: 
+○​ Best Case: O(n) (nearly sorted array, minimal shifts). 
+○​ Average Case: O(n²). 
+○​ Worst Case: O(n²) (reverse sorted array, maximum shifts). 
+●​ Space Complexity: O(1) (in-place). 
+●​ Why O(n²)?: For each of n elements, it may shift up to n elements. 
+2.7 Advantages 
+●​ Efficient for small or nearly sorted arrays. 
+●​ In-place and stable (preserves order of equal elements). 
+●​ Adaptive (faster for partially sorted data). 
+2.8 Disadvantages 
+●​ Inefficient for large arrays (O(n²)). 
+●​ Slow for reverse-ordered data. 
+ 
+3. Bubble Sort 
+3.1 What is Bubble Sort? 
+Bubble Sort repeatedly compares adjacent elements and swaps them if they’re in the 
+wrong order, “bubbling” larger elements to the end. 
+3.2 Analogy 
+Imagine bubbles rising in water: 
+●​ Larger elements (bubbles) move to the end of the array with each pass, like 
+bubbles floating up. 
+3.3 How It Works 
+1.​ Compare each pair of adjacent elements. 
+2.​ Swap them if they’re in the wrong order (e.g., arr[j] > arr[j+1] for 
+ascending). 
+3.​ Repeat for each pass until no swaps are needed. 
+4.​ After each pass, the largest unsorted element is at the end. 
+3.4 Example
+
+--- Page 145 ---
+Sort [64, 34, 25, 12, 22]: 
+●​ Pass 1: Compare pairs: (64,34 → swap), (34,25 → swap), (25,12 → swap), (12,22 → no 
+swap). Array: [34, 25, 12, 22, 64]. 
+●​ Pass 2: Compare pairs: (34,25 → swap), (25,12 → swap), (12,22 → no swap). Array: [25, 
+12, 22, 34, 64]. 
+●​ Pass 3: Compare pairs: (25,12 → swap), (12,22 → no swap). Array: [12, 22, 25, 34, 
+64]. 
+●​ Pass 4: No swaps needed. Array: [12, 22, 25, 34, 64]. 
+●​ Result: [12, 22, 25, 34, 64]. 
+3.5 Code Implementation (C++) 
+#include <iostream> 
+#include <vector> 
+ 
+void bubbleSort(vector<int>& arr) { 
+    int n = arr.size(); 
+    for (int i = 0; i < n - 1; i++) { 
+        bool swapped = false; 
+        for (int j = 0; j < n - i - 1; j++) { 
+            if (arr[j] > arr[j + 1]) { 
+                swap(arr[j], arr[j + 1]); 
+                swapped = true; 
+            } 
+        } 
+        if (!swapped) break; // Optimization: stop if no swaps 
+    } 
+} 
+ 
+int main() { 
+    vector<int> arr = {64, 34, 25, 12, 22}; 
+    bubbleSort(arr); 
+    cout << "Sorted array: "; 
+    for (int num : arr) cout << num << " "; 
+    cout << std::endl; 
+    return 0; 
+}
+
+--- Page 146 ---
+●​ Output: Sorted array: 12 22 25 34 64 
+3.6 Time and Space Complexity 
+●​ Time Complexity: 
+○​ Best Case: O(n) (already sorted, with swap optimization). 
+○​ Average Case: O(n²). 
+○​ Worst Case: O(n²) (reverse sorted). 
+●​ Space Complexity: O(1) (in-place). 
+●​ Why O(n²)?: Up to n passes, each comparing up to n pairs. 
+3.7 Advantages 
+●​ Simple to implement. 
+●​ In-place and stable. 
+●​ Good for educational purposes or small arrays. 
+3.8 Disadvantages 
+●​ Very inefficient for large arrays (O(n²)). 
+●​ Rarely used in practice due to poor performance. 
+ 
+4. Merge Sort 
+4.1 What is Merge Sort? 
+Merge Sort is a divide-and-conquer algorithm that splits the array into smaller 
+subarrays, sorts them, and merges them back into a sorted array. 
+4.2 Analogy 
+Imagine sorting a deck of cards: 
+●​ Split the deck into two halves, sort each half, then merge them by picking the 
+smaller card from each half repeatedly. 
+4.3 How It Works 
+1.​ Divide: Split the array into two halves recursively until each subarray has one 
+element (already sorted). 
+2.​ Conquer: Merge the sorted subarrays by comparing elements and placing them 
+in order. 
+3.​ Repeat until the entire array is sorted.
+
+--- Page 147 ---
+4.4 Example 
+Sort [64, 34, 25, 12, 22]: 
+●​ Divide: Split into [64, 34] and [25, 12, 22]. 
+○​ Split [64, 34] into [64], [34]. 
+○​ Split [25, 12, 22] into [25], [12, 22], then [12], [22]. 
+●​ Merge: 
+○​ Merge [64], [34] → [34, 64]. 
+○​ Merge [12], [22] → [12, 22]. 
+○​ Merge [25], [12, 22] → [12, 22, 25]. 
+○​ Merge [34, 64], [12, 22, 25] → [12, 22, 25, 34, 64]. 
+●​ Result: [12, 22, 25, 34, 64]. 
+4.5 Code Implementation (C++) 
+#include <iostream> 
+#include <vector> 
+ 
+using namespace std; 
+ 
+void merge(vector<int>& arr, int left, int mid, int right) { 
+    vector<int> temp(right - left + 1); 
+    int i = left, j = mid + 1, k = 0; 
+     
+    while (i <= mid && j <= right) { 
+        if (arr[i] <= arr[j]) temp[k++] = arr[i++]; 
+        else temp[k++] = arr[j++]; 
+    } 
+    while (i <= mid) temp[k++] = arr[i++]; 
+    while (j <= right) temp[k++] = arr[j++]; 
+     
+    for (i = 0; i < k; i++) arr[left + i] = temp[i]; 
+} 
+ 
+void mergeSort(std::vector<int>& arr, int left, int right) { 
+    if (left < right) { 
+        int mid = left + (right - left) / 2; 
+        mergeSort(arr, left, mid); 
+        mergeSort(arr, mid + 1, right);
+
+--- Page 148 ---
+merge(arr, left, mid, right); 
+    } 
+} 
+ 
+int main() { 
+    vector<int> arr = {64, 34, 25, 12, 22}; 
+    mergeSort(arr, 0, arr.size() - 1); 
+    cout << "Sorted array: "; 
+    for (int num : arr) cout << num << " "; 
+    cout << endl; 
+    return 0; 
+} 
+●​ Output: Sorted array: 12 22 25 34 64 
+4.6 Time and Space Complexity 
+●​ Time Complexity: 
+○​ Best Case: O(n log n) (always divides and merges). 
+○​ Average Case: O(n log n). 
+○​ Worst Case: O(n log n). 
+●​ Space Complexity: O(n) (temporary array for merging). 
+●​ Why O(n log n)?: Divides array into log n levels, each requiring O(n) for 
+merging. 
+4.7 Advantages 
+●​ Stable sorting. 
+●​ Guaranteed O(n log n) performance. 
+●​ Good for large datasets and linked lists. 
+4.8 Disadvantages 
+●​ Requires O(n) extra space. 
+●​ Not in-place. 
+●​ Slower for small arrays due to overhead. 
+ 
+5. Quick Sort 
+5.1 What is Quick Sort?
+
+--- Page 149 ---
+Quick Sort is a divide-and-conquer algorithm that picks a pivot element, partitions 
+the array around it, and recursively sorts the subarrays. 
+5.2 Analogy 
+Imagine organizing students by height: 
+●​ Pick one student (pivot) and arrange others so shorter ones are on the left, 
+taller ones on the right. 
+●​ Repeat the process for the left and right groups. 
+5.3 How It Works 
+1.​ Choose a pivot (e.g., last element, random, or median). 
+2.​ Partition the array: Move elements smaller than the pivot to the left, larger to the 
+right. 
+3.​ Place the pivot in its final position. 
+4.​ Recursively sort the left and right subarrays. 
+5.4 Example 
+Sort [64, 34, 25, 12, 22] (pivot = last element): 
+●​ Step 1: Pivot = 22. Partition: [12], 22, [64, 34, 25]. Array: [12, 22, 64, 
+34, 25]. 
+●​ Step 2: Left subarray [12] is sorted. Right subarray [64, 34, 25], pivot = 25. 
+○​ Partition: [], 25, [64, 34]. Array: [12, 22, 25, 64, 34]. 
+●​ Step 3: Right subarray [64, 34], pivot = 34. Partition: [34, 64]. Array: [12, 22, 
+25, 34, 64]. 
+●​ Result: [12, 22, 25, 34, 64]. 
+5.5 Code Implementation (C++) 
+#include <iostream> 
+#include <vector> 
+ 
+using namespace std; 
+ 
+int partition(vector<int>& arr, int low, int high) { 
+    int pivot = arr[high]; // Choose last element as pivot 
+    int i = low - 1; // Index of smaller element 
+    for (int j = low; j < high; j++) { 
+        if (arr[j] <= pivot) { 
+            i++;
+
+--- Page 150 ---
+swap(arr[i], arr[j]); 
+        } 
+    } 
+    swap(arr[i + 1], arr[high]); 
+    return i + 1; // Pivot's final position 
+} 
+ 
+void quickSort(vector<int>& arr, int low, int high) { 
+    if (low < high) { 
+        int pi = partition(arr, low, high); 
+        quickSort(arr, low, pi - 1); // Sort left 
+        quickSort(arr, pi + 1, high); // Sort right 
+    } 
+} 
+ 
+int main() { 
+    vector<int> arr = {64, 34, 25, 12, 22}; 
+    quickSort(arr, 0, arr.size() - 1); 
+    cout << "Sorted array: "; 
+    for (int num : arr) cout << num << " "; 
+    cout << endl; 
+    return 0; 
+} 
+ 
+●​ Output: Sorted array: 12 22 25 34 64 
+5.6 Time and Space Complexity 
+●​ Time Complexity: 
+○​ Best Case: O(n log n) (balanced partitions). 
+○​ Average Case: O(n log n). 
+○​ Worst Case: O(n²) (already sorted or reverse sorted, poor pivot choice). 
+●​ Space Complexity: O(log n) average (recursion stack), O(n) worst case. 
+●​ Why O(n log n)?: Typically log n partitions, each taking O(n) for partitioning. 
+5.7 Advantages 
+●​ In-place sorting (minimal extra space). 
+●​ Fast in practice (O(n log n) average).
+
+--- Page 151 ---
+●​ Good for large datasets with good pivot selection. 
+5.8 Disadvantages 
+●​ Unstable (may change order of equal elements). 
+●​ Worst-case O(n²) if pivot is poorly chosen (e.g., sorted array). 
+●​ Recursive, which may cause stack overflow for very large arrays. 
+ 
+6. Comparison of Sorting Algorithms 
+Algorith
+m 
+Time Complexity 
+(Best/Avg/Worst) 
+Space 
+Complexity 
+Stabl
+e 
+In-Pl
+ace 
+Best Use Case 
+Selection 
+Sort 
+O(n²) / O(n²) / O(n²) 
+O(1) 
+No 
+Yes 
+Small arrays (n ≤ 
+50) 
+Insertion 
+Sort 
+O(n) / O(n²) / O(n²) 
+O(1) 
+Yes 
+Yes 
+Small or nearly 
+sorted arrays 
+Bubble 
+Sort 
+O(n) / O(n²) / O(n²) 
+O(1) 
+Yes 
+Yes 
+Educational, 
+small arrays 
+Merge 
+Sort 
+O(n log n) / O(n log n) 
+/ O(n log n) 
+O(n) 
+Yes 
+No 
+Large arrays, 
+linked lists 
+Quick Sort O(n log n) / O(n log n) 
+/ O(n²) 
+O(log n) avg No 
+Yes 
+Large arrays, 
+general-purpose 
+Choosing Based on Constraints 
+●​ Small Input (n ≤ 50): Use Selection or Insertion Sort (simple, O(n²) is fine). 
+●​ Nearly Sorted: Use Insertion Sort (O(n) best case). 
+●​ Large Input (n ≤ 10⁶): Use Merge Sort (stable, O(n log n)) or Quick Sort (faster 
+average case). 
+●​ Memory Constraints: Use Quick Sort or Selection Sort (in-place). 
+●​ Stability Required: Use Merge Sort or Insertion Sort. 
+ 
+7. Conclusion
+
+--- Page 152 ---
+Sorting algorithms are like tools for organizing data, each with strengths and 
+weaknesses. Selection Sort, Insertion Sort, and Bubble Sort are simple but slow 
+(O(n²)), ideal for small or nearly sorted arrays. Merge Sort and Quick Sort are faster 
+(O(n log n)), perfect for large datasets, with Merge Sort being stable and Quick Sort 
+being in-place. By understanding their mechanics, complexity, and use cases, 
+students can choose the right algorithm for any problem, preparing them for advanced 
+DSA topics like searching and graph algorithms. 
+ 
+Linked Lists: 
+ 
+A linked list is a fundamental data structure in Data Structures and Algorithms (DSA) that stores 
+elements (nodes) non-contiguously, with each node pointing to the next. Unlike arrays, linked lists 
+offer dynamic sizing and efficient insertions/deletions, making them ideal for certain applications. 
+These notes explain why linked lists are needed, their advantages over arrays, the structure and 
+types of linked lists, and key operations (insertion, deletion, traversal) using both struct and class 
+implementations in C++. With clear analogies, examples, and code, the goal is to help students 
+master linked lists and prepare for advanced DSA topics like stacks, queues, and trees. 
+ 
+1. Why Do We Need Linked Lists? 
+1.1 Problems with Arrays 
+Arrays, while simple and efficient for random access, have limitations that linked lists address: 
+1.​ Fixed Size: Arrays have a predefined size, making dynamic resizing difficult (e.g., reallocating 
+memory is costly). 
+○​ Example: Declaring int arr[100] wastes space if only 10 elements are used or fails 
+if 101 are needed. 
+2.​ Expensive Insertion/Deletion in the Middle: Inserting or deleting elements requires shifting 
+elements, costing O(n) time. 
+○​ Example: Inserting at index 2 in [1, 2, 3, 4] shifts elements 2, 3, 4 right. 
+3.​ Memory Waste: If an array is not fully utilized, unused memory is wasted. 
+○​ Example: An array of size 100 with 10 elements wastes 90 slots. 
+1.2 Benefits of Linked Lists
+
+--- Page 153 ---
+Linked lists overcome these limitations: 
+1.​ Dynamic Size: Grow or shrink at runtime by adding/removing nodes. 
+○​ Example: Add a new node when needed without reallocating. 
+2.​ Efficient Insertion/Deletion: O(1) if the position is known (e.g., at the beginning), O(n) for 
+traversal. 
+○​ Example: Inserting a node at the head requires only pointer adjustments. 
+3.​ No Memory Waste: Only allocate memory for used nodes. 
+○​ Example: A linked list with 10 nodes uses exactly 10 nodes’ worth of memory. 
+1.3 Analogy 
+●​ Arrays: A row of fixed lockers in a school, where resizing or inserting in the middle is hard. 
+●​ Linked Lists: A chain of treasure clues, where each clue points to the next, and you can add 
+or remove clues easily. 
+ 
+2. Introduction to Linked Lists 
+2.1 Definition 
+A Linked List is a linear data structure where elements, called nodes, are stored non-contiguously. 
+Each node contains: 
+●​ Data: The value (e.g., integer, string). 
+●​ Next Pointer: A reference to the next node.​
+The first node is the head, and the last node points to nullptr (or NULL in C++). 
+2.2 Structure 
+[Data|Next] → [Data|Next] → [Data|NULL] 
+ 
+●​ Example: A linked list [10, 20, 30]: 
+○​ Node 1: Data = 10, Next → Node 2. 
+○​ Node 2: Data = 20, Next → Node 3. 
+○​ Node 3: Data = 30, Next → NULL. 
+2.3 Key Characteristics 
+●​ Non-Contiguous: Nodes are scattered in memory, linked by pointers. 
+●​ Dynamic: Can grow/shrink during execution. 
+●​ Sequential Access: Must traverse from head to access elements (no random access). 
+●​ Memory Overhead: Each node stores a pointer, using extra memory. 
+2.4 Analogy 
+A train with cars (nodes): 
+●​ Each car carries cargo (data) and is linked to the next car (next pointer).
+
+--- Page 154 ---
+●​ The engine (head) starts the train, and the last car has no next car (NULL). 
+●​ You can add or remove cars anywhere, but you must walk through cars to find one. 
+ 
+3. Types of Linked Lists 
+Linked lists come in various forms, each suited for specific use cases. Below are the main types: 
+1.​ Singly Linked List:​
+ 
+○​ Each node points to the next node; the last node points to NULL. 
+○​ Structure: [Data|Next] → [Data|Next] → [Data|NULL]. 
+○​ Use Case: Simple lists like playlists or undo operations. 
+○​ Pros: Minimal memory (one pointer per node), easy to implement. 
+○​ Cons: No backward traversal, O(n) to access last node. 
+2.​ Doubly Linked List:​
+ 
+○​ Each node points to both the next and previous nodes. 
+○​ Structure: [Prev|Data|Next] ↔ [Prev|Data|Next] ↔ [Prev|Data|NULL]. 
+○​ Use Case: Browser history (forward/backward navigation). 
+○​ Pros: Allows backward traversal, easier deletions. 
+○​ Cons: Extra memory for previous pointers, more complex operations. 
+3.​ Circular Linked List:​
+ 
+○​ The last node points to the first node, forming a loop. 
+○​ Structure: [Data|Next] → [Data|Next] → [Data|Next] → (back to 
+first). 
+○​ Use Case: Round-robin scheduling, cyclic buffers. 
+○​ Pros: Continuous looping, no end. 
+○​ Cons: Risk of infinite loops, harder to detect end. 
+4.​ Circular Doubly Linked List:​
+ 
+○​ A doubly linked list where the last node points to the first, and the first points back to 
+the last. 
+○​ Structure: [Prev|Data|Next] ↔ [Prev|Data|Next] ↔ [Prev|Data|Next] 
+↔ (loop). 
+○​ Use Case: Advanced data structures like deques. 
+○​ Pros: Combines circular and doubly linked benefits. 
+○​ Cons: Most complex, highest memory usage. 
+Analogy 
+●​ Singly Linked List: A one-way road with signs pointing to the next stop. 
+●​ Doubly Linked List: A two-way road with signs for both directions. 
+●​ Circular Linked List: A roundabout where you loop back to the start. 
+●​ Circular Doubly Linked List: A two-way roundabout with forward and backward signs.
+
+--- Page 155 ---
+4. Linked List Implementation 
+Linked lists can be implemented using struct (procedural style) or class (object-oriented style). 
+Below, we cover both approaches with node creation and operations. 
+4.1 Linked List Using struct 
+Node Creation 
+struct Node { 
+    int data;       // Data stored in the node 
+    Node* next;     // Pointer to the next node 
+    Node(int val) : data(val), next(nullptr) {} // Constructor 
+}; 
+ 
+Operations 
+The provided code implements key operations: 
+●​ Insert at Beginning: O(1), add a new node at the head. 
+●​ Insert at End: O(n), traverse to the last node. 
+●​ Insert at Position: O(n), traverse to the given position. 
+●​ Delete at Beginning: O(1), remove the head node. 
+●​ Delete at End: O(n), traverse to the second-last node. 
+●​ Delete at Position: O(n), traverse to the position. 
+●​ Print List: O(n), traverse and display nodes. 
+Enhanced Code (with Memory Cleanup) 
+#include <iostream> 
+using namespace std; 
+ 
+struct Node { 
+    int data; 
+    Node* next; 
+    Node(int val) : data(val), next(nullptr) {} 
+}; 
+ 
+// Insert at beginning 
+void insertAtBeginning(Node*& head, int val) { 
+    Node* newNode = new Node(val); 
+    newNode->next = head; 
+    head = newNode; 
+} 
+ 
+// Insert at end 
+void insertAtEnd(Node*& head, int val) { 
+    Node* newNode = new Node(val);
+
+--- Page 156 ---
+if (!head) { 
+        head = newNode; 
+        return; 
+    } 
+    Node* temp = head; 
+    while (temp->next) temp = temp->next; 
+    temp->next = newNode; 
+} 
+ 
+// Insert at a given position 
+void insertAtPosition(Node*& head, int val, int pos) { 
+    if (pos < 1) { 
+        cout << "Invalid position\n"; 
+        return; 
+    } 
+    if (pos == 1) { 
+        insertAtBeginning(head, val); 
+        return; 
+    } 
+    Node* newNode = new Node(val); 
+    Node* temp = head; 
+    for (int i = 1; i < pos - 1 && temp; i++) { 
+        temp = temp->next; 
+    } 
+    if (!temp) { 
+        cout << "Position out of range\n"; 
+        delete newNode; 
+        return; 
+    } 
+    newNode->next = temp->next; 
+    temp->next = newNode; 
+} 
+ 
+// Delete at beginning 
+void deleteAtBeginning(Node*& head) { 
+    if (!head) return; 
+    Node* temp = head; 
+    head = head->next; 
+    delete temp; 
+} 
+ 
+// Delete at end 
+void deleteAtEnd(Node*& head) { 
+    if (!head) return;
+
+--- Page 157 ---
+if (!head->next) { 
+        delete head; 
+        head = nullptr; 
+        return; 
+    } 
+    Node* temp = head; 
+    while (temp->next->next) temp = temp->next; 
+    delete temp->next; 
+    temp->next = nullptr; 
+} 
+ 
+// Delete at a given position 
+void deleteAtPosition(Node*& head, int pos) { 
+    if (!head || pos < 1) return; 
+    if (pos == 1) { 
+        deleteAtBeginning(head); 
+        return; 
+    } 
+    Node* temp = head; 
+    for (int i = 1; i < pos - 1 && temp->next; i++) { 
+        temp = temp->next; 
+    } 
+    if (!temp->next) return; 
+    Node* del = temp->next; 
+    temp->next = del->next; 
+    delete del; 
+} 
+ 
+// Display list 
+void printList(Node* head) { 
+    Node* temp = head; 
+    while (temp) { 
+        cout << temp->data << " -> "; 
+        temp = temp->next; 
+    } 
+    cout << "NULL\n"; 
+} 
+ 
+// Clean up memory 
+void deleteList(Node*& head) { 
+    while (head) { 
+        Node* temp = head; 
+        head = head->next; 
+        delete temp;
+
+--- Page 158 ---
+} 
+} 
+ 
+int main() { 
+    Node* head = nullptr; 
+ 
+    insertAtEnd(head, 10); 
+    insertAtEnd(head, 20); 
+    insertAtBeginning(head, 5); 
+    insertAtPosition(head, 15, 3); 
+ 
+    cout << "List after insertions:\n"; 
+    printList(head); // 5 -> 10 -> 15 -> 20 -> NULL 
+ 
+    deleteAtBeginning(head); 
+    deleteAtEnd(head); 
+    deleteAtPosition(head, 2); 
+ 
+    cout << "List after deletions:\n"; 
+    printList(head); // 10 -> NULL 
+ 
+    deleteList(head); // Clean up 
+    return 0; 
+} 
+ 
+Output:​
+List after insertions: 
+5 -> 10 -> 15 -> 20 -> NULL 
+List after deletions: 
+10 -> NULL 
+●​ Enhancements: Added error handling (e.g., invalid position) and memory cleanup. 
+4.2 Linked List Using class 
+Node Class 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) : data(val), next(nullptr) {} 
+}; 
+ 
+LinkedList Class
+
+--- Page 159 ---
+Encapsulates the list operations for better organization: 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) : data(val), next(nullptr) {} 
+}; 
+ 
+class LinkedList { 
+private: 
+    Node* head; 
+ 
+public: 
+    LinkedList() : head(nullptr) {} 
+ 
+    void insertAtBeginning(int val) { 
+        Node* newNode = new Node(val); 
+        newNode->next = head; 
+        head = newNode; 
+    } 
+ 
+    void insertAtEnd(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { 
+            head = newNode; 
+            return; 
+        } 
+        Node* temp = head; 
+        while (temp->next) temp = temp->next; 
+        temp->next = newNode; 
+    } 
+ 
+    void insertAtPosition(int val, int pos) { 
+        if (pos < 1) { 
+            cout << "Invalid position\n"; 
+            return; 
+        } 
+        if (pos == 1) { 
+            insertAtBeginning(val); 
+            return;
+
+--- Page 160 ---
+} 
+        Node* newNode = new Node(val); 
+        Node* temp = head; 
+        for (int i = 1; i < pos - 1 && temp; i++) { 
+            temp = temp->next; 
+        } 
+        if (!temp) { 
+            cout << "Position out of range\n"; 
+            delete newNode; 
+            return; 
+        } 
+        newNode->next = temp->next; 
+        temp->next = newNode; 
+    } 
+ 
+    void deleteAtBeginning() { 
+        if (!head) return; 
+        Node* temp = head; 
+        head = head->next; 
+        delete temp; 
+    } 
+ 
+    void deleteAtEnd() { 
+        if (!head) return; 
+        if (!head->next) { 
+            delete head; 
+            head = nullptr; 
+            return; 
+        } 
+        Node* temp = head; 
+        while (temp->next->next) temp = temp->next; 
+        delete temp->next; 
+        temp->next = nullptr; 
+    } 
+ 
+    void deleteAtPosition(int pos) { 
+        if (!head || pos < 1) return; 
+        if (pos == 1) { 
+            deleteAtBeginning(); 
+            return; 
+        } 
+        Node* temp = head; 
+        for (int i = 1; i < pos - 1 && temp->next; i++) { 
+            temp = temp->next;
+
+--- Page 161 ---
+} 
+        if (!temp->next) return; 
+        Node* del = temp->next; 
+        temp->next = del->next; 
+        delete del; 
+    } 
+ 
+    void printList() { 
+        Node* temp = head; 
+        while (temp) { 
+            cout << temp->data << " -> "; 
+            temp = temp->next; 
+        } 
+        cout << "NULL\n"; 
+    } 
+ 
+    ~LinkedList() { 
+        while (head) { 
+            Node* temp = head; 
+            head = head->next; 
+            delete temp; 
+        } 
+    } 
+}; 
+ 
+int main() { 
+    LinkedList list; 
+ 
+    list.insertAtEnd(10); 
+    list.insertAtEnd(20); 
+    list.insertAtBeginning(5); 
+    list.insertAtPosition(15, 3); 
+ 
+    cout << "List after insertions:\n"; 
+    list.printList(); // 5 -> 10 -> 15 -> 20 -> NULL 
+ 
+    list.deleteAtBeginning(); 
+    list.deleteAtEnd(); 
+    list.deleteAtPosition(2); 
+ 
+    cout << "List after deletions:\n"; 
+    list.printList(); // 10 -> NULL 
+ 
+    return 0;
+
+--- Page 162 ---
+} 
+ 
+●​ Output: Same as struct implementation. 
+●​ Enhancements: Added destructor for automatic cleanup, error handling. 
+ 
+5. Dry Run Example 
+Let’s walk through the operations for clarity. 
+Insertion: Insert 15 at Position 3 
+●​ Initial List: 5 → 10 → 20 → NULL 
+●​ Steps: 
+1.​ Create new node: [15|NULL]. 
+2.​ Traverse to position 2 (node with data 10). 
+3.​ Set new node’s next to 20: [15|→20]. 
+4.​ Set 10’s next to new node: 10 → 15. 
+●​ Result: 5 → 10 → 15 → 20 → NULL 
+Deletion: Delete at Position 2 
+●​ Initial List: 5 → 10 → 15 → 20 → NULL 
+●​ Steps: 
+1.​ Traverse to position 1 (node with data 5). 
+2.​ Identify node to delete (10) and its next (15). 
+3.​ Set 5’s next to 15: 5 → 15. 
+4.​ Delete node with 10. 
+●​ Result: 5 → 15 → 20 → NULL 
+ 
+Types of Linked Lists
+
+--- Page 163 ---
+1. Singly Linked List 
+ 
+1.1 Definition 
+A Singly Linked List is the simplest type of linked list where each node contains: 
+●​ Data: The value stored (e.g., integer). 
+●​ Next Pointer: A pointer to the next node.​
+The first node is the head, and the last node points to nullptr, indicating the end. 
+1.2 Structure 
+[Data|Next] → [Data|Next] → [Data|nullptr] 
+ 
+●​ Example: 10 → 20 → 30 → nullptr 
+1.3 Analogy 
+A one-way train: 
+●​ Each carriage (node) carries cargo (data) and points to the next carriage (next pointer). 
+●​ The engine is the head, and the last carriage has no next (nullptr). 
+●​ You can only move forward from one carriage to the next. 
+1.4 Characteristics 
+●​ Unidirectional: Traversal only from head to tail. 
+●​ Memory Efficient: Only one pointer per node. 
+●​ Dynamic: Can grow/shrink by adding/removing nodes. 
+●​ Sequential Access: O(n) to access the nth node. 
+1.5 Advantages 
+●​ Simple to implement. 
+●​ Minimal memory usage (one pointer per node). 
+●​ Efficient for frequent insertions/deletions at the beginning (O(1)). 
+●​ Suitable for applications needing forward traversal only. 
+1.6 Disadvantages 
+●​ No backward traversal (cannot access previous node). 
+●​ O(n) for accessing or deleting nodes at the end or middle.
+
+--- Page 164 ---
+●​ Not cache-friendly due to non-contiguous memory. 
+1.7 Use Cases 
+●​ Implementing stacks and queues. 
+●​ Playlists or to-do lists (sequential access). 
+●​ Chaining in hash tables (collision resolution). 
+1.8 Class-Based Implementation (C++) 
+Below is a C++ implementation using a Node class and a SinglyLinkedList class, with operations 
+for insertion at the beginning, deletion at the beginning, and traversal. 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) : data(val), next(nullptr) {} 
+}; 
+ 
+class SinglyLinkedList { 
+private: 
+    Node* head; 
+ 
+public: 
+    SinglyLinkedList() : head(nullptr) {} 
+ 
+    // Insert at beginning 
+    void insertAtBeginning(int val) { 
+        Node* newNode = new Node(val); 
+        newNode->next = head; 
+        head = newNode; 
+    } 
+ 
+    // Delete at beginning 
+    void deleteAtBeginning() { 
+        if (!head) { 
+            cout << "List is empty\n"; 
+            return; 
+        } 
+        Node* temp = head; 
+        head = head->next; 
+        delete temp;
+
+--- Page 165 ---
+} 
+ 
+    // Traverse and print 
+    void printList() { 
+        Node* temp = head; 
+        if (!temp) { 
+            cout << "List is empty\n"; 
+            return; 
+        } 
+        while (temp) { 
+            cout << temp->data << " -> "; 
+            temp = temp->next; 
+        } 
+        cout << "nullptr\n"; 
+    } 
+ 
+    // Destructor for cleanup 
+    ~SinglyLinkedList() { 
+        while (head) { 
+            Node* temp = head; 
+            head = head->next; 
+            delete temp; 
+        } 
+    } 
+}; 
+ 
+int main() { 
+    SinglyLinkedList list; 
+ 
+    // Insert elements 
+    list.insertAtBeginning(30); // 30 
+    list.insertAtBeginning(20); // 20 -> 30 
+    list.insertAtBeginning(10); // 10 -> 20 -> 30 
+    cout << "Singly Linked List after insertions:\n"; 
+    list.printList(); // 10 -> 20 -> 30 -> nullptr 
+ 
+    // Delete first node 
+    list.deleteAtBeginning(); 
+    cout << "After deleting first node:\n"; 
+    list.printList(); // 20 -> 30 -> nullptr 
+ 
+    return 0; 
+}
+
+--- Page 166 ---
+Output:​
+Singly Linked List after insertions: 
+10 -> 20 -> 30 -> nullptr 
+After deleting first node: 
+20 -> 30 -> nullptr 
+ 
+ 
+●​ Time Complexity: 
+○​ Insert at Beginning: O(1) 
+○​ Delete at Beginning: O(1) 
+○​ Traversal: O(n) 
+●​ Space Complexity: O(n) for n nodes. 
+ 
+More Examples: 
+ 
+Problem 1: Reverse a Linked List 
+Implement a method reverse() that reverses the linked list.​
+ Example: 10 -> 20 -> 30 -> NULL → 30 -> 20 -> 10 -> NULL 
+Input 
+10 20 30 
+ 
+Output 
+Reversed List: 30 -> 20 -> 10 -> NULL 
+ 
+Code 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) { data = val; next = nullptr; } 
+}; 
+ 
+class LinkedList { 
+    Node* head; 
+public: 
+    LinkedList() { head = nullptr; }
+
+--- Page 167 ---
+void insertAtEnd(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { head = newNode; return; } 
+        Node* temp = head; 
+        while (temp->next) temp = temp->next; 
+        temp->next = newNode; 
+    } 
+ 
+    void reverse() { 
+        Node* prev = nullptr; 
+        Node* curr = head; 
+        Node* next = nullptr; 
+        while (curr) { 
+            next = curr->next; 
+            curr->next = prev; 
+            prev = curr; 
+            curr = next; 
+        } 
+        head = prev; 
+    } 
+ 
+    void display() { 
+        Node* temp = head; 
+        while (temp) { 
+            cout << temp->data << " -> "; 
+            temp = temp->next; 
+        } 
+        cout << "NULL\n"; 
+    } 
+}; 
+ 
+int main() { 
+    LinkedList list; 
+    list.insertAtEnd(10); 
+    list.insertAtEnd(20); 
+    list.insertAtEnd(30); 
+ 
+    cout << "Original List: "; 
+    list.display(); 
+ 
+    list.reverse(); 
+ 
+    cout << "Reversed List: "; 
+    list.display();
+
+--- Page 168 ---
+} 
+ 
+Problem 2: Find Middle Element 
+Write a method findMiddle() that returns the middle node’s value. 
+Input 
+10 20 30 40 50 
+ 
+Output 
+Middle Element: 30 
+ 
+Code 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) { data = val; next = nullptr; } 
+}; 
+ 
+class LinkedList { 
+    Node* head; 
+public: 
+    LinkedList() { head = nullptr; } 
+ 
+    void insertAtEnd(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { head = newNode; return; } 
+        Node* temp = head; 
+        while (temp->next) temp = temp->next; 
+        temp->next = newNode; 
+    } 
+ 
+    int findMiddle() { 
+        Node* slow = head, *fast = head; 
+        while (fast && fast->next) { 
+            slow = slow->next; 
+            fast = fast->next->next; 
+        }
+
+--- Page 169 ---
+return slow->data; 
+    } 
+}; 
+ 
+int main() { 
+    LinkedList list; 
+    list.insertAtEnd(10); 
+    list.insertAtEnd(20); 
+    list.insertAtEnd(30); 
+    list.insertAtEnd(40); 
+    list.insertAtEnd(50); 
+ 
+    cout << "Middle Element: " << list.findMiddle() << endl; 
+} 
+ 
+ 
+Problem 3: Detect a Cycle 
+Detect if a linked list contains a cycle using Floyd’s cycle detection algorithm. 
+Input 
+Linked List: 10 -> 20 -> 30 -> (points back to 20) 
+ 
+Output 
+Has Cycle? Yes 
+ 
+Code 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) { data = val; next = nullptr; } 
+}; 
+ 
+class LinkedList { 
+    Node* head; 
+public: 
+    LinkedList() { head = nullptr; }
+
+--- Page 170 ---
+Node* getHead() { return head; } 
+ 
+    void insertAtEnd(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { head = newNode; return; } 
+        Node* temp = head; 
+        while (temp->next) temp = temp->next; 
+        temp->next = newNode; 
+    } 
+ 
+    bool hasCycle() { 
+        Node* slow = head, *fast = head; 
+        while (fast && fast->next) { 
+            slow = slow->next; 
+            fast = fast->next->next; 
+            if (slow == fast) return true; 
+        } 
+        return false; 
+    } 
+}; 
+ 
+int main() { 
+    LinkedList list; 
+    list.insertAtEnd(10); 
+    list.insertAtEnd(20); 
+    list.insertAtEnd(30); 
+ 
+    // Manually create cycle (last node points to second node) 
+    Node* head = list.getHead(); 
+    head->next->next->next = head->next; 
+ 
+    cout << "Has Cycle? " << (list.hasCycle() ? "Yes" : "No") << endl; 
+} 
+ 
+2. Doubly Linked List
+
+--- Page 171 ---
+2.1 Definition 
+A Doubly Linked List has nodes that point to both the next and previous nodes, enabling 
+bidirectional traversal. Each node contains: 
+●​ Data: The value. 
+●​ Next Pointer: Points to the next node. 
+●​ Previous Pointer: Points to the previous node.​
+The head’s previous pointer and the tail’s next pointer are nullptr. 
+2.2 Structure 
+[nullptr|Data|Next] ↔ [Prev|Data|Next] ↔ [Prev|Data|nullptr] 
+ 
+●​ Example: nullptr ↔ 10 ↔ 20 ↔ 30 ↔ nullptr 
+2.3 Analogy 
+A two-way road: 
+●​ Each stop (node) has signs pointing to the next and previous stops. 
+●​ You can travel forward or backward, making navigation easier than a one-way road (singly 
+linked list). 
+2.4 Characteristics 
+●​ Bidirectional: Traverse forward or backward. 
+●​ More Memory: Two pointers per node (next and prev). 
+●​ Flexible: Easier to delete nodes (access to previous node). 
+●​ Dynamic: Supports resizing. 
+2.5 Advantages 
+●​ Bidirectional traversal simplifies operations like reverse printing. 
+●​ Easier deletion (O(1) if node pointer is given, no need to find previous node). 
+●​ Useful for applications requiring back-and-forth navigation. 
+2.6 Disadvantages 
+●​ Higher memory usage (two pointers per node). 
+●​ More complex implementation (manage prev and next pointers). 
+●​ Still O(n) for accessing nodes by index. 
+2.7 Use Cases 
+●​ Browser history (forward/backward navigation). 
+●​ Undo/redo functionality in editors. 
+●​ Deques (double-ended queues). 
+2.8 Class-Based Implementation (C++)
+
+--- Page 172 ---
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node* prev; 
+    Node(int val) : data(val), next(nullptr), prev(nullptr) {} 
+}; 
+ 
+class DoublyLinkedList { 
+private: 
+    Node* head; 
+ 
+public: 
+    DoublyLinkedList() : head(nullptr) {} 
+ 
+    // Insert at beginning 
+    void insertAtBeginning(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { 
+            head = newNode; 
+            return; 
+        } 
+        newNode->next = head; 
+        head->prev = newNode; 
+        head = newNode; 
+    } 
+ 
+    // Delete at beginning 
+    void deleteAtBeginning() { 
+        if (!head) { 
+            cout << "List is empty\n"; 
+            return; 
+        } 
+        Node* temp = head; 
+        head = head->next; 
+        if (head) head->prev = nullptr; 
+        delete temp; 
+    } 
+ 
+    // Traverse and print (forward) 
+    void printList() {
+
+--- Page 173 ---
+Node* temp = head; 
+        if (!temp) { 
+            cout << "List is empty\n"; 
+            return; 
+        } 
+        while (temp) { 
+            cout << temp->data << " <-> "; 
+            temp = temp->next; 
+        } 
+        cout << "nullptr\n"; 
+    } 
+ 
+    // Destructor for cleanup 
+    ~DoublyLinkedList() { 
+        while (head) { 
+            Node* temp = head; 
+            head = head->next; 
+            delete temp; 
+        } 
+    } 
+}; 
+ 
+int main() { 
+    DoublyLinkedList list; 
+ 
+    // Insert elements 
+    list.insertAtBeginning(30); // 30 
+    list.insertAtBeginning(20); // 20 <-> 30 
+    list.insertAtBeginning(10); // 10 <-> 20 <-> 30 
+    cout << "Doubly Linked List after insertions:\n"; 
+    list.printList(); // 10 <-> 20 <-> 30 <-> nullptr 
+ 
+    // Delete first node 
+    list.deleteAtBeginning(); 
+    cout << "After deleting first node:\n"; 
+    list.printList(); // 20 <-> 30 <-> nullptr 
+ 
+    return 0; 
+} 
+ 
+Output:​
+Doubly Linked List after insertions: 
+10 <-> 20 <-> 30 <-> nullptr 
+After deleting first node: 
+20 <-> 30 <-> nullptr
+
+--- Page 174 ---
+●​  
+●​ Time Complexity: 
+○​ Insert at Beginning: O(1) 
+○​ Delete at Beginning: O(1) 
+○​ Traversal: O(n) 
+●​ Space Complexity: O(n) for n nodes (more than singly due to prev pointers). 
+ 
+More Examples: 
+ 
+ 
+Problem 4: Rotate Doubly Linked List by N nodes 
+​
+ Rotate the doubly linked list by N nodes in clockwise direction. 
+Input:​
+ List = 10 ⇔ 20 ⇔ 30 ⇔ 40 ⇔ 50 ⇔ 60, N = 2 
+Output:​
+ 50 ⇔ 60 ⇔ 10 ⇔ 20 ⇔ 30 ⇔ 40 
+Code (C++): 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* prev; 
+    Node* next; 
+    Node(int val) : data(val), prev(NULL), next(NULL) {} 
+}; 
+ 
+class DoublyLinkedList { 
+    Node* head; 
+public: 
+    DoublyLinkedList() : head(NULL) {} 
+ 
+    void insertAtTail(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { 
+            head = newNode; 
+            return; 
+        } 
+        Node* temp = head;
+
+--- Page 175 ---
+while (temp->next) temp = temp->next; 
+        temp->next = newNode; 
+        newNode->prev = temp; 
+    } 
+ 
+    void rotateByN(int n) { 
+        if (!head || n == 0) return; 
+ 
+        Node* temp = head; 
+        int len = 1; 
+        while (temp->next) { 
+            temp = temp->next; 
+            len++; 
+        } 
+ 
+        n = n % len; 
+        if (n == 0) return; 
+ 
+        Node* newTail = head; 
+        for (int i = 1; i < len - n; i++) { 
+            newTail = newTail->next; 
+        } 
+ 
+        Node* newHead = newTail->next; 
+        newTail->next = NULL; 
+        newHead->prev = NULL; 
+ 
+        temp->next = head; 
+        head->prev = temp; 
+ 
+        head = newHead; 
+    } 
+ 
+    void display() { 
+        Node* temp = head; 
+        while (temp) { 
+            cout << temp->data; 
+            if (temp->next) cout << " ⇔ "; 
+            temp = temp->next; 
+        } 
+        cout << endl; 
+    } 
+};
+
+--- Page 176 ---
+int main() { 
+    DoublyLinkedList dll; 
+    dll.insertAtTail(10); 
+    dll.insertAtTail(20); 
+    dll.insertAtTail(30); 
+    dll.insertAtTail(40); 
+    dll.insertAtTail(50); 
+    dll.insertAtTail(60); 
+ 
+    dll.rotateByN(2); 
+    dll.display(); // Output: 50 ⇔ 60 ⇔ 10 ⇔ 20 ⇔ 30 ⇔ 40 
+} 
+ 
+ 
+Problem 5: Check if a Doubly Linked List is a Palindrome 
+​
+ Check if the given doubly linked list is a palindrome. 
+Input:​
+ 10 ⇔ 20 ⇔ 30 ⇔ 20 ⇔ 10 
+Output:​
+ Palindrome 
+Code (C++): 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* prev; 
+    Node* next; 
+    Node(int val) : data(val), prev(NULL), next(NULL) {} 
+}; 
+ 
+class DoublyLinkedList { 
+    Node* head; 
+public: 
+    DoublyLinkedList() : head(NULL) {} 
+ 
+    void insertAtTail(int val) { 
+        Node* newNode = new Node(val);
+
+--- Page 177 ---
+if (!head) { 
+            head = newNode; 
+            return; 
+        } 
+        Node* temp = head; 
+        while (temp->next) temp = temp->next; 
+        temp->next = newNode; 
+        newNode->prev = temp; 
+    } 
+ 
+    bool isPalindrome() { 
+        if (!head || !head->next) return true; 
+ 
+        Node* left = head; 
+        Node* right = head; 
+        while (right->next) right = right->next; 
+ 
+        while (left != right && right->next != left) { 
+            if (left->data != right->data) return false; 
+            left = left->next; 
+            right = right->prev; 
+        } 
+        return true; 
+    } 
+ 
+    void display() { 
+        Node* temp = head; 
+        while (temp) { 
+            cout << temp->data; 
+            if (temp->next) cout << " ⇔ "; 
+            temp = temp->next; 
+        } 
+        cout << endl; 
+    } 
+}; 
+ 
+int main() { 
+    DoublyLinkedList dll; 
+    dll.insertAtTail(10); 
+    dll.insertAtTail(20); 
+    dll.insertAtTail(30); 
+    dll.insertAtTail(20); 
+    dll.insertAtTail(10);
+
+--- Page 178 ---
+dll.display(); 
+    if (dll.isPalindrome()) cout << "Palindrome" << endl; 
+    else cout << "Not Palindrome" << endl; 
+} 
+ 
+ 
+Problem 6: Implement Deque (Double-Ended Queue) using Doubly Linked List 
+​
+ Implement a deque using a doubly linked list with the following operations: 
+●​ Insert at front​
+ 
+●​ Insert at rear​
+ 
+●​ Delete from front​
+ 
+●​ Delete from rear​
+ 
+Input:​
+ InsertRear(10), InsertRear(20), InsertFront(5), DeleteRear(), InsertFront(2) 
+Output:​
+ 2 ⇔ 5 ⇔ 10 
+Code (C++): 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* prev; 
+    Node* next; 
+    Node(int val) : data(val), prev(NULL), next(NULL) {} 
+}; 
+ 
+class Deque { 
+    Node* front; 
+    Node* rear; 
+public: 
+    Deque() : front(NULL), rear(NULL) {} 
+ 
+    void insertFront(int val) { 
+        Node* newNode = new Node(val);
+
+--- Page 179 ---
+if (!front) { 
+            front = rear = newNode; 
+        } else { 
+            newNode->next = front; 
+            front->prev = newNode; 
+            front = newNode; 
+        } 
+    } 
+ 
+    void insertRear(int val) { 
+        Node* newNode = new Node(val); 
+        if (!rear) { 
+            front = rear = newNode; 
+        } else { 
+            rear->next = newNode; 
+            newNode->prev = rear; 
+            rear = newNode; 
+        } 
+    } 
+ 
+    void deleteFront() { 
+        if (!front) return; 
+        Node* temp = front; 
+        front = front->next; 
+        if (front) front->prev = NULL; 
+        else rear = NULL; 
+        delete temp; 
+    } 
+ 
+    void deleteRear() { 
+        if (!rear) return; 
+        Node* temp = rear; 
+        rear = rear->prev; 
+        if (rear) rear->next = NULL; 
+        else front = NULL; 
+        delete temp; 
+    } 
+ 
+    void display() { 
+        Node* temp = front; 
+        while (temp) { 
+            cout << temp->data; 
+            if (temp->next) cout << " ⇔ "; 
+            temp = temp->next;
+
+--- Page 180 ---
+} 
+        cout << endl; 
+    } 
+}; 
+ 
+int main() { 
+    Deque dq; 
+    dq.insertRear(10); 
+    dq.insertRear(20); 
+    dq.insertFront(5); 
+    dq.deleteRear(); 
+    dq.insertFront(2); 
+ 
+    dq.display(); // Output: 2 ⇔ 5 ⇔ 10 
+} 
+ 
+ 
+3. Circular Linked List 
+ 
+3.1 Definition 
+A Circular Linked List is a singly linked list where the last node points to the first node (head), 
+forming a loop. There is no nullptr. 
+3.2 Structure 
+[Data|Next] → [Data|Next] → [Data|Next] → (back to first) 
+ 
+●​ Example: 10 → 20 → 30 → 10 (loop) 
+3.3 Analogy 
+A roundabout: 
+●​ Each exit (node) leads to the next, and the last exit loops back to the first. 
+●​ You can keep circling without an end, unlike a straight road (singly linked list).
+
+--- Page 181 ---
+3.4 Characteristics 
+●​ Continuous Loop: No beginning or end; last node points to head. 
+●​ Unidirectional: Forward traversal only. 
+●​ Dynamic: Can add/remove nodes, maintaining the loop. 
+●​ Careful Traversal: Must avoid infinite loops (e.g., stop when reaching head again). 
+3.5 Advantages 
+●​ Continuous access (loop back to start without restarting). 
+●​ Useful for cyclic or periodic tasks. 
+●​ No need for a separate tail pointer in some cases. 
+3.6 Disadvantages 
+●​ Risk of infinite loops if not handled carefully. 
+●​ Harder to detect the end (no nullptr). 
+●​ No backward traversal. 
+3.7 Use Cases 
+●​ Round-robin scheduling (e.g., CPU task allocation). 
+●​ Cyclic buffers in networking. 
+●​ Music playlist looping. 
+3.8 Class-Based Implementation (C++) 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) : data(val), next(nullptr) {} 
+}; 
+ 
+class CircularLinkedList { 
+private: 
+    Node* head; 
+ 
+public: 
+    CircularLinkedList() : head(nullptr) {} 
+ 
+    // Insert at beginning 
+    void insertAtBeginning(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) {
+
+--- Page 182 ---
+head = newNode; 
+            head->next = head; // Point to itself 
+            return; 
+        } 
+        Node* temp = head; 
+        while (temp->next != head) temp = temp->next; 
+        newNode->next = head; 
+        temp->next = newNode; 
+        head = newNode; 
+    } 
+ 
+    // Delete at beginning 
+    void deleteAtBeginning() { 
+        if (!head) { 
+            cout << "List is empty\n"; 
+            return; 
+        } 
+        if (head->next == head) { 
+            delete head; 
+            head = nullptr; 
+            return; 
+        } 
+        Node* temp = head; 
+        Node* last = head; 
+        while (last->next != head) last = last->next; 
+        head = head->next; 
+        last->next = head; 
+        delete temp; 
+    } 
+ 
+    // Traverse and print 
+    void printList() { 
+        if (!head) { 
+            cout << "List is empty\n"; 
+            return; 
+        } 
+        Node* temp = head; 
+        do { 
+            cout << temp->data << " -> "; 
+            temp = temp->next; 
+        } while (temp != head); 
+        cout << "(head)\n"; 
+    }
+
+--- Page 183 ---
+// Destructor for cleanup 
+    ~CircularLinkedList() { 
+        if (!head) return; 
+        Node* current = head->next; 
+        while (current != head) { 
+            Node* temp = current; 
+            current = current->next; 
+            delete temp; 
+        } 
+        delete head; 
+        head = nullptr; 
+    } 
+}; 
+ 
+int main() { 
+    CircularLinkedList list; 
+ 
+    // Insert elements 
+    list.insertAtBeginning(30); // 30 
+    list.insertAtBeginning(20); // 20 -> 30 
+    list.insertAtBeginning(10); // 10 -> 20 -> 30 
+    cout << "Circular Linked List after insertions:\n"; 
+    list.printList(); // 10 -> 20 -> 30 -> (head) 
+ 
+    // Delete first node 
+    list.deleteAtBeginning(); 
+    cout << "After deleting first node:\n"; 
+    list.printList(); // 20 -> 30 -> (head) 
+ 
+    return 0; 
+} 
+ 
+Output:​
+Circular Linked List after insertions: 
+10 -> 20 -> 30 -> (head) 
+After deleting first node: 
+20 -> 30 -> (head) 
+●​  
+●​ Time Complexity: 
+○​ Insert at Beginning: O(n) (traverse to last node to update its next pointer) 
+○​ Delete at Beginning: O(n) (traverse to last node) 
+○​ Traversal: O(n) 
+●​ Space Complexity: O(n) for n nodes. 
+More Examples:
+
+--- Page 184 ---
+Problem 1: Insertion at End in a Circular Linked List 
+Problem Statement:​
+ Implement insertion at the end of a circular linked list and display the list. 
+Input:​
+ Insert → 10, 20, 30, 40 
+Output:​
+ 10 -> 20 -> 30 -> 40 -> (back to 10) 
+Code: 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) { 
+        data = val; 
+        next = NULL; 
+    } 
+}; 
+ 
+class CircularLinkedList { 
+    Node* head; 
+public: 
+    CircularLinkedList() { 
+        head = NULL; 
+    } 
+ 
+    void insertEnd(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { 
+            head = newNode; 
+            head->next = head; 
+            return; 
+        } 
+        Node* temp = head; 
+        while (temp->next != head) temp = temp->next; 
+        temp->next = newNode; 
+        newNode->next = head;
+
+--- Page 185 ---
+} 
+ 
+    void display() { 
+        if (!head) return; 
+        Node* temp = head; 
+        do { 
+            cout << temp->data << " -> "; 
+            temp = temp->next; 
+        } while (temp != head); 
+        cout << "(back to " << head->data << ")\n"; 
+    } 
+}; 
+ 
+int main() { 
+    CircularLinkedList cll; 
+    cll.insertEnd(10); 
+    cll.insertEnd(20); 
+    cll.insertEnd(30); 
+    cll.insertEnd(40); 
+    cll.display(); 
+    return 0; 
+} 
+ 
+ 
+Problem 2: Deletion from Circular Linked List 
+Problem Statement:​
+ Delete a node with a given value from a circular linked list. 
+Input:​
+ List: 10 -> 20 -> 30 -> 40 -> (back to 10)​
+ Delete: 30 
+Output:​
+ 10 -> 20 -> 40 -> (back to 10) 
+Code: 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next;
+
+--- Page 186 ---
+Node(int val) { 
+        data = val; 
+        next = NULL; 
+    } 
+}; 
+ 
+class CircularLinkedList { 
+    Node* head; 
+public: 
+    CircularLinkedList() { 
+        head = NULL; 
+    } 
+ 
+    void insertEnd(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { 
+            head = newNode; 
+            head->next = head; 
+            return; 
+        } 
+        Node* temp = head; 
+        while (temp->next != head) temp = temp->next; 
+        temp->next = newNode; 
+        newNode->next = head; 
+    } 
+ 
+    void deleteNode(int val) { 
+        if (!head) return; 
+ 
+        Node* curr = head, *prev = NULL; 
+ 
+        // If head needs to be deleted 
+        if (head->data == val) { 
+            if (head->next == head) { // Only one node 
+                delete head; 
+                head = NULL; 
+                return; 
+            } 
+            Node* temp = head; 
+            while (temp->next != head) temp = temp->next; // last node 
+            temp->next = head->next; 
+            Node* del = head; 
+            head = head->next; 
+            delete del;
+
+--- Page 187 ---
+return; 
+        } 
+ 
+        // Search for the node 
+        do { 
+            prev = curr; 
+            curr = curr->next; 
+            if (curr->data == val) { 
+                prev->next = curr->next; 
+                delete curr; 
+                return; 
+            } 
+        } while (curr != head); 
+    } 
+ 
+    void display() { 
+        if (!head) return; 
+        Node* temp = head; 
+        do { 
+            cout << temp->data << " -> "; 
+            temp = temp->next; 
+        } while (temp != head); 
+        cout << "(back to " << head->data << ")\n"; 
+    } 
+}; 
+ 
+int main() { 
+    CircularLinkedList cll; 
+    cll.insertEnd(10); 
+    cll.insertEnd(20); 
+    cll.insertEnd(30); 
+    cll.insertEnd(40); 
+ 
+    cout << "Before Deletion:\n"; 
+    cll.display(); 
+ 
+    cll.deleteNode(30); 
+ 
+    cout << "After Deletion:\n"; 
+    cll.display(); 
+    return 0; 
+}
+
+--- Page 188 ---
+Problem 3: Josephus Problem (Classic on Circular Linked List) 
+Problem Statement:​
+ Given n people standing in a circle, eliminate every k-th person until only one remains. Return the 
+safe position. 
+Input:​
+ n = 5, k = 2 
+Output:​
+ Safe Position = 3 
+Code: 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node(int val) { 
+        data = val; 
+        next = NULL; 
+    } 
+}; 
+ 
+class CircularLinkedList { 
+    Node* head; 
+public: 
+    CircularLinkedList() { head = NULL; } 
+ 
+    void createCircle(int n) { 
+        Node* temp, *newNode; 
+        for (int i = 1; i <= n; i++) { 
+            newNode = new Node(i); 
+            if (!head) { 
+                head = newNode; 
+                head->next = head; 
+                temp = head; 
+            } else { 
+                temp->next = newNode; 
+                newNode->next = head; 
+                temp = newNode; 
+            } 
+        }
+
+--- Page 189 ---
+} 
+ 
+    int josephus(int k) { 
+        Node* ptr1 = head, *ptr2 = head; 
+        while (ptr1->next != ptr1) { 
+            int count = 1; 
+            while (count != k) { 
+                ptr2 = ptr1; 
+                ptr1 = ptr1->next; 
+                count++; 
+            } 
+            ptr2->next = ptr1->next; 
+            delete ptr1; 
+            ptr1 = ptr2->next; 
+        } 
+        return ptr1->data; 
+    } 
+}; 
+ 
+int main() { 
+    int n = 5, k = 2; 
+    CircularLinkedList cll; 
+    cll.createCircle(n); 
+    cout << "Safe Position = " << cll.josephus(k) << endl; 
+    return 0; 
+} 
+ 
+4. Circular Doubly Linked List 
+ 
+4.1 Definition 
+A Circular Doubly Linked List combines doubly linked and circular features. Each node points to the 
+next and previous nodes, and the last node links to the first, forming a bidirectional loop.
+
+--- Page 190 ---
+4.2 Structure 
+[Prev|Data|Next] ↔ [Prev|Data|Next] ↔ [Prev|Data|Next] ↔ (loop) 
+ 
+●​ Example: 10 ↔ 20 ↔ 30 ↔ 10 (loop) 
+4.3 Analogy 
+A two-way roundabout: 
+●​ Each stop (node) has signs for both the next and previous stops, and the last stop loops back 
+to the first. 
+●​ You can travel in either direction and keep circling. 
+4.4 Characteristics 
+●​ Bidirectional Loop: Traverse forward or backward, looping continuously. 
+●​ Highest Memory Usage: Three fields per node (data, next, prev). 
+●​ Complex: Requires careful pointer management to maintain the loop. 
+●​ Dynamic: Supports node addition/removal. 
+4.5 Advantages 
+●​ Bidirectional traversal with looping. 
+●​ Flexible for complex navigation (e.g., forward/backward cycling). 
+●​ Easier deletion than circular singly linked list (access to prev). 
+4.6 Disadvantages 
+●​ Highest memory overhead (two pointers per node). 
+●​ Most complex implementation (manage prev, next, and loop). 
+●​ Risk of infinite loops if not handled properly. 
+4.7 Use Cases 
+●​ Advanced data structures like deques with cyclic behavior. 
+●​ Multi-player game turn management (loop through players). 
+●​ Applications needing bidirectional cyclic access. 
+4.8 Class-Based Implementation (C++) 
+#include <iostream> 
+using namespace std; 
+ 
+class Node { 
+public: 
+    int data; 
+    Node* next; 
+    Node* prev; 
+    Node(int val) : data(val), next(nullptr), prev(nullptr) {}
+
+--- Page 191 ---
+}; 
+ 
+class CircularDoublyLinkedList { 
+private: 
+    Node* head; 
+ 
+public: 
+    CircularDoublyLinkedList() : head(nullptr) {} 
+ 
+    // Insert at beginning 
+    void insertAtBeginning(int val) { 
+        Node* newNode = new Node(val); 
+        if (!head) { 
+            head = newNode; 
+            head->next = head; 
+            head->prev = head; 
+            return; 
+        } 
+        Node* last = head->prev; // Last node 
+        newNode->next = head; 
+        newNode->prev = last; 
+        head->prev = newNode; 
+        last->next = newNode; 
+        head = newNode; 
+    } 
+ 
+    // Delete at beginning 
+    void deleteAtBeginning() { 
+        if (!head) { 
+            cout << "List is empty\n"; 
+            return; 
+        } 
+        if (head->next == head) { 
+            delete head; 
+            head = nullptr; 
+            return; 
+        } 
+        Node* last = head->prev; 
+        Node* temp = head; 
+        head = head->next; 
+        head->prev = last; 
+        last->next = head; 
+        delete temp; 
+    }
+
+--- Page 192 ---
+// Traverse and print (forward) 
+    void printList() { 
+        if (!head) { 
+            cout << "List is empty\n"; 
+            return; 
+        } 
+        Node* temp = head; 
+        do { 
+            cout << temp->data << " <-> "; 
+            temp = temp->next; 
+        } while (temp != head); 
+        cout << "(head)\n"; 
+    } 
+ 
+    // Destructor for cleanup 
+    ~CircularDoublyLinkedList() { 
+        if (!head) return; 
+        Node* current = head->next; 
+        head->prev = nullptr; // Break loop 
+        while (current != head) { 
+            Node* temp = current; 
+            current = current->next; 
+            delete temp; 
+        } 
+        delete head; 
+        head = nullptr; 
+    } 
+}; 
+ 
+int main() { 
+    CircularDoublyLinkedList list; 
+ 
+    // Insert elements 
+    list.insertAtBeginning(30); // 30 
+    list.insertAtBeginning(20); // 20 <-> 30 
+    list.insertAtBeginning(10); // 10 <-> 20 <-> 30 
+    cout << "Circular Doubly Linked List after insertions:\n"; 
+    list.printList(); // 10 <-> 20 <-> 30 <-> (head) 
+ 
+    // Delete first node 
+    list.deleteAtBeginning(); 
+    cout << "After deleting first node:\n"; 
+    list.printList(); // 20 <-> 30 <-> (head)
+
+--- Page 193 ---
+return 0; 
+} 
+ 
+Output:​
+Circular Doubly Linked List after insertions: 
+10 <-> 20 <-> 30 <-> (head) 
+After deleting first node: 
+20 <-> 30 <-> (head) 
+●​  
+●​ Time Complexity: 
+○​ Insert at Beginning: O(1) (direct access to last via prev) 
+○​ Delete at Beginning: O(1) 
+○​ Traversal: O(n) 
+●​ Space Complexity: O(n) for n nodes (highest due to two pointers). 
+ 
+5. Comparison of Linked List Types 
+Type 
+Structur
+e 
+Traversal 
+Memory 
+per 
+Node 
+Insert/Delete at 
+Begin 
+Use Case 
+Singly 
+Linked List 
+[Data 
+Next] → [Data 
+nullptr] 
+Forward 
+Data + 1 pointer 
+Doubly 
+Linked List 
+[Prev 
+Data 
+Next] ↔ 
+[Data 
+nullptr] 
+Forward/Backward 
+Circular 
+Linked List 
+[Data 
+Next] → (loop) 
+Forward 
+(loop) 
+Data + 1 pointer 
+O(n) 
+Circular 
+Doubly 
+Linked List 
+[Prev 
+Data 
+Next] ↔ 
+(loop) 
+Forward/Backwa
+rd (loop) 
+Data + 2 pointers 
+Choosing Based on Requirements 
+●​ Forward Traversal Only: Use Singly or Circular Linked List. 
+●​ Bidirectional Traversal: Use Doubly or Circular Doubly Linked List. 
+●​ Cyclic Behavior: Use Circular or Circular Doubly Linked List. 
+●​ Memory Constraints: Prefer Singly or Circular (fewer pointers). 
+●​ Complex Navigation: Use Circular Doubly Linked List. 
+ 
+Happy Coding:)

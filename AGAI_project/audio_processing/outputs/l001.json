@@ -1,0 +1,419 @@
+{
+  "lecture_id": "L001",
+  "source": "youtube",
+  "document_text": null,
+  "transcript": "Well, howdy y'all. We're talking about recursion. Now, recursion is when a thing is defined in terms of itself. I stole that definition from Wikipedia. Really, it doesn't make too much sense. A thing is defined in terms of itself. , with recursion, we applied the result of a procedure to a procedure. A recursive method is one that calls itself. And this can be a substitute for iteration. There's a lot of overlap where you could use either recursion or iteration. With recursion, we divide a problem in two sub-problems of the same type as the original. And recursion tends to be used with an advanced sorting algorithms and an navigating trees. Some of the benefits of recursive code is that it's easier to read and write, and it's easier to debug. But the disadvantages is that it's sometimes slower and uses more memory. Let's begin with a very simple example. Let's create a method to simulate walking. We'll do this both iteratively and recursively. Then take a look at the differences between the two. let's write an iterative walk method. we will need to invoke this method. And then we will pass in the amount of steps that we would to walk, five steps. And then we'll need to declare this method. Private static void walk. And I'll change I to maybe steps just that it's more descriptive. Now let's use an iterative approach. iteration is the repetition of an internal process. we can use a for loop. That will repeat a process. And let's say that int i equals zero. We will continue this as long as I is less than steps. And then let's increment I by one during each iteration. And then during each iteration, I will print you take a step. And really that's it. And after running this code, we have walked five steps. Now let's write the same method recursively recursion is the repetition of a procedure iteration is the repetition of a process. with recursion, we need a base case. That's what we do when we would to stop. And a recursive case, what do we do when we would to continue? our base case is going to be if steps is less than one, then we will return. And if you only have one statement within your if statement, you don't really need these curly braces. I'm just going to emit those. All, then we will print you take a step. this is our base case. This is what we do when we would to stop. Then our recursive case is what we're going to do when we would to continue. We will invoke the walk method within itself, but we will pass in steps minus one. And this is our recursive case. And this will do the same thing. However, it's just written a little bit different. Now one thing that you should know is that programs have a data structure called a call stack, a call stack keeps track of the order in which our program needs to function. with the main method, we call the main method first. And that's added to the bottom of our call stack. in order to complete our program, we have to complete the main method and get to the end of it. However, when we took an iterative approach, we invoked the walk method. And that was added to the top of our stack. Remember that video on stacks? It's a life old data structure. Last in first out, we have to take care of anything at the top of our stack first and then work our way down with a recursive approach. We're adding multiple frames on to our call stack because one, we're calling the main method, then we're calling the walk method passing in five as an argument, then we're calling the walk method again passing in four as an argument, then three, then two, then one, then zero, then we return. And we have to solve this in a life of order. Last in first out, we begin at the top and remove frames from the top until we reach the end. that's why using recursion is sometimes slower and uses more memory. We're adding more frames to the call stack. There's more methods that we have to keep track of. Now check this out. What if we take one million recursive steps? We're going to call this walk method a million times. And that's going to be a problem. And we ran into an exception. Let's take a look at this. we encountered an exception, a stack overflow error. It's kind of that one website. When working with recursion, it is possible to run out of memory. Although this is sometimes slower and uses more memory, recursive code tends to be easier to read and write and easier to debug. For a small method this, I would probably stick with an iterative approach just because it already is fairly simple. But it's going to really come in handy when we get two topics on advanced sorting algorithms. let's try something a little more complex. Let's create a program to find the factorial of a number. let's create a factorial method. And we'll write this recursively. let's find a factorial. What about seven? And then we'll need to define this method. And we no longer need our walk method. if we're taking a recursive approach, finding the factorial of a number, let's say that I is numb. we'll need a base case. If numb is less than one, we will return one. This is our base case. Then we need a recursive case. We will return numb times factorial, then pass in numb minus one. And then eventually we'll hit our base case because numb is going to be zero. And this is our recursive case. , then change void to int because I forgot. , then let's display factorial seven within a print line statement factorial seven. And the factorial of seven is 5, 040. you can see that this was fairly easy to write. It only took two lines of code. By the way, I found a great example of recursion on its Wikipedia page. And that's by the process of creating refreshed sourdough. the recipe calls for some sourdough left over from the last time the same recipe was made. I thought that was a fairly descriptive example of recursion. Let's move on to level three. Let's create a recursive method to find a base race to a given power. Let's create a power method. And we need a base and an exponent. Let's find two to the power of eight. And then we'll need two to find this method private static. Let's change void to int i to base and j to exponent. We need a base case and a recursive case. The base case will be if exponent is less than one, we will return one. This is our base case. Our recursive case will be return base times invoke the power method pass in base and exponent minus one. And this is our recursive case. And then we will need to display the result. System dot out our print line. Two to the power of eight, which is 256. All, everybody. that's recursion. It's when a thing is defined in terms of itself. We apply the result of a procedure to a procedure and a recursive method is one that calls itself. And this can be a substitute for iteration. We divide a problem into subproblems of the same type as the original. And recursion is commonly used with an advanced sorting algorithms and navigating trees. Some of the advantages is that recursive code is easier to read and write and easier to debug. However, it's sometimes slower and uses more memory. yeah, that is recursion. If you learn something new, be sure to smash that button, leave a random comment down below. And well, yeah, that's recursion in computer science.",
+  "timestamps": [
+    {
+      "start": 0.0,
+      "end": 8.1,
+      "text": "Well, howdy y'all. We're talking about recursion. Now, recursion is when a thing is defined"
+    },
+    {
+      "start": 8.1,
+      "end": 12.68,
+      "text": "in terms of itself. I stole that definition from Wikipedia. Really, it doesn't make too"
+    },
+    {
+      "start": 12.68,
+      "end": 18.240000000000002,
+      "text": "much sense. A thing is defined in terms of itself. , with recursion, we applied"
+    },
+    {
+      "start": 18.240000000000002,
+      "end": 24.72,
+      "text": "the result of a procedure to a procedure. A recursive method is one that calls itself."
+    },
+    {
+      "start": 24.72,
+      "end": 28.84,
+      "text": "And this can be a substitute for iteration. There's a lot of overlap where you could"
+    },
+    {
+      "start": 28.84,
+      "end": 35.2,
+      "text": "use either recursion or iteration. With recursion, we divide a problem in two sub-problems"
+    },
+    {
+      "start": 35.2,
+      "end": 41.28,
+      "text": "of the same type as the original. And recursion tends to be used with an advanced sorting algorithms"
+    },
+    {
+      "start": 41.28,
+      "end": 46.0,
+      "text": "and an navigating trees. Some of the benefits of recursive code is that it's easier to read"
+    },
+    {
+      "start": 46.0,
+      "end": 51.08,
+      "text": "and write, and it's easier to debug. But the disadvantages is that it's sometimes slower"
+    },
+    {
+      "start": 51.08,
+      "end": 55.760000000000005,
+      "text": "and uses more memory. Let's begin with a very simple example. Let's create a method"
+    },
+    {
+      "start": 55.76,
+      "end": 60.8,
+      "text": "to simulate walking. We'll do this both iteratively and recursively. Then take a look at the"
+    },
+    {
+      "start": 60.8,
+      "end": 66.03999999999999,
+      "text": "differences between the two. let's write an iterative walk method. we will need"
+    },
+    {
+      "start": 66.03999999999999,
+      "end": 70.4,
+      "text": "to invoke this method. And then we will pass in the amount of steps that we would"
+    },
+    {
+      "start": 70.4,
+      "end": 75.28,
+      "text": "to walk, five steps. And then we'll need to declare this method. Private static"
+    },
+    {
+      "start": 75.28,
+      "end": 81.12,
+      "text": "void walk. And I'll change I to maybe steps just that it's more descriptive. Now let's"
+    },
+    {
+      "start": 81.12,
+      "end": 87.96000000000001,
+      "text": "use an iterative approach. iteration is the repetition of an internal process. we"
+    },
+    {
+      "start": 87.96000000000001,
+      "end": 94.24000000000001,
+      "text": "can use a for loop. That will repeat a process. And let's say that int i equals zero. We will"
+    },
+    {
+      "start": 94.24000000000001,
+      "end": 100.12,
+      "text": "continue this as long as I is less than steps. And then let's increment I by one during each"
+    },
+    {
+      "start": 100.12,
+      "end": 107.32000000000001,
+      "text": "iteration. And then during each iteration, I will print you take a step. And really that's"
+    },
+    {
+      "start": 107.32000000000001,
+      "end": 113.84,
+      "text": "it. And after running this code, we have walked five steps. Now let's write the same method"
+    },
+    {
+      "start": 113.84,
+      "end": 119.68,
+      "text": "recursively recursion is the repetition of a procedure iteration is the repetition of"
+    },
+    {
+      "start": 119.68,
+      "end": 125.0,
+      "text": "a process. with recursion, we need a base case. That's what we do when we would"
+    },
+    {
+      "start": 125.0,
+      "end": 130.04000000000002,
+      "text": "to stop. And a recursive case, what do we do when we would to continue? our"
+    },
+    {
+      "start": 130.04,
+      "end": 138.04,
+      "text": "base case is going to be if steps is less than one, then we will return. And if you only"
+    },
+    {
+      "start": 138.04,
+      "end": 143.79999999999998,
+      "text": "have one statement within your if statement, you don't really need these curly braces."
+    },
+    {
+      "start": 143.79999999999998,
+      "end": 152.88,
+      "text": "I'm just going to emit those. All, then we will print you take a step. this"
+    },
+    {
+      "start": 152.88,
+      "end": 158.88,
+      "text": "is our base case. This is what we do when we would to stop. Then our recursive case"
+    },
+    {
+      "start": 158.88,
+      "end": 163.76,
+      "text": "is what we're going to do when we would to continue. We will invoke the walk method"
+    },
+    {
+      "start": 163.76,
+      "end": 171.96,
+      "text": "within itself, but we will pass in steps minus one. And this is our recursive case. And"
+    },
+    {
+      "start": 171.96,
+      "end": 176.28,
+      "text": "this will do the same thing. However, it's just written a little bit different. Now one"
+    },
+    {
+      "start": 176.28,
+      "end": 181.32,
+      "text": "thing that you should know is that programs have a data structure called a call stack,"
+    },
+    {
+      "start": 181.32,
+      "end": 186.96,
+      "text": "a call stack keeps track of the order in which our program needs to function. with"
+    },
+    {
+      "start": 187.04000000000002,
+      "end": 191.84,
+      "text": "the main method, we call the main method first. And that's added to the bottom of our call"
+    },
+    {
+      "start": 191.84,
+      "end": 197.16,
+      "text": "stack. in order to complete our program, we have to complete the main method and get"
+    },
+    {
+      "start": 197.16,
+      "end": 202.60000000000002,
+      "text": "to the end of it. However, when we took an iterative approach, we invoked the walk method."
+    },
+    {
+      "start": 202.60000000000002,
+      "end": 207.36,
+      "text": "And that was added to the top of our stack. Remember that video on stacks? It's a life"
+    },
+    {
+      "start": 207.36,
+      "end": 212.44,
+      "text": "old data structure. Last in first out, we have to take care of anything at the top of"
+    },
+    {
+      "start": 212.44,
+      "end": 218.04,
+      "text": "our stack first and then work our way down with a recursive approach. We're adding multiple"
+    },
+    {
+      "start": 218.04,
+      "end": 223.4,
+      "text": "frames on to our call stack because one, we're calling the main method, then we're calling"
+    },
+    {
+      "start": 223.4,
+      "end": 228.72,
+      "text": "the walk method passing in five as an argument, then we're calling the walk method again passing"
+    },
+    {
+      "start": 228.72,
+      "end": 234.36,
+      "text": "in four as an argument, then three, then two, then one, then zero, then we return. And"
+    },
+    {
+      "start": 234.36,
+      "end": 239.32,
+      "text": "we have to solve this in a life of order. Last in first out, we begin at the top and"
+    },
+    {
+      "start": 239.32,
+      "end": 244.16,
+      "text": "remove frames from the top until we reach the end. that's why using recursion is sometimes"
+    },
+    {
+      "start": 244.16,
+      "end": 248.32,
+      "text": "slower and uses more memory. We're adding more frames to the call stack. There's more"
+    },
+    {
+      "start": 248.32,
+      "end": 252.92,
+      "text": "methods that we have to keep track of. Now check this out. What if we take one million"
+    },
+    {
+      "start": 252.92,
+      "end": 257.92,
+      "text": "recursive steps? We're going to call this walk method a million times. And that's going"
+    },
+    {
+      "start": 257.92,
+      "end": 263.08,
+      "text": "to be a problem. And we ran into an exception. Let's take a look at this. we encountered"
+    },
+    {
+      "start": 263.08,
+      "end": 268.48,
+      "text": "an exception, a stack overflow error. It's kind of that one website. When working"
+    },
+    {
+      "start": 268.48,
+      "end": 273.08000000000004,
+      "text": "with recursion, it is possible to run out of memory. Although this is sometimes slower"
+    },
+    {
+      "start": 273.08000000000004,
+      "end": 279.04,
+      "text": "and uses more memory, recursive code tends to be easier to read and write and easier to debug."
+    },
+    {
+      "start": 279.04,
+      "end": 283.84000000000003,
+      "text": "For a small method this, I would probably stick with an iterative approach just because"
+    },
+    {
+      "start": 283.84000000000003,
+      "end": 288.68,
+      "text": "it already is fairly simple. But it's going to really come in handy when we get two topics"
+    },
+    {
+      "start": 288.68,
+      "end": 293.8,
+      "text": "on advanced sorting algorithms. let's try something a little more complex. Let's create"
+    },
+    {
+      "start": 293.8,
+      "end": 299.88,
+      "text": "a program to find the factorial of a number. let's create a factorial method. And"
+    },
+    {
+      "start": 299.88,
+      "end": 304.76,
+      "text": "we'll write this recursively. let's find a factorial. What about seven? And then we'll"
+    },
+    {
+      "start": 304.76,
+      "end": 311.04,
+      "text": "need to define this method. And we no longer need our walk method. if we're taking a recursive"
+    },
+    {
+      "start": 311.04,
+      "end": 317.24,
+      "text": "approach, finding the factorial of a number, let's say that I is numb. we'll need a"
+    },
+    {
+      "start": 317.24,
+      "end": 328.04,
+      "text": "base case. If numb is less than one, we will return one. This is our base case. Then"
+    },
+    {
+      "start": 328.04,
+      "end": 338.96000000000004,
+      "text": "we need a recursive case. We will return numb times factorial, then pass in numb minus"
+    },
+    {
+      "start": 338.96000000000004,
+      "end": 344.64,
+      "text": "one. And then eventually we'll hit our base case because numb is going to be zero. And"
+    },
+    {
+      "start": 344.64,
+      "end": 351.76,
+      "text": "this is our recursive case. , then change void to int because I forgot. , then let's"
+    },
+    {
+      "start": 351.76,
+      "end": 359.59999999999997,
+      "text": "display factorial seven within a print line statement factorial seven. And the factorial"
+    },
+    {
+      "start": 359.59999999999997,
+      "end": 366.88,
+      "text": "of seven is 5, 040. you can see that this was fairly easy to write. It only took two lines"
+    },
+    {
+      "start": 366.88,
+      "end": 371.52,
+      "text": "of code. By the way, I found a great example of recursion on its Wikipedia page. And that's"
+    },
+    {
+      "start": 371.52,
+      "end": 377.91999999999996,
+      "text": "by the process of creating refreshed sourdough. the recipe calls for some sourdough left over"
+    },
+    {
+      "start": 377.91999999999996,
+      "end": 382.64,
+      "text": "from the last time the same recipe was made. I thought that was a fairly descriptive example"
+    },
+    {
+      "start": 382.64,
+      "end": 387.59999999999997,
+      "text": "of recursion. Let's move on to level three. Let's create a recursive method to find a base"
+    },
+    {
+      "start": 387.59999999999997,
+      "end": 393.68,
+      "text": "race to a given power. Let's create a power method. And we need a base and an exponent. Let's"
+    },
+    {
+      "start": 393.68,
+      "end": 398.56,
+      "text": "find two to the power of eight. And then we'll need two to find this method private static."
+    },
+    {
+      "start": 398.56,
+      "end": 409.28000000000003,
+      "text": "Let's change void to int i to base and j to exponent. We need a base case and a recursive case."
+    },
+    {
+      "start": 409.28000000000003,
+      "end": 420.0,
+      "text": "The base case will be if exponent is less than one, we will return one. This is our base case."
+    },
+    {
+      "start": 420.0,
+      "end": 433.2,
+      "text": "Our recursive case will be return base times invoke the power method pass in base and"
+    },
+    {
+      "start": 433.2,
+      "end": 443.68,
+      "text": "exponent minus one. And this is our recursive case. And then we will need to display the result."
+    },
+    {
+      "start": 444.64,
+      "end": 454.48,
+      "text": "System dot out our print line. Two to the power of eight, which is 256. All, everybody."
+    },
+    {
+      "start": 454.48,
+      "end": 461.12,
+      "text": "that's recursion. It's when a thing is defined in terms of itself. We apply the result of a procedure"
+    },
+    {
+      "start": 461.12,
+      "end": 467.76,
+      "text": "to a procedure and a recursive method is one that calls itself. And this can be a substitute for"
+    },
+    {
+      "start": 467.76,
+      "end": 474.71999999999997,
+      "text": "iteration. We divide a problem into subproblems of the same type as the original. And recursion"
+    },
+    {
+      "start": 474.71999999999997,
+      "end": 480.71999999999997,
+      "text": "is commonly used with an advanced sorting algorithms and navigating trees. Some of the advantages"
+    },
+    {
+      "start": 480.71999999999997,
+      "end": 486.71999999999997,
+      "text": "is that recursive code is easier to read and write and easier to debug. However, it's sometimes"
+    },
+    {
+      "start": 486.71999999999997,
+      "end": 492.08,
+      "text": "slower and uses more memory. yeah, that is recursion. If you learn something new, be sure to"
+    },
+    {
+      "start": 492.08,
+      "end": 496.96,
+      "text": "smash that button, leave a random comment down below. And well, yeah, that's recursion in"
+    },
+    {
+      "start": 496.96000000000004,
+      "end": 497.92,
+      "text": "computer science."
+    }
+  ],
+  "combined_text": "Well, howdy y'all. We're talking about recursion. Now, recursion is when a thing is defined in terms of itself. I stole that definition from Wikipedia. Really, it doesn't make too much sense. A thing is defined in terms of itself. , with recursion, we applied the result of a procedure to a procedure. A recursive method is one that calls itself. And this can be a substitute for iteration. There's a lot of overlap where you could use either recursion or iteration. With recursion, we divide a problem in two sub-problems of the same type as the original. And recursion tends to be used with an advanced sorting algorithms and an navigating trees. Some of the benefits of recursive code is that it's easier to read and write, and it's easier to debug. But the disadvantages is that it's sometimes slower and uses more memory. Let's begin with a very simple example. Let's create a method to simulate walking. We'll do this both iteratively and recursively. Then take a look at the differences between the two. let's write an iterative walk method. we will need to invoke this method. And then we will pass in the amount of steps that we would to walk, five steps. And then we'll need to declare this method. Private static void walk. And I'll change I to maybe steps just that it's more descriptive. Now let's use an iterative approach. iteration is the repetition of an internal process. we can use a for loop. That will repeat a process. And let's say that int i equals zero. We will continue this as long as I is less than steps. And then let's increment I by one during each iteration. And then during each iteration, I will print you take a step. And really that's it. And after running this code, we have walked five steps. Now let's write the same method recursively recursion is the repetition of a procedure iteration is the repetition of a process. with recursion, we need a base case. That's what we do when we would to stop. And a recursive case, what do we do when we would to continue? our base case is going to be if steps is less than one, then we will return. And if you only have one statement within your if statement, you don't really need these curly braces. I'm just going to emit those. All, then we will print you take a step. this is our base case. This is what we do when we would to stop. Then our recursive case is what we're going to do when we would to continue. We will invoke the walk method within itself, but we will pass in steps minus one. And this is our recursive case. And this will do the same thing. However, it's just written a little bit different. Now one thing that you should know is that programs have a data structure called a call stack, a call stack keeps track of the order in which our program needs to function. with the main method, we call the main method first. And that's added to the bottom of our call stack. in order to complete our program, we have to complete the main method and get to the end of it. However, when we took an iterative approach, we invoked the walk method. And that was added to the top of our stack. Remember that video on stacks? It's a life old data structure. Last in first out, we have to take care of anything at the top of our stack first and then work our way down with a recursive approach. We're adding multiple frames on to our call stack because one, we're calling the main method, then we're calling the walk method passing in five as an argument, then we're calling the walk method again passing in four as an argument, then three, then two, then one, then zero, then we return. And we have to solve this in a life of order. Last in first out, we begin at the top and remove frames from the top until we reach the end. that's why using recursion is sometimes slower and uses more memory. We're adding more frames to the call stack. There's more methods that we have to keep track of. Now check this out. What if we take one million recursive steps? We're going to call this walk method a million times. And that's going to be a problem. And we ran into an exception. Let's take a look at this. we encountered an exception, a stack overflow error. It's kind of that one website. When working with recursion, it is possible to run out of memory. Although this is sometimes slower and uses more memory, recursive code tends to be easier to read and write and easier to debug. For a small method this, I would probably stick with an iterative approach just because it already is fairly simple. But it's going to really come in handy when we get two topics on advanced sorting algorithms. let's try something a little more complex. Let's create a program to find the factorial of a number. let's create a factorial method. And we'll write this recursively. let's find a factorial. What about seven? And then we'll need to define this method. And we no longer need our walk method. if we're taking a recursive approach, finding the factorial of a number, let's say that I is numb. we'll need a base case. If numb is less than one, we will return one. This is our base case. Then we need a recursive case. We will return numb times factorial, then pass in numb minus one. And then eventually we'll hit our base case because numb is going to be zero. And this is our recursive case. , then change void to int because I forgot. , then let's display factorial seven within a print line statement factorial seven. And the factorial of seven is 5, 040. you can see that this was fairly easy to write. It only took two lines of code. By the way, I found a great example of recursion on its Wikipedia page. And that's by the process of creating refreshed sourdough. the recipe calls for some sourdough left over from the last time the same recipe was made. I thought that was a fairly descriptive example of recursion. Let's move on to level three. Let's create a recursive method to find a base race to a given power. Let's create a power method. And we need a base and an exponent. Let's find two to the power of eight. And then we'll need two to find this method private static. Let's change void to int i to base and j to exponent. We need a base case and a recursive case. The base case will be if exponent is less than one, we will return one. This is our base case. Our recursive case will be return base times invoke the power method pass in base and exponent minus one. And this is our recursive case. And then we will need to display the result. System dot out our print line. Two to the power of eight, which is 256. All, everybody. that's recursion. It's when a thing is defined in terms of itself. We apply the result of a procedure to a procedure and a recursive method is one that calls itself. And this can be a substitute for iteration. We divide a problem into subproblems of the same type as the original. And recursion is commonly used with an advanced sorting algorithms and navigating trees. Some of the advantages is that recursive code is easier to read and write and easier to debug. However, it's sometimes slower and uses more memory. yeah, that is recursion. If you learn something new, be sure to smash that button, leave a random comment down below. And well, yeah, that's recursion in computer science."
+}
