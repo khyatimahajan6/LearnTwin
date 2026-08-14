@@ -49,5 +49,10 @@ backend/extracted_text/
 # OS
 .DS_Store
 Thumbs.db
+# ChromaDB generated data
+chroma_db/
+
+# Generated audio processing outputs
+backend/audio_processing/outputs/
 
 postman_collection.json
