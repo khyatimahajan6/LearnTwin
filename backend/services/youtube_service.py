@@ -100,7 +100,7 @@ def download_youtube_audio(url: str):
         "format": (
             "bestaudio[ext=m4a]/"
             "bestaudio[ext=webm]/"
-            "bestaudio/best"
+            "140/bestaudio/best"
         ),
 
         # ------------------------------------------------------------
@@ -108,8 +108,7 @@ def download_youtube_audio(url: str):
         # ------------------------------------------------------------
 
         "outtmpl": output_template,
-        "ffmpeg_location": r"C:\Users\hp\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0-full_build\bin",
-        # Never download playlists.
+        "ffmpeg_location": r"C:\Users\khyat\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0-full_build\bin",        # Never download playlists.
         "noplaylist": True,
 
         # ------------------------------------------------------------

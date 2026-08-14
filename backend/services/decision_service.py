@@ -3,7 +3,7 @@ services/decision_service.py
 
 Adaptive decision engine for TwinLearnAI.
 
-The DecisionService analyzes student performance
+The DecisionService analyzes recent student performance
 and selects an appropriate teaching strategy.
 """
 
@@ -15,7 +15,7 @@ from models.test_result import TestResult
 class DecisionService:
     """
     Responsible for selecting the teaching strategy
-    based on student performance.
+    based on recent student performance.
     """
 
     # ========================================================
@@ -47,20 +47,20 @@ class DecisionService:
     ) -> dict:
         """
         Select the appropriate teaching strategy
-        based on student performance.
+        based on recent student performance.
 
         Decision priority:
 
         Rule 1:
-            Latest score < 50%
+            Mean of recent tests < 50%
             -> story based
 
         Rule 2:
-            Last 3 tests are all below 80%
+            Mean of last 3 tests < 80%
             -> diagram based
 
         Rule 3:
-            Diagram accuracy < 50%
+            Latest diagram accuracy < 50%
             -> diagram based
 
         Rule 4:
@@ -99,8 +99,20 @@ class DecisionService:
                     "Using the default story-based teaching strategy."
                 ),
                 "score": None,
+                "mean_score": None,
                 "rule": "default",
             }
+
+        # ====================================================
+        # CALCULATE MEAN SCORE
+        # ====================================================
+
+        scores = [
+            float(test.percentage)
+            for test in recent_tests
+        ]
+
+        mean_score = sum(scores) / len(scores)
 
         # ====================================================
         # LATEST TEST
@@ -108,57 +120,63 @@ class DecisionService:
 
         latest_test = recent_tests[0]
 
-        latest_score = latest_test.percentage
-
         # ====================================================
         # RULE 1
-        # LATEST SCORE < 50%
+        # MEAN SCORE < 50%
         # ====================================================
 
-        if latest_score < DecisionService.VERY_LOW_SCORE_THRESHOLD:
+        if (
+            mean_score
+            < DecisionService.VERY_LOW_SCORE_THRESHOLD
+        ):
 
             return {
                 "strategy": "story based",
                 "reason": (
-                    f"The student's latest test score is "
-                    f"{latest_score:.1f}%, which is below 50%. "
-                    "A story-based strategy is selected to "
-                    "simplify the concept."
+                    f"The student's mean score across "
+                    f"the recent tests is {mean_score:.1f}%, "
+                    "which is below 50%. "
+                    "A story-based strategy is selected "
+                    "to simplify the concept."
                 ),
-                "score": latest_score,
-                "rule": "latest_score_below_50",
+                "score": round(mean_score, 2),
+                "mean_score": round(mean_score, 2),
+                "rule": "mean_score_below_50",
             }
 
         # ====================================================
         # RULE 2
-        # LAST 3 TESTS ALL < 80%
+        # MEAN OF LAST 3 TESTS < 80%
         # ====================================================
 
-        if len(recent_tests) >= DecisionService.RECENT_TEST_COUNT:
+        if (
+            len(recent_tests)
+            >= DecisionService.RECENT_TEST_COUNT
+        ):
 
-            last_three_below_80 = all(
-                test.percentage
-                < DecisionService.RECENT_TEST_THRESHOLD
+            rounded_scores = [
+                round(test.percentage, 1)
                 for test in recent_tests
-            )
+            ]
 
-            if last_three_below_80:
-
-                scores = [
-                    round(test.percentage, 1)
-                    for test in recent_tests
-                ]
+            if (
+                mean_score
+                < DecisionService.RECENT_TEST_THRESHOLD
+            ):
 
                 return {
                     "strategy": "diagram based",
                     "reason": (
-                        "The student's last 3 test scores "
-                        f"are {scores}, all below 80%. "
-                        "A diagram-based strategy is selected "
-                        "to provide more visual explanations."
+                        "The student's recent mean performance "
+                        f"is {mean_score:.1f}%, calculated from "
+                        f"the last 3 test scores "
+                        f"{rounded_scores}. "
+                        "Since the mean is below 80%, a "
+                        "diagram-based strategy is selected."
                     ),
-                    "score": latest_score,
-                    "rule": "last_3_tests_below_80",
+                    "score": round(mean_score, 2),
+                    "mean_score": round(mean_score, 2),
+                    "rule": "recent_mean_below_80",
                 }
 
         # ====================================================
@@ -186,9 +204,13 @@ class DecisionService:
                         "which is below 50%. "
                         "A diagram-based strategy is selected."
                     ),
-                    "score": latest_score,
+                    "score": round(mean_score, 2),
+                    "mean_score": round(mean_score, 2),
                     "rule": "low_diagram_accuracy",
-                    "diagram_accuracy": diagram_accuracy,
+                    "diagram_accuracy": round(
+                        diagram_accuracy,
+                        2,
+                    ),
                 }
 
         # ====================================================
@@ -199,10 +221,13 @@ class DecisionService:
         return {
             "strategy": DecisionService.DEFAULT_STRATEGY,
             "reason": (
-                "The student's performance does not trigger "
-                "a specific adaptive rule. Using the default "
-                "story-based teaching strategy."
+                "The student's recent mean performance "
+                f"is {mean_score:.1f}%. "
+                "The performance does not trigger "
+                "a specific adaptive rule. Using the "
+                "default story-based teaching strategy."
             ),
-            "score": latest_score,
+            "score": round(mean_score, 2),
+            "mean_score": round(mean_score, 2),
             "rule": "default",
         }

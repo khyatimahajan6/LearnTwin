@@ -19,7 +19,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-
+from routes.quiz_routes import router as quiz_router
 from database.db import init_db
 from routes import (
     auth_routes,
@@ -267,6 +267,9 @@ app.include_router(
 app.include_router(
     rag_routes.router
 )
+
+
+app.include_router(quiz_router)
 # ============================================================
 # ROOT / HEALTH CHECK
 # ============================================================

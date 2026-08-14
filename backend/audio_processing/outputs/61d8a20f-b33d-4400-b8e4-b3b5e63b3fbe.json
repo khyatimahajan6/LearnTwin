@@ -1,0 +1,239 @@
+{
+  "lecture_id": "61d8a20f-b33d-4400-b8e4-b3b5e63b3fbe",
+  "source": "audio",
+  "document_text": null,
+  "transcript": "Today, I'm going to teach you binary search. Binary search is a fundamental search algorithm that finds a target value in a sorted array. With each iteration of the algorithm, half of the remaining values in the array are eliminated. Let's use this array, for example, with the target value of 12. We'll start by finding the middle value of the array, which will calculate using the leftmost and rightmost indices, shown here. We'll take the average of the indices, which is 6. I chose to round down. You can do either, just stay consistent. The 6 index is the value 15, which will mark with mid. 15 is greater than our target, we'll eliminate it, and all the values greater than it, by moving to the left of mid. Repeating the process, we'll find the new average of the left and indices. This is index 2 with the value of 5, which again we mark with mid. 5 is less than 12, we eliminate it, and all the values lessen it, by moving left to the of mid. Again, we find the middle, which is index 4 with the value of 9. This is less than 12, we'll move our left pointer to the of mid. Now our left and pointers, both point to 12. One more time, we take the average and get a value of 5. Our mid equals our target 12. We return 5, which is the index of 12. Here's the code for binary search. We initialize the left pointer to 0, and our pointer to the last element in the array. We enter a while loop, and iterate while left is less than or equal to. We calculate mid, averaging left and, and rounding down. If the value at mid is the target, we return the index of the target. If the value of the array at the index of mid is less than the target, we update our left pointer. Similarly, if the value is greater, we update our pointer. Finally, if we reach this line, the target is not in the array, and we return negative 1. Let's discuss time complexity. To do, we'll represent the array in binary tree format. The root node will be the middle element of the array 15. The left child of the root will be the middle element of the lower half, and the child of the root is the middle of the upper half. We follow a similar pattern for the remaining nodes. I won't prove it here, there's further reading, I'll link in the description. But the height of this tree is the floor of log base 2 of n plus 1. Each progression through the while loop, we descend one level down the tree, and worst case, we may need to go to the deepest level as we did in our example. As a result, we can say the time complexity of binary search is big O of log n. Thank you for watching. I hope this video helps you on your computer science journey. Please and subscribe.",
+  "timestamps": [
+    {
+      "start": 0.0,
+      "end": 3.0,
+      "text": "Today, I'm going to teach you binary search."
+    },
+    {
+      "start": 3.0,
+      "end": 6.0,
+      "text": "Binary search is a fundamental search algorithm"
+    },
+    {
+      "start": 6.0,
+      "end": 10.0,
+      "text": "that finds a target value in a sorted array."
+    },
+    {
+      "start": 10.0,
+      "end": 12.0,
+      "text": "With each iteration of the algorithm,"
+    },
+    {
+      "start": 12.0,
+      "end": 16.0,
+      "text": "half of the remaining values in the array are eliminated."
+    },
+    {
+      "start": 16.0,
+      "end": 21.0,
+      "text": "Let's use this array, for example, with the target value of 12."
+    },
+    {
+      "start": 21.0,
+      "end": 25.0,
+      "text": "We'll start by finding the middle value of the array,"
+    },
+    {
+      "start": 25.0,
+      "end": 29.0,
+      "text": "which will calculate using the leftmost and rightmost indices,"
+    },
+    {
+      "start": 29.0,
+      "end": 31.0,
+      "text": "shown here."
+    },
+    {
+      "start": 31.0,
+      "end": 36.0,
+      "text": "We'll take the average of the indices, which is 6."
+    },
+    {
+      "start": 36.0,
+      "end": 38.0,
+      "text": "I chose to round down."
+    },
+    {
+      "start": 38.0,
+      "end": 42.0,
+      "text": "You can do either, just stay consistent."
+    },
+    {
+      "start": 42.0,
+      "end": 48.0,
+      "text": "The 6 index is the value 15, which will mark with mid."
+    },
+    {
+      "start": 48.0,
+      "end": 52.0,
+      "text": "15 is greater than our target, we'll eliminate it,"
+    },
+    {
+      "start": 52.0,
+      "end": 58.0,
+      "text": "and all the values greater than it, by moving to the left of mid."
+    },
+    {
+      "start": 58.0,
+      "end": 65.0,
+      "text": "Repeating the process, we'll find the new average of the left and indices."
+    },
+    {
+      "start": 65.0,
+      "end": 72.0,
+      "text": "This is index 2 with the value of 5, which again we mark with mid."
+    },
+    {
+      "start": 72.0,
+      "end": 78.0,
+      "text": "5 is less than 12, we eliminate it, and all the values lessen it,"
+    },
+    {
+      "start": 78.0,
+      "end": 83.0,
+      "text": "by moving left to the of mid."
+    },
+    {
+      "start": 83.0,
+      "end": 90.0,
+      "text": "Again, we find the middle, which is index 4 with the value of 9."
+    },
+    {
+      "start": 90.0,
+      "end": 99.0,
+      "text": "This is less than 12, we'll move our left pointer to the of mid."
+    },
+    {
+      "start": 99.0,
+      "end": 103.0,
+      "text": "Now our left and pointers, both point to 12."
+    },
+    {
+      "start": 103.0,
+      "end": 109.0,
+      "text": "One more time, we take the average and get a value of 5."
+    },
+    {
+      "start": 109.0,
+      "end": 113.0,
+      "text": "Our mid equals our target 12."
+    },
+    {
+      "start": 113.0,
+      "end": 118.0,
+      "text": "We return 5, which is the index of 12."
+    },
+    {
+      "start": 118.0,
+      "end": 121.0,
+      "text": "Here's the code for binary search."
+    },
+    {
+      "start": 121.0,
+      "end": 128.0,
+      "text": "We initialize the left pointer to 0, and our pointer to the last element in the array."
+    },
+    {
+      "start": 128.0,
+      "end": 136.0,
+      "text": "We enter a while loop, and iterate while left is less than or equal to."
+    },
+    {
+      "start": 136.0,
+      "end": 143.0,
+      "text": "We calculate mid, averaging left and, and rounding down."
+    },
+    {
+      "start": 143.0,
+      "end": 149.0,
+      "text": "If the value at mid is the target, we return the index of the target."
+    },
+    {
+      "start": 149.0,
+      "end": 158.0,
+      "text": "If the value of the array at the index of mid is less than the target, we update our left pointer."
+    },
+    {
+      "start": 158.0,
+      "end": 164.0,
+      "text": "Similarly, if the value is greater, we update our pointer."
+    },
+    {
+      "start": 164.0,
+      "end": 171.0,
+      "text": "Finally, if we reach this line, the target is not in the array, and we return negative 1."
+    },
+    {
+      "start": 171.0,
+      "end": 174.0,
+      "text": "Let's discuss time complexity."
+    },
+    {
+      "start": 174.0,
+      "end": 179.0,
+      "text": "To do, we'll represent the array in binary tree format."
+    },
+    {
+      "start": 179.0,
+      "end": 185.0,
+      "text": "The root node will be the middle element of the array 15."
+    },
+    {
+      "start": 185.0,
+      "end": 190.0,
+      "text": "The left child of the root will be the middle element of the lower half,"
+    },
+    {
+      "start": 190.0,
+      "end": 196.0,
+      "text": "and the child of the root is the middle of the upper half."
+    },
+    {
+      "start": 196.0,
+      "end": 201.0,
+      "text": "We follow a similar pattern for the remaining nodes."
+    },
+    {
+      "start": 201.0,
+      "end": 205.0,
+      "text": "I won't prove it here, there's further reading, I'll link in the description."
+    },
+    {
+      "start": 205.0,
+      "end": 213.0,
+      "text": "But the height of this tree is the floor of log base 2 of n plus 1."
+    },
+    {
+      "start": 213.0,
+      "end": 218.0,
+      "text": "Each progression through the while loop, we descend one level down the tree,"
+    },
+    {
+      "start": 218.0,
+      "end": 225.0,
+      "text": "and worst case, we may need to go to the deepest level as we did in our example."
+    },
+    {
+      "start": 225.0,
+      "end": 233.0,
+      "text": "As a result, we can say the time complexity of binary search is big O of log n."
+    },
+    {
+      "start": 233.0,
+      "end": 238.0,
+      "text": "Thank you for watching. I hope this video helps you on your computer science journey."
+    },
+    {
+      "start": 238.0,
+      "end": 241.0,
+      "text": "Please and subscribe."
+    }
+  ],
+  "combined_text": "Today, I'm going to teach you binary search. Binary search is a fundamental search algorithm that finds a target value in a sorted array. With each iteration of the algorithm, half of the remaining values in the array are eliminated. Let's use this array, for example, with the target value of 12. We'll start by finding the middle value of the array, which will calculate using the leftmost and rightmost indices, shown here. We'll take the average of the indices, which is 6. I chose to round down. You can do either, just stay consistent. The 6 index is the value 15, which will mark with mid. 15 is greater than our target, we'll eliminate it, and all the values greater than it, by moving to the left of mid. Repeating the process, we'll find the new average of the left and indices. This is index 2 with the value of 5, which again we mark with mid. 5 is less than 12, we eliminate it, and all the values lessen it, by moving left to the of mid. Again, we find the middle, which is index 4 with the value of 9. This is less than 12, we'll move our left pointer to the of mid. Now our left and pointers, both point to 12. One more time, we take the average and get a value of 5. Our mid equals our target 12. We return 5, which is the index of 12. Here's the code for binary search. We initialize the left pointer to 0, and our pointer to the last element in the array. We enter a while loop, and iterate while left is less than or equal to. We calculate mid, averaging left and, and rounding down. If the value at mid is the target, we return the index of the target. If the value of the array at the index of mid is less than the target, we update our left pointer. Similarly, if the value is greater, we update our pointer. Finally, if we reach this line, the target is not in the array, and we return negative 1. Let's discuss time complexity. To do, we'll represent the array in binary tree format. The root node will be the middle element of the array 15. The left child of the root will be the middle element of the lower half, and the child of the root is the middle of the upper half. We follow a similar pattern for the remaining nodes. I won't prove it here, there's further reading, I'll link in the description. But the height of this tree is the floor of log base 2 of n plus 1. Each progression through the while loop, we descend one level down the tree, and worst case, we may need to go to the deepest level as we did in our example. As a result, we can say the time complexity of binary search is big O of log n. Thank you for watching. I hope this video helps you on your computer science journey. Please and subscribe."
+}
