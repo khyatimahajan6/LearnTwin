@@ -1,0 +1,269 @@
+{
+  "lecture_id": "314b7976-65d9-4c1c-a349-be13331c49bc",
+  "source": "audio",
+  "document_text": null,
+  "transcript": "Hi, I'm Gail Lachman McDowell, author of Cracking the Coding interview. Today I want to cover binary search, binary search is a very intuitive algorithm, and I'm going to show how intuitive it is by giving an example. You're a teacher and you're teaching a group of students, a very large class of 300 students, and you have their papers alphabetized out in front of you when a student's Zach Peters comes up to get his paper back. You probably wouldn't go through the papers, starting with Alex to Andy to Andrew and then to Bob and Brenda and Brandy and into Chris and Christine, and you probably wouldn't do that way. What you would probably do is open the stack of papers to roughly halfway through the papers and compare it. Zach Peters? Well, you open up halfway through and you see Michael matters there and you say, , Zach Peters after that name, and then you take the second stack of papers and treat it as its own little stack and you'd again say, , let me open up to its midpoint. Maybe we see Sarah, well, is Sarah before or after Zach Peters and then you just go and repeat this process over and over and over again until you find Zach's paper or until you find out Zach can't be in here. And this is the basics of binary search. in an integer array that looks this, you take some element that you're looking for 13 and you compare it to the midpoint and it has to be a sorted array for this to work. It's very important and you compare it to the midpoint. 13 is less than this midpoint and 13, if it's in the array at all, it has to be on the left side and then you repeat this process on the left side and say, let me look at the midpoint of the left side is 13 before and after that before or after that and you just repeat that process until you either find 13 or you know that 13 can't be in it. how fast is this algorithm? Well, let's imagine we start off with n elements we have a search space of n elements. In a single comparison, just one, we've cut our search space down to n over 2, then with one more comparison we cut it down to n over 4 and then in half again and half and half and half again. how many total operations in the very worst case will we have to run until we figure out if it contains an element or not? Well, the total number of operations we'll have to do is determine by how many times can we divide n by 2 until we get down to just 1. this is what log of n expresses, a log base, two of n expresses. if you pause the video, you can study that math for a second and see the relationship between those two things, but this means that binary search is a log n problem. Let's look now at the implementation of binary search to implement binary search. We can either implement it recursively or iteratively. We'll do recursive implementation first. I'm going to just copy and paste here some just straightforward code for the binary search call. this is an initial method that calls off to this binary search recursive method with the parameters. we're going to start off initially with left being zero and being the very point. these are inclusive endpoints. first of all, if things get kind of too big, if the left winds up bigger than, then we know we have an error. We can't find it and we don't want to return true. Otherwise, we want to pick the midpoint. left dot divided by 2. that's going to be the midpoint. And if we found the element, if array of mid is the element we're looking for, then we should return true. Otherwise, if x is on the left side of mid, then go search the left side. And as a pass an array x and left will stay as is and the point will move to one next to the mid. Otherwise, go search the side. we want to call very similar method, but now the left point moves up to mid plus one and stays as is. , that's how the binary search recursive implementation looks. one little minor pitfall is that and some people to be careful of is that left plus can overflow it with Java integers. if you'd to avoid the integer overflow issue, you can just do this instead. And this will prevent the overflow. It's kind of up to you, but this is one way of doing it. , now that we've done the recursive implementation, let's turn to the iterative implementation. what I'm going to do is I'm going to tweak this recursive implementation. I'm going to copy and paste it into a new function, and I'm going to tweak it to make iterative. I'm going to call this iterative and I no longer need parameters in here. But what I'm going to do is I'm going to set something to show you how you can tweak it. I'm going to set left to be that is going to start off at the most position in the array. now I want to iterate. I want to loop through this as long as left and are such in the correct positions.",
+  "timestamps": [
+    {
+      "start": 0.0,
+      "end": 4.32,
+      "text": "Hi, I'm Gail Lachman McDowell, author of Cracking the Coding interview."
+    },
+    {
+      "start": 5.2,
+      "end": 10.4,
+      "text": "Today I want to cover binary search, binary search is a very intuitive algorithm,"
+    },
+    {
+      "start": 10.4,
+      "end": 13.36,
+      "text": "and I'm going to show how intuitive it is by giving an example."
+    },
+    {
+      "start": 14.32,
+      "end": 19.36,
+      "text": "You're a teacher and you're teaching a group of students, a very large class of 300 students,"
+    },
+    {
+      "start": 20.400000000000002,
+      "end": 25.12,
+      "text": "and you have their papers alphabetized out in front of you when a student's Zach Peters comes up"
+    },
+    {
+      "start": 25.12,
+      "end": 30.560000000000002,
+      "text": "to get his paper back. You probably wouldn't go through the papers, starting with Alex to Andy to"
+    },
+    {
+      "start": 30.560000000000002,
+      "end": 36.0,
+      "text": "Andrew and then to Bob and Brenda and Brandy and into Chris and Christine, and you probably wouldn't"
+    },
+    {
+      "start": 36.0,
+      "end": 41.28,
+      "text": "do that way. What you would probably do is open the stack of papers to roughly halfway through"
+    },
+    {
+      "start": 41.28,
+      "end": 47.44,
+      "text": "the papers and compare it. Zach Peters? Well, you open up halfway through and you see Michael"
+    },
+    {
+      "start": 47.44,
+      "end": 52.32,
+      "text": "matters there and you say, , Zach Peters after that name, and then you take the second stack of"
+    },
+    {
+      "start": 52.32,
+      "end": 56.480000000000004,
+      "text": "papers and treat it as its own little stack and you'd again say, , let me open up to its"
+    },
+    {
+      "start": 56.480000000000004,
+      "end": 62.64,
+      "text": "midpoint. Maybe we see Sarah, well, is Sarah before or after Zach Peters and then you just go and"
+    },
+    {
+      "start": 62.64,
+      "end": 67.52,
+      "text": "repeat this process over and over and over again until you find Zach's paper or until you find out"
+    },
+    {
+      "start": 67.52,
+      "end": 73.68,
+      "text": "Zach can't be in here. And this is the basics of binary search. in an integer array that looks"
+    },
+    {
+      "start": 73.68,
+      "end": 79.84,
+      "text": "this, you take some element that you're looking for 13 and you compare it to the midpoint"
+    },
+    {
+      "start": 79.92,
+      "end": 85.2,
+      "text": "and it has to be a sorted array for this to work. It's very important and you compare it to"
+    },
+    {
+      "start": 85.2,
+      "end": 92.0,
+      "text": "the midpoint. 13 is less than this midpoint and 13, if it's in the array at all, it has to be on"
+    },
+    {
+      "start": 92.0,
+      "end": 97.68,
+      "text": "the left side and then you repeat this process on the left side and say, let me look at the midpoint"
+    },
+    {
+      "start": 97.68,
+      "end": 104.48,
+      "text": "of the left side is 13 before and after that before or after that and you just repeat that process"
+    },
+    {
+      "start": 104.48,
+      "end": 111.76,
+      "text": "until you either find 13 or you know that 13 can't be in it. how fast is this algorithm?"
+    },
+    {
+      "start": 111.76,
+      "end": 116.32000000000001,
+      "text": "Well, let's imagine we start off with n elements we have a search space of n elements."
+    },
+    {
+      "start": 116.32000000000001,
+      "end": 122.80000000000001,
+      "text": "In a single comparison, just one, we've cut our search space down to n over 2, then with one more"
+    },
+    {
+      "start": 122.80000000000001,
+      "end": 127.52000000000001,
+      "text": "comparison we cut it down to n over 4 and then in half again and half and half and half again."
+    },
+    {
+      "start": 128.48000000000002,
+      "end": 133.2,
+      "text": "how many total operations in the very worst case will we have to run until we figure out if"
+    },
+    {
+      "start": 133.2,
+      "end": 138.72,
+      "text": "it contains an element or not? Well, the total number of operations we'll have to do is determine"
+    },
+    {
+      "start": 138.72,
+      "end": 146.48,
+      "text": "by how many times can we divide n by 2 until we get down to just 1. this is what log of n expresses,"
+    },
+    {
+      "start": 146.48,
+      "end": 153.04,
+      "text": "a log base, two of n expresses. if you pause the video, you can study that math for a second and"
+    },
+    {
+      "start": 153.04,
+      "end": 158.88,
+      "text": "see the relationship between those two things, but this means that binary search is a log n problem."
+    },
+    {
+      "start": 159.84,
+      "end": 164.88,
+      "text": "Let's look now at the implementation of binary search to implement binary search. We can either"
+    },
+    {
+      "start": 164.88,
+      "end": 170.4,
+      "text": "implement it recursively or iteratively. We'll do recursive implementation first. I'm going to"
+    },
+    {
+      "start": 170.4,
+      "end": 175.04,
+      "text": "just copy and paste here some just straightforward code for the binary search call. this is an"
+    },
+    {
+      "start": 175.04,
+      "end": 179.68,
+      "text": "initial method that calls off to this binary search recursive method with the parameters."
+    },
+    {
+      "start": 180.56,
+      "end": 186.16,
+      "text": "we're going to start off initially with left being zero and being the very point."
+    },
+    {
+      "start": 186.16,
+      "end": 191.35999999999999,
+      "text": "these are inclusive endpoints. first of all, if things get kind of too big, if the left"
+    },
+    {
+      "start": 191.35999999999999,
+      "end": 196.32,
+      "text": "winds up bigger than, then we know we have an error. We can't find it and we don't want to"
+    },
+    {
+      "start": 196.32,
+      "end": 201.68,
+      "text": "return true. Otherwise, we want to pick the midpoint. left dot divided by 2. that's"
+    },
+    {
+      "start": 201.68,
+      "end": 206.96,
+      "text": "going to be the midpoint. And if we found the element, if array of mid is the element we're"
+    },
+    {
+      "start": 206.96,
+      "end": 212.4,
+      "text": "looking for, then we should return true. Otherwise, if x is on the left side of mid, then go search"
+    },
+    {
+      "start": 212.48000000000002,
+      "end": 217.92000000000002,
+      "text": "the left side. And as a pass an array x and left will stay as is and the point will move to one"
+    },
+    {
+      "start": 217.92000000000002,
+      "end": 223.76,
+      "text": "next to the mid. Otherwise, go search the side. we want to call very similar method,"
+    },
+    {
+      "start": 223.76,
+      "end": 230.0,
+      "text": "but now the left point moves up to mid plus one and stays as is. , that's how the binary"
+    },
+    {
+      "start": 230.0,
+      "end": 235.6,
+      "text": "search recursive implementation looks. one little minor pitfall is that and some people to"
+    },
+    {
+      "start": 235.6,
+      "end": 241.20000000000002,
+      "text": "be careful of is that left plus can overflow it with Java integers. if you'd"
+    },
+    {
+      "start": 241.20000000000002,
+      "end": 246.48000000000002,
+      "text": "to avoid the integer overflow issue, you can just do this instead. And this will prevent the"
+    },
+    {
+      "start": 246.48000000000002,
+      "end": 252.48000000000002,
+      "text": "overflow. It's kind of up to you, but this is one way of doing it. , now that we've done the"
+    },
+    {
+      "start": 252.48000000000002,
+      "end": 257.52000000000004,
+      "text": "recursive implementation, let's turn to the iterative implementation. what I'm going to do is I'm"
+    },
+    {
+      "start": 257.52000000000004,
+      "end": 262.96000000000004,
+      "text": "going to tweak this recursive implementation. I'm going to copy and paste it into a new function,"
+    },
+    {
+      "start": 262.96000000000004,
+      "end": 267.76,
+      "text": "and I'm going to tweak it to make iterative. I'm going to call this iterative and I no longer"
+    },
+    {
+      "start": 267.84,
+      "end": 272.88,
+      "text": "need parameters in here. But what I'm going to do is I'm going to set something to show you how you"
+    },
+    {
+      "start": 272.88,
+      "end": 276.8,
+      "text": "can tweak it. I'm going to set left to be that is going to start off at the most"
+    },
+    {
+      "start": 276.8,
+      "end": 282.0,
+      "text": "position in the array. now I want to iterate. I want to loop through this as long as left and"
+    },
+    {
+      "start": 282.0,
+      "end": 291.92,
+      "text": "are such in the correct positions."
+    }
+  ],
+  "combined_text": "Hi, I'm Gail Lachman McDowell, author of Cracking the Coding interview. Today I want to cover binary search, binary search is a very intuitive algorithm, and I'm going to show how intuitive it is by giving an example. You're a teacher and you're teaching a group of students, a very large class of 300 students, and you have their papers alphabetized out in front of you when a student's Zach Peters comes up to get his paper back. You probably wouldn't go through the papers, starting with Alex to Andy to Andrew and then to Bob and Brenda and Brandy and into Chris and Christine, and you probably wouldn't do that way. What you would probably do is open the stack of papers to roughly halfway through the papers and compare it. Zach Peters? Well, you open up halfway through and you see Michael matters there and you say, , Zach Peters after that name, and then you take the second stack of papers and treat it as its own little stack and you'd again say, , let me open up to its midpoint. Maybe we see Sarah, well, is Sarah before or after Zach Peters and then you just go and repeat this process over and over and over again until you find Zach's paper or until you find out Zach can't be in here. And this is the basics of binary search. in an integer array that looks this, you take some element that you're looking for 13 and you compare it to the midpoint and it has to be a sorted array for this to work. It's very important and you compare it to the midpoint. 13 is less than this midpoint and 13, if it's in the array at all, it has to be on the left side and then you repeat this process on the left side and say, let me look at the midpoint of the left side is 13 before and after that before or after that and you just repeat that process until you either find 13 or you know that 13 can't be in it. how fast is this algorithm? Well, let's imagine we start off with n elements we have a search space of n elements. In a single comparison, just one, we've cut our search space down to n over 2, then with one more comparison we cut it down to n over 4 and then in half again and half and half and half again. how many total operations in the very worst case will we have to run until we figure out if it contains an element or not? Well, the total number of operations we'll have to do is determine by how many times can we divide n by 2 until we get down to just 1. this is what log of n expresses, a log base, two of n expresses. if you pause the video, you can study that math for a second and see the relationship between those two things, but this means that binary search is a log n problem. Let's look now at the implementation of binary search to implement binary search. We can either implement it recursively or iteratively. We'll do recursive implementation first. I'm going to just copy and paste here some just straightforward code for the binary search call. this is an initial method that calls off to this binary search recursive method with the parameters. we're going to start off initially with left being zero and being the very point. these are inclusive endpoints. first of all, if things get kind of too big, if the left winds up bigger than, then we know we have an error. We can't find it and we don't want to return true. Otherwise, we want to pick the midpoint. left dot divided by 2. that's going to be the midpoint. And if we found the element, if array of mid is the element we're looking for, then we should return true. Otherwise, if x is on the left side of mid, then go search the left side. And as a pass an array x and left will stay as is and the point will move to one next to the mid. Otherwise, go search the side. we want to call very similar method, but now the left point moves up to mid plus one and stays as is. , that's how the binary search recursive implementation looks. one little minor pitfall is that and some people to be careful of is that left plus can overflow it with Java integers. if you'd to avoid the integer overflow issue, you can just do this instead. And this will prevent the overflow. It's kind of up to you, but this is one way of doing it. , now that we've done the recursive implementation, let's turn to the iterative implementation. what I'm going to do is I'm going to tweak this recursive implementation. I'm going to copy and paste it into a new function, and I'm going to tweak it to make iterative. I'm going to call this iterative and I no longer need parameters in here. But what I'm going to do is I'm going to set something to show you how you can tweak it. I'm going to set left to be that is going to start off at the most position in the array. now I want to iterate. I want to loop through this as long as left and are such in the correct positions."
+}

@@ -1,0 +1,299 @@
+{
+  "lecture_id": "cdbb01ee-d659-45a8-99c3-077b21dfe756",
+  "source": "audio",
+  "document_text": null,
+  "transcript": "Welcome to this tutorial on binary search. Today, we are going to master one of the most fundamental and efficient algorithms in computer science. It is a classic problem often asked in coding interviews and is essential for writing performant code. , what exactly is binary search? Put simply, it is an efficient algorithm used to find a specific item within a sorted list. Unlike checking every single element one by one, binary search works by repeatedly dividing the search interval in half. This divide and conquer strategy allows it to find elements incredibly fast. Before we proceed, there is one absolute rule you must remember. Binary search only works on sorted data. If your list of numbers or strings is not in order, the logic falls apart and you will not find the correct element. Always ensure your data is sorted first. Think of a real-world example, looking for a word in a physical dictionary. If you are looking for a word starting with the letter M, you do not start at the first page and read every word. You open the book roughly in the middle. If you land on T, you know M is in the first half, you ignore the entire second half of the book. You repeat this until you find your page. Here is the step-by-step logic. First, we find the middle element of our current range. Second, we compare that middle element to our target. If they match, we are done. If the target is smaller than the middle, we know it must be in the left half, we discard the. If the target is larger, we discard the left half and search the. Let's visualize this. We have a sorted array of numbers and we want to find the number 37. We start by defining our search space with two pointers, low pointing to index 0 and high pointing to the last index, which is 8. Next, we calculate the middle index. We add low plus high, 0 plus 8, which is 8, and divide by 2. This gives us index 4. The value at index 4 is 16. Now we compare. Our target is 37, but the value at our middle index is 16. Since 37 is greater than 16, we know our target cannot be in the left half. , we move our low pointer to one position past the middle, effectively discarding the entire left side of the array. Here is what the code looks. We initialize left and pointers. We enter a while loop that continues as long as left is less than or equal to. Inside, we calculate the mid index. If we find the target, we return the index. Otherwise, we adjust the left or pointers to narrow down the range. If the loop finishes without finding the target, we return negative one. Why do we use binary search? Because of its efficiency, linear search, where we check every item, has a time complexity of O of N binary search has a logarithmic time complexity. O of log N for very large data sets. The difference in speed is massive. When implementing this, watch out for common mistakes. The most common is trying to use it on unsorted data. Another is writing an infinite loop condition where the pointers do not cross. Also, be careful when calculating the midpoint in languages with fixed integer sizes to avoid overflow errors. To wrap up, remember these key points. Binary search requires assorted array. It works by having the search space at every step, giving it a powerful O of log and efficiency. Master this algorithm and you will have a powerful tool in your coding arsenal. . com for more such useful content.",
+  "timestamps": [
+    {
+      "start": 0.0,
+      "end": 3.2,
+      "text": "Welcome to this tutorial on binary search."
+    },
+    {
+      "start": 3.2,
+      "end": 9.5,
+      "text": "Today, we are going to master one of the most fundamental and efficient algorithms in computer science."
+    },
+    {
+      "start": 9.5,
+      "end": 13.1,
+      "text": "It is a classic problem often asked in coding interviews"
+    },
+    {
+      "start": 13.1,
+      "end": 16.1,
+      "text": "and is essential for writing performant code."
+    },
+    {
+      "start": 18.1,
+      "end": 20.8,
+      "text": ", what exactly is binary search?"
+    },
+    {
+      "start": 20.8,
+      "end": 26.8,
+      "text": "Put simply, it is an efficient algorithm used to find a specific item within a sorted list."
+    },
+    {
+      "start": 26.8,
+      "end": 34.3,
+      "text": "Unlike checking every single element one by one, binary search works by repeatedly dividing the search interval in half."
+    },
+    {
+      "start": 34.3,
+      "end": 39.8,
+      "text": "This divide and conquer strategy allows it to find elements incredibly fast."
+    },
+    {
+      "start": 41.8,
+      "end": 46.3,
+      "text": "Before we proceed, there is one absolute rule you must remember."
+    },
+    {
+      "start": 46.3,
+      "end": 49.3,
+      "text": "Binary search only works on sorted data."
+    },
+    {
+      "start": 49.3,
+      "end": 56.3,
+      "text": "If your list of numbers or strings is not in order, the logic falls apart and you will not find the correct element."
+    },
+    {
+      "start": 56.300000000000004,
+      "end": 59.300000000000004,
+      "text": "Always ensure your data is sorted first."
+    },
+    {
+      "start": 61.300000000000004,
+      "end": 66.30000000000001,
+      "text": "Think of a real-world example, looking for a word in a physical dictionary."
+    },
+    {
+      "start": 66.30000000000001,
+      "end": 72.30000000000001,
+      "text": "If you are looking for a word starting with the letter M, you do not start at the first page and read every word."
+    },
+    {
+      "start": 72.30000000000001,
+      "end": 74.30000000000001,
+      "text": "You open the book roughly in the middle."
+    },
+    {
+      "start": 74.30000000000001,
+      "end": 80.30000000000001,
+      "text": "If you land on T, you know M is in the first half, you ignore the entire second half of the book."
+    },
+    {
+      "start": 80.30000000000001,
+      "end": 83.30000000000001,
+      "text": "You repeat this until you find your page."
+    },
+    {
+      "start": 84.3,
+      "end": 87.3,
+      "text": "Here is the step-by-step logic."
+    },
+    {
+      "start": 87.3,
+      "end": 91.3,
+      "text": "First, we find the middle element of our current range."
+    },
+    {
+      "start": 91.3,
+      "end": 94.3,
+      "text": "Second, we compare that middle element to our target."
+    },
+    {
+      "start": 94.3,
+      "end": 96.3,
+      "text": "If they match, we are done."
+    },
+    {
+      "start": 96.3,
+      "end": 101.3,
+      "text": "If the target is smaller than the middle, we know it must be in the left half, we discard the."
+    },
+    {
+      "start": 101.3,
+      "end": 106.3,
+      "text": "If the target is larger, we discard the left half and search the."
+    },
+    {
+      "start": 107.3,
+      "end": 109.3,
+      "text": "Let's visualize this."
+    },
+    {
+      "start": 109.3,
+      "end": 113.3,
+      "text": "We have a sorted array of numbers and we want to find the number 37."
+    },
+    {
+      "start": 113.3,
+      "end": 117.3,
+      "text": "We start by defining our search space with two pointers,"
+    },
+    {
+      "start": 117.3,
+      "end": 123.3,
+      "text": "low pointing to index 0 and high pointing to the last index, which is 8."
+    },
+    {
+      "start": 125.3,
+      "end": 127.3,
+      "text": "Next, we calculate the middle index."
+    },
+    {
+      "start": 127.3,
+      "end": 131.3,
+      "text": "We add low plus high, 0 plus 8, which is 8, and divide by 2."
+    },
+    {
+      "start": 131.3,
+      "end": 133.3,
+      "text": "This gives us index 4."
+    },
+    {
+      "start": 133.3,
+      "end": 136.3,
+      "text": "The value at index 4 is 16."
+    },
+    {
+      "start": 137.3,
+      "end": 139.3,
+      "text": "Now we compare."
+    },
+    {
+      "start": 139.3,
+      "end": 144.3,
+      "text": "Our target is 37, but the value at our middle index is 16."
+    },
+    {
+      "start": 144.3,
+      "end": 149.3,
+      "text": "Since 37 is greater than 16, we know our target cannot be in the left half."
+    },
+    {
+      "start": 149.3,
+      "end": 153.3,
+      "text": ", we move our low pointer to one position past the middle,"
+    },
+    {
+      "start": 153.3,
+      "end": 157.3,
+      "text": "effectively discarding the entire left side of the array."
+    },
+    {
+      "start": 159.3,
+      "end": 161.3,
+      "text": "Here is what the code looks."
+    },
+    {
+      "start": 161.3,
+      "end": 163.3,
+      "text": "We initialize left and pointers."
+    },
+    {
+      "start": 163.3,
+      "end": 168.3,
+      "text": "We enter a while loop that continues as long as left is less than or equal to."
+    },
+    {
+      "start": 168.3,
+      "end": 171.3,
+      "text": "Inside, we calculate the mid index."
+    },
+    {
+      "start": 171.3,
+      "end": 174.3,
+      "text": "If we find the target, we return the index."
+    },
+    {
+      "start": 174.3,
+      "end": 178.3,
+      "text": "Otherwise, we adjust the left or pointers to narrow down the range."
+    },
+    {
+      "start": 178.3,
+      "end": 182.3,
+      "text": "If the loop finishes without finding the target, we return negative one."
+    },
+    {
+      "start": 185.3,
+      "end": 187.3,
+      "text": "Why do we use binary search?"
+    },
+    {
+      "start": 187.3,
+      "end": 191.3,
+      "text": "Because of its efficiency, linear search, where we check every item,"
+    },
+    {
+      "start": 191.3,
+      "end": 196.3,
+      "text": "has a time complexity of O of N binary search has a logarithmic time complexity."
+    },
+    {
+      "start": 196.3,
+      "end": 199.3,
+      "text": "O of log N for very large data sets."
+    },
+    {
+      "start": 199.3,
+      "end": 202.3,
+      "text": "The difference in speed is massive."
+    },
+    {
+      "start": 204.3,
+      "end": 207.3,
+      "text": "When implementing this, watch out for common mistakes."
+    },
+    {
+      "start": 207.3,
+      "end": 210.3,
+      "text": "The most common is trying to use it on unsorted data."
+    },
+    {
+      "start": 210.3,
+      "end": 215.3,
+      "text": "Another is writing an infinite loop condition where the pointers do not cross."
+    },
+    {
+      "start": 215.3,
+      "end": 220.3,
+      "text": "Also, be careful when calculating the midpoint in languages with fixed integer sizes"
+    },
+    {
+      "start": 220.3,
+      "end": 223.3,
+      "text": "to avoid overflow errors."
+    },
+    {
+      "start": 225.3,
+      "end": 228.3,
+      "text": "To wrap up, remember these key points."
+    },
+    {
+      "start": 228.3,
+      "end": 231.3,
+      "text": "Binary search requires assorted array."
+    },
+    {
+      "start": 231.3,
+      "end": 236.3,
+      "text": "It works by having the search space at every step, giving it a powerful O of log and efficiency."
+    },
+    {
+      "start": 236.3,
+      "end": 241.3,
+      "text": "Master this algorithm and you will have a powerful tool in your coding arsenal."
+    },
+    {
+      "start": 250.3,
+      "end": 253.3,
+      "text": ". com for more such useful content."
+    }
+  ],
+  "combined_text": "Welcome to this tutorial on binary search. Today, we are going to master one of the most fundamental and efficient algorithms in computer science. It is a classic problem often asked in coding interviews and is essential for writing performant code. , what exactly is binary search? Put simply, it is an efficient algorithm used to find a specific item within a sorted list. Unlike checking every single element one by one, binary search works by repeatedly dividing the search interval in half. This divide and conquer strategy allows it to find elements incredibly fast. Before we proceed, there is one absolute rule you must remember. Binary search only works on sorted data. If your list of numbers or strings is not in order, the logic falls apart and you will not find the correct element. Always ensure your data is sorted first. Think of a real-world example, looking for a word in a physical dictionary. If you are looking for a word starting with the letter M, you do not start at the first page and read every word. You open the book roughly in the middle. If you land on T, you know M is in the first half, you ignore the entire second half of the book. You repeat this until you find your page. Here is the step-by-step logic. First, we find the middle element of our current range. Second, we compare that middle element to our target. If they match, we are done. If the target is smaller than the middle, we know it must be in the left half, we discard the. If the target is larger, we discard the left half and search the. Let's visualize this. We have a sorted array of numbers and we want to find the number 37. We start by defining our search space with two pointers, low pointing to index 0 and high pointing to the last index, which is 8. Next, we calculate the middle index. We add low plus high, 0 plus 8, which is 8, and divide by 2. This gives us index 4. The value at index 4 is 16. Now we compare. Our target is 37, but the value at our middle index is 16. Since 37 is greater than 16, we know our target cannot be in the left half. , we move our low pointer to one position past the middle, effectively discarding the entire left side of the array. Here is what the code looks. We initialize left and pointers. We enter a while loop that continues as long as left is less than or equal to. Inside, we calculate the mid index. If we find the target, we return the index. Otherwise, we adjust the left or pointers to narrow down the range. If the loop finishes without finding the target, we return negative one. Why do we use binary search? Because of its efficiency, linear search, where we check every item, has a time complexity of O of N binary search has a logarithmic time complexity. O of log N for very large data sets. The difference in speed is massive. When implementing this, watch out for common mistakes. The most common is trying to use it on unsorted data. Another is writing an infinite loop condition where the pointers do not cross. Also, be careful when calculating the midpoint in languages with fixed integer sizes to avoid overflow errors. To wrap up, remember these key points. Binary search requires assorted array. It works by having the search space at every step, giving it a powerful O of log and efficiency. Master this algorithm and you will have a powerful tool in your coding arsenal. . com for more such useful content."
+}

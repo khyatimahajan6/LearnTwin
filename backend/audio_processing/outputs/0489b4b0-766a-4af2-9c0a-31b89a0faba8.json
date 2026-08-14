@@ -1,0 +1,169 @@
+{
+  "lecture_id": "0489b4b0-766a-4af2-9c0a-31b89a0faba8",
+  "source": "audio",
+  "document_text": null,
+  "transcript": "A recursive function is a function that calls itself inside of its own definition. It's having a dream inside of a dream. When you have a recursive function that calls itself without anything to stop it, you have created an infinite loop. The first function gets pushed onto the call stack, the next one on top of it, then another one on top of that, and on forever. Or until your runtime throws a stack overflow error, or the computer just runs out of memory. recursion is just another way to create a loop. That infinite loops aren't very useful in practice, that's why recursive functions have some sort of stopping point. some conditional logic that tells the function to stop calling itself when a condition has been met. On an interview, you might be asked to implement some code that finds a specific index in the Fibonacci sequence. You'll notice a given index of the sequence is just the sum of the two previous values. how do we find index number or two thousand twenty three? Your first thought might be to implement an iterative solution with a for loop. Repeat the Fibonacci value for each index until we get to the target index of two thousand twenty three. But then you're asked to implement a recursive solution. We can do that by writing a function that starts with the index and then works its way backwards until it gets to a base case of being less than or equal to one. Notice how we're calling the same function inside the function body, and we're doing it twice. There's a big problem here though. It will traverse down the entire sequence for every single index. That's O to the N squared time complexity, which is not good at all. In the next video, I'll explain how to improve this with memoization. Reclusive functions are not the choice in every situation, but they are very good for tree and graph traversals. This has been recursion in 100 seconds. Thanks for watching, and I will see you in the next one.",
+  "timestamps": [
+    {
+      "start": 0.0,
+      "end": 4.8,
+      "text": "A recursive function is a function that calls itself inside of its own definition."
+    },
+    {
+      "start": 4.8,
+      "end": 7.4,
+      "text": "It's having a dream inside of a dream."
+    },
+    {
+      "start": 7.4,
+      "end": 11.200000000000001,
+      "text": "When you have a recursive function that calls itself without anything to stop it, you have"
+    },
+    {
+      "start": 11.200000000000001,
+      "end": 12.88,
+      "text": "created an infinite loop."
+    },
+    {
+      "start": 12.88,
+      "end": 16.52,
+      "text": "The first function gets pushed onto the call stack, the next one on top of it, then another"
+    },
+    {
+      "start": 16.52,
+      "end": 19.32,
+      "text": "one on top of that, and on forever."
+    },
+    {
+      "start": 19.32,
+      "end": 23.84,
+      "text": "Or until your runtime throws a stack overflow error, or the computer just runs out of memory."
+    },
+    {
+      "start": 23.84,
+      "end": 26.84,
+      "text": "recursion is just another way to create a loop."
+    },
+    {
+      "start": 26.84,
+      "end": 30.16,
+      "text": "That infinite loops aren't very useful in practice, that's why recursive functions"
+    },
+    {
+      "start": 30.16,
+      "end": 32.16,
+      "text": "have some sort of stopping point."
+    },
+    {
+      "start": 32.16,
+      "end": 35.88,
+      "text": "some conditional logic that tells the function to stop calling itself when a condition"
+    },
+    {
+      "start": 35.88,
+      "end": 36.88,
+      "text": "has been met."
+    },
+    {
+      "start": 36.88,
+      "end": 40.68,
+      "text": "On an interview, you might be asked to implement some code that finds a specific index"
+    },
+    {
+      "start": 40.68,
+      "end": 42.480000000000004,
+      "text": "in the Fibonacci sequence."
+    },
+    {
+      "start": 42.480000000000004,
+      "end": 46.96,
+      "text": "You'll notice a given index of the sequence is just the sum of the two previous values."
+    },
+    {
+      "start": 46.96,
+      "end": 49.8,
+      "text": "how do we find index number or two thousand twenty three?"
+    },
+    {
+      "start": 49.8,
+      "end": 53.519999999999996,
+      "text": "Your first thought might be to implement an iterative solution with a for loop."
+    },
+    {
+      "start": 53.52,
+      "end": 57.6,
+      "text": "Repeat the Fibonacci value for each index until we get to the target index of two thousand"
+    },
+    {
+      "start": 57.6,
+      "end": 58.6,
+      "text": "twenty three."
+    },
+    {
+      "start": 58.6,
+      "end": 61.2,
+      "text": "But then you're asked to implement a recursive solution."
+    },
+    {
+      "start": 61.2,
+      "end": 64.84,
+      "text": "We can do that by writing a function that starts with the index and then works its way"
+    },
+    {
+      "start": 64.84,
+      "end": 69.72,
+      "text": "backwards until it gets to a base case of being less than or equal to one."
+    },
+    {
+      "start": 69.72,
+      "end": 73.04,
+      "text": "Notice how we're calling the same function inside the function body, and we're doing"
+    },
+    {
+      "start": 73.04,
+      "end": 74.04,
+      "text": "it twice."
+    },
+    {
+      "start": 74.04,
+      "end": 75.36,
+      "text": "There's a big problem here though."
+    },
+    {
+      "start": 75.36,
+      "end": 78.76,
+      "text": "It will traverse down the entire sequence for every single index."
+    },
+    {
+      "start": 78.76,
+      "end": 82.0,
+      "text": "That's O to the N squared time complexity, which is not good at all."
+    },
+    {
+      "start": 82.0,
+      "end": 85.52,
+      "text": "In the next video, I'll explain how to improve this with memoization."
+    },
+    {
+      "start": 85.52,
+      "end": 88.8,
+      "text": "Reclusive functions are not the choice in every situation, but they are very good"
+    },
+    {
+      "start": 88.8,
+      "end": 90.88,
+      "text": "for tree and graph traversals."
+    },
+    {
+      "start": 90.88,
+      "end": 92.92,
+      "text": "This has been recursion in 100 seconds."
+    },
+    {
+      "start": 92.92,
+      "end": 95.44,
+      "text": "Thanks for watching, and I will see you in the next one."
+    }
+  ],
+  "combined_text": "A recursive function is a function that calls itself inside of its own definition. It's having a dream inside of a dream. When you have a recursive function that calls itself without anything to stop it, you have created an infinite loop. The first function gets pushed onto the call stack, the next one on top of it, then another one on top of that, and on forever. Or until your runtime throws a stack overflow error, or the computer just runs out of memory. recursion is just another way to create a loop. That infinite loops aren't very useful in practice, that's why recursive functions have some sort of stopping point. some conditional logic that tells the function to stop calling itself when a condition has been met. On an interview, you might be asked to implement some code that finds a specific index in the Fibonacci sequence. You'll notice a given index of the sequence is just the sum of the two previous values. how do we find index number or two thousand twenty three? Your first thought might be to implement an iterative solution with a for loop. Repeat the Fibonacci value for each index until we get to the target index of two thousand twenty three. But then you're asked to implement a recursive solution. We can do that by writing a function that starts with the index and then works its way backwards until it gets to a base case of being less than or equal to one. Notice how we're calling the same function inside the function body, and we're doing it twice. There's a big problem here though. It will traverse down the entire sequence for every single index. That's O to the N squared time complexity, which is not good at all. In the next video, I'll explain how to improve this with memoization. Reclusive functions are not the choice in every situation, but they are very good for tree and graph traversals. This has been recursion in 100 seconds. Thanks for watching, and I will see you in the next one."
+}
