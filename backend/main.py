@@ -19,15 +19,23 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from routes.quiz_routes import router as quiz_router
+
 from database.db import init_db
+
+# ============================================================
+# ROUTES
+# ============================================================
+
 from routes import (
     auth_routes,
     upload_routes,
     history_routes,
     rag_routes,
     adaptive_routes,
+    dashboard_routes,
 )
+
+from routes.quiz_routes import router as quiz_router
 
 from utils.logger import get_logger
 
@@ -50,7 +58,8 @@ async def lifespan(app: FastAPI):
 
     Startup:
         - Initialize database
-        - Log backend startup
+        - Load all SQLAlchemy models
+        - Start backend
 
     Shutdown:
         - Log backend shutdown
@@ -106,7 +115,7 @@ app = FastAPI(
 
     title=(
         "LearnTwin AI Professor — "
-        "Input Processing API"
+        "Learning & Performance API"
     ),
 
     description="""
@@ -126,6 +135,16 @@ The API handles:
 - Transcript cleaning
 - Combined lecture text generation
 - Lecture upload history
+- Adaptive learning
+- Quiz generation
+- Quiz submission
+- Test result storage
+- Student performance analytics
+- Learning progress
+- Topic mastery
+- Weak topic detection
+- Learning history
+- Dashboard data
 
 ### Supported document files
 
@@ -201,11 +220,10 @@ async def unhandled_exception_handler(
     exc: Exception,
 ):
     """
-    Catch unexpected exceptions that are not handled
-    by individual routes.
+    Catch unexpected exceptions.
 
     The complete exception is logged on the backend,
-    while the client receives a safe generic message.
+    while the frontend receives a safe error message.
     """
 
     logger.exception(
@@ -236,19 +254,36 @@ async def unhandled_exception_handler(
 # ROUTERS
 # ============================================================
 
+
 # ------------------------------------------------------------
-# Authentication
+# AUTHENTICATION
 # ------------------------------------------------------------
 
 app.include_router(
     auth_routes.router
 )
+
+
+# ------------------------------------------------------------
+# ADAPTIVE LEARNING
+# ------------------------------------------------------------
+
 app.include_router(
     adaptive_routes.router
 )
 
+
 # ------------------------------------------------------------
-# Upload
+# DASHBOARD / LEARNING PROGRESS
+# ------------------------------------------------------------
+
+app.include_router(
+    dashboard_routes.router
+)
+
+
+# ------------------------------------------------------------
+# UPLOAD
 # ------------------------------------------------------------
 
 app.include_router(
@@ -257,46 +292,51 @@ app.include_router(
 
 
 # ------------------------------------------------------------
-# History
+# HISTORY
 # ------------------------------------------------------------
 
 app.include_router(
     history_routes.router
 )
 
+
+# ------------------------------------------------------------
+# RAG
+# ------------------------------------------------------------
+
 app.include_router(
     rag_routes.router
 )
 
 
-app.include_router(quiz_router)
+# ------------------------------------------------------------
+# QUIZ
+# ------------------------------------------------------------
+
+app.include_router(
+    quiz_router
+)
+
+
 # ============================================================
 # ROOT / HEALTH CHECK
 # ============================================================
 
 @app.get(
-
     "/",
-
     tags=[
         "Health"
     ],
-
     summary="Health check",
-
 )
 def root():
-    """
-    Simple endpoint to verify that the backend is running.
-    """
 
     return {
 
         "status": "ok",
 
         "service": (
-            "LearnTwin AI Professor - "
-            "Input Processing API"
+            "LearnTwin AI Professor"
         ),
 
         "version": "1.0.0",
@@ -312,20 +352,13 @@ def root():
 # ============================================================
 
 @app.get(
-
     "/health",
-
     tags=[
         "Health"
     ],
-
     summary="Detailed health check",
-
 )
 def health_check():
-    """
-    Detailed health-check endpoint.
-    """
 
     return {
 
@@ -338,4 +371,3 @@ def health_check():
         "backend": "running",
 
     }
-

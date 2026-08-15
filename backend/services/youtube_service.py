@@ -5,7 +5,7 @@ Download audio from YouTube videos.
 
 Supports:
     - YouTube video URLs
-    - YouTube audio/music URLs
+    - YouTube Music URLs
     - YouTube Shorts URLs
 
 Pipeline:
@@ -14,13 +14,17 @@ Pipeline:
         ↓
     yt-dlp
         ↓
-    Audio stream
+    Best available audio
         ↓
     FFmpeg
         ↓
     MP3 bytes
         ↓
-    Existing lecture pipeline
+    Existing lecture/audio pipeline
+
+Returns:
+    tuple[str, bytes]:
+        (filename, audio_bytes)
 """
 
 import os
@@ -35,27 +39,108 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 
+# ============================================================
+# RUNTIME CONFIGURATION
+# ============================================================
+
+NODE_PATH = shutil.which("node")
+
+if NODE_PATH:
+    logger.info(
+        "Node.js found at: %s",
+        NODE_PATH,
+    )
+else:
+    logger.warning(
+        "Node.js was not found in PATH. "
+        "Modern YouTube extraction may fail."
+    )
+
+
+# ============================================================
+# FFMPEG CONFIGURATION
+# ============================================================
+
+FFMPEG_PATH = shutil.which("ffmpeg")
+
+if FFMPEG_PATH:
+
+    FFMPEG_DIR = os.path.dirname(
+        FFMPEG_PATH
+    )
+
+    logger.info(
+        "FFmpeg found at: %s",
+        FFMPEG_PATH,
+    )
+
+else:
+
+    FFMPEG_DIR = None
+
+    logger.warning(
+        "FFmpeg was not found in PATH. "
+        "MP3 conversion may fail."
+    )
+
+
+# ============================================================
+# URL VALIDATION
+# ============================================================
+
+def is_youtube_url(url: str) -> bool:
+    """
+    Basic validation for supported YouTube URLs.
+    """
+
+    if not url:
+        return False
+
+    url = url.lower().strip()
+
+    supported_domains = (
+        "youtube.com",
+        "www.youtube.com",
+        "m.youtube.com",
+        "music.youtube.com",
+        "youtu.be",
+        "www.youtu.be",
+    )
+
+    return any(
+        domain in url
+        for domain in supported_domains
+    )
+
+
+# ============================================================
+# MAIN FUNCTION
+# ============================================================
+
 def download_youtube_audio(url: str):
     """
-    Download audio from a YouTube URL.
+    Download audio from a YouTube URL and convert it to MP3.
 
-    The URL may point to:
-        - normal YouTube video
-        - YouTube music/audio video
-        - YouTube Short
+    Parameters
+    ----------
+    url : str
+        YouTube video URL.
 
-    Returns:
-        tuple[str, bytes]:
-            (filename, audio_bytes)
+    Returns
+    -------
+    tuple[str, bytes]
+        Example:
+            ("abc123.mp3", b"...audio bytes...")
 
-    Raises:
-        RuntimeError:
-            If the YouTube media cannot be downloaded.
+    Raises
+    ------
+    RuntimeError
+        If downloading or conversion fails.
     """
 
-    # ================================================================
+    # ========================================================
     # STEP 1 — VALIDATE URL
-    # ================================================================
+    # ========================================================
 
     if not url or not url.strip():
 
@@ -65,115 +150,125 @@ def download_youtube_audio(url: str):
 
     url = url.strip()
 
-    # ================================================================
-    # STEP 2 — TEMPORARY DIRECTORY
-    # ================================================================
+    if not is_youtube_url(url):
+
+        raise RuntimeError(
+            "Please provide a valid YouTube URL."
+        )
+
+    logger.info(
+        "Processing YouTube URL: %s",
+        url,
+    )
+
+    # ========================================================
+    # STEP 2 — CREATE TEMP DIRECTORY
+    # ========================================================
 
     temp_dir = tempfile.mkdtemp(
         prefix="youtube_audio_"
     )
+
+    logger.info(
+        "Temporary YouTube directory: %s",
+        temp_dir,
+    )
+
+    # ========================================================
+    # STEP 3 — OUTPUT TEMPLATE
+    # ========================================================
 
     output_template = os.path.join(
         temp_dir,
         "%(id)s.%(ext)s",
     )
 
-    logger.info(
-        "Temporary YouTube directory created: %s",
-        temp_dir,
-    )
-
-    # ================================================================
-    # STEP 3 — YT-DLP OPTIONS
-    # ================================================================
+    # ========================================================
+    # STEP 4 — BUILD YT-DLP OPTIONS
+    # ========================================================
 
     ydl_opts = {
 
-        # ------------------------------------------------------------
-        # AUDIO FORMAT
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
+        # FORMAT
+        # ----------------------------------------------------
         #
         # Prefer M4A.
-        # If unavailable, use WebM audio.
-        # Finally fall back to best available audio.
+        # If unavailable, use WebM.
+        # Otherwise use best available audio.
         #
         "format": (
             "bestaudio[ext=m4a]/"
             "bestaudio[ext=webm]/"
-            "140/bestaudio/best"
+            "bestaudio/best"
         ),
 
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
         # OUTPUT
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
 
         "outtmpl": output_template,
-        "ffmpeg_location": r"C:\Users\khyat\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0-full_build\bin",        # Never download playlists.
+
         "noplaylist": True,
 
-        # ------------------------------------------------------------
-        # NETWORK SETTINGS
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
+        # JAVASCRIPT RUNTIME
+        # ----------------------------------------------------
 
-        # Increase connection timeout.
+        # Modern YouTube extraction can require a JS runtime.
+        #
+        "js_runtimes": (
+            {
+                "node": {
+                    "path": NODE_PATH
+                }
+            }
+            if NODE_PATH
+            else {}
+        ),
+
+        # ----------------------------------------------------
+        # FFMPEG
+        # ----------------------------------------------------
+
+        **(
+            {
+                "ffmpeg_location": FFMPEG_DIR
+            }
+            if FFMPEG_DIR
+            else {}
+        ),
+
+        # ----------------------------------------------------
+        # NETWORK
+        # ----------------------------------------------------
+
         "socket_timeout": 120,
 
-        # Retry complete downloads.
         "retries": 10,
 
-        # Retry individual fragments.
         "fragment_retries": 10,
 
-        # Retry extraction.
         "extractor_retries": 5,
 
-        # ------------------------------------------------------------
-        # DOWNLOAD IN SMALLER HTTP CHUNKS
-        # ------------------------------------------------------------
-        #
-        # This can help when a large continuous connection to
-        # Google's video server is timing out.
-        #
-        "http_chunk_size": 10 * 1024 * 1024,
+        # ----------------------------------------------------
+        # IPV4
+        # ----------------------------------------------------
 
-        # ------------------------------------------------------------
-        # DOWNLOAD ONE FRAGMENT AT A TIME
-        # ------------------------------------------------------------
-        #
-        # Reduces simultaneous connections.
-        #
-        "concurrent_fragment_downloads": 1,
-
-        # ------------------------------------------------------------
-        # CONTINUE / FRAGMENT SETTINGS
-        # ------------------------------------------------------------
-
-        "continuedl": True,
-
-        "skip_unavailable_fragments": True,
-
-        "overwrites": True,
-
-        # ------------------------------------------------------------
-        # FORCE IPV4
-        # ------------------------------------------------------------
-        #
-        # Your previous error was a connection timeout.
-        # IPv4 avoids some IPv6 routing problems.
-        #
         "force_ipv4": True,
 
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
         # GEO
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
 
         "geo_bypass": True,
 
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
         # HTTP HEADERS
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
 
         "http_headers": {
+
             "User-Agent": (
                 "Mozilla/5.0 "
                 "(Windows NT 10.0; Win64; x64) "
@@ -188,44 +283,41 @@ def download_youtube_audio(url: str):
             ),
         },
 
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
+        # AUDIO EXTRACTION
+        # ----------------------------------------------------
+
+        "postprocessors": [
+
+            {
+                "key": "FFmpegExtractAudio",
+
+                "preferredcodec": "mp3",
+
+                "preferredquality": "192",
+            }
+
+        ],
+
+        # ----------------------------------------------------
         # LOGGING
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
 
         "quiet": False,
 
         "no_warnings": False,
 
-        # ------------------------------------------------------------
-        # FFMPEG POST PROCESSING
-        # ------------------------------------------------------------
-        #
-        # Downloaded audio:
-        #
-        # M4A/WebM
-        #       ↓
-        #     FFmpeg
-        #       ↓
-        #      MP3
-        #
-        "postprocessors": [
-            {
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "mp3",
-                "preferredquality": "192",
-            }
-        ],
+        "verbose": False,
     }
 
-    # ================================================================
-    # STEP 4 — DOWNLOAD
-    # ================================================================
+    # ========================================================
+    # STEP 5 — DOWNLOAD
+    # ========================================================
 
     try:
 
         logger.info(
-            "Starting YouTube audio download: %s",
-            url,
+            "Starting yt-dlp YouTube extraction..."
         )
 
         with yt_dlp.YoutubeDL(
@@ -237,54 +329,68 @@ def download_youtube_audio(url: str):
                 download=True,
             )
 
-            if not info:
+        if not info:
 
-                raise RuntimeError(
-                    "yt-dlp returned no video information."
-                )
-
-            video_id = info.get(
-                "id"
+            raise RuntimeError(
+                "yt-dlp returned no video information."
             )
 
-            if not video_id:
+        # ====================================================
+        # VIDEO ID
+        # ====================================================
 
-                raise RuntimeError(
-                    "Could not determine YouTube video ID."
-                )
+        video_id = info.get(
+            "id"
+        )
 
-            logger.info(
-                "YouTube video identified: %s",
-                video_id,
+        if not video_id:
+
+            raise RuntimeError(
+                "Could not determine YouTube video ID."
             )
 
-        # ============================================================
-        # STEP 5 — FIND MP3
-        # ============================================================
+        logger.info(
+            "YouTube video ID: %s",
+            video_id,
+        )
 
-        audio_path = os.path.join(
+        # ====================================================
+        # TITLE
+        # ====================================================
+
+        title = info.get(
+            "title",
+            video_id,
+        )
+
+        logger.info(
+            "YouTube video title: %s",
+            title,
+        )
+
+        # ====================================================
+        # STEP 6 — FIND MP3
+        # ====================================================
+
+        audio_path = None
+
+        expected_mp3 = os.path.join(
             temp_dir,
             f"{video_id}.mp3",
         )
 
-        # ------------------------------------------------------------
-        # Expected MP3 path
-        # ------------------------------------------------------------
-
-        if not os.path.exists(
-            audio_path
+        if os.path.isfile(
+            expected_mp3
         ):
 
-            logger.warning(
-                "Expected MP3 was not found: %s",
-                audio_path,
+            audio_path = expected_mp3
+
+        else:
+
+            logger.info(
+                "Expected MP3 not found. "
+                "Searching temporary directory..."
             )
-
-            # --------------------------------------------------------
-            # Search temporary directory
-            # --------------------------------------------------------
-
-            possible_files = []
 
             for file_name in os.listdir(
                 temp_dir
@@ -295,60 +401,58 @@ def download_youtube_audio(url: str):
                     file_name,
                 )
 
-                if (
-                    os.path.isfile(file_path)
-                    and file_name.lower().endswith(
-                        ".mp3"
-                    )
+                if not os.path.isfile(
+                    file_path
+                ):
+                    continue
+
+                if file_name.lower().endswith(
+                    ".mp3"
                 ):
 
-                    possible_files.append(
-                        file_path
-                    )
+                    audio_path = file_path
 
-            # --------------------------------------------------------
-            # Use discovered MP3
-            # --------------------------------------------------------
+                    break
 
-            if possible_files:
+        # ====================================================
+        # STEP 7 — MP3 NOT FOUND
+        # ====================================================
 
-                audio_path = possible_files[0]
+        if audio_path is None:
 
-                logger.info(
-                    "Found converted MP3: %s",
-                    audio_path,
-                )
+            files_found = []
 
-            else:
+            try:
 
-                # ----------------------------------------------------
-                # Show what yt-dlp actually produced.
-                # This makes debugging much easier.
-                # ----------------------------------------------------
-
-                generated_files = []
-
-                for file_name in os.listdir(
+                files_found = os.listdir(
                     temp_dir
-                ):
-
-                    generated_files.append(
-                        file_name
-                    )
-
-                logger.error(
-                    "No MP3 found. Files in temp directory: %s",
-                    generated_files,
                 )
 
-                raise RuntimeError(
-                    "YouTube audio was downloaded, "
-                    "but FFmpeg did not produce an MP3 file."
-                )
+            except Exception:
+                pass
 
-        # ============================================================
-        # STEP 6 — READ MP3
-        # ============================================================
+            logger.error(
+                "MP3 file was not found."
+            )
+
+            logger.error(
+                "Temporary directory contents: %s",
+                files_found,
+            )
+
+            raise RuntimeError(
+                "YouTube audio was downloaded, "
+                "but FFmpeg did not produce an MP3 file."
+            )
+
+        logger.info(
+            "MP3 file found: %s",
+            audio_path,
+        )
+
+        # ====================================================
+        # STEP 8 — READ MP3
+        # ====================================================
 
         with open(
             audio_path,
@@ -357,20 +461,35 @@ def download_youtube_audio(url: str):
 
             audio_bytes = audio_file.read()
 
+        # ====================================================
+        # STEP 9 — VALIDATE AUDIO
+        # ====================================================
+
         if not audio_bytes:
 
             raise RuntimeError(
-                "Downloaded audio file is empty."
+                "Downloaded YouTube audio file is empty."
             )
 
-        # ============================================================
-        # STEP 7 — FINAL FILENAME
-        # ============================================================
+        logger.info(
+            "Downloaded MP3 size: %d bytes",
+            len(audio_bytes),
+        )
 
-        filename = f"{video_id}.mp3"
+        # ====================================================
+        # STEP 10 — CREATE FILENAME
+        # ====================================================
+
+        filename = (
+            f"{video_id}.mp3"
+        )
+
+        # ====================================================
+        # STEP 11 — SUCCESS
+        # ====================================================
 
         logger.info(
-            "YouTube audio downloaded successfully."
+            "YouTube audio download successful."
         )
 
         logger.info(
@@ -379,22 +498,18 @@ def download_youtube_audio(url: str):
         )
 
         logger.info(
-            "Audio size: %d bytes",
+            "Audio bytes: %d",
             len(audio_bytes),
         )
-
-        # ============================================================
-        # STEP 8 — RETURN TO LECTURE SERVICE
-        # ============================================================
 
         return (
             filename,
             audio_bytes,
         )
 
-    # ================================================================
-    # STEP 9 — YT-DLP DOWNLOAD ERROR
-    # ================================================================
+    # ========================================================
+    # STEP 12 — YT-DLP DOWNLOAD ERROR
+    # ========================================================
 
     except yt_dlp.utils.DownloadError as exc:
 
@@ -407,44 +522,39 @@ def download_youtube_audio(url: str):
             exc
         )
 
-        lower_error = (
+        error_lower = (
             error_message.lower()
         )
 
-        # ------------------------------------------------------------
-        # TIMEOUT
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
+        # 403
+        # ----------------------------------------------------
 
         if (
-            "timed out" in lower_error
-            or "winerror 10060" in lower_error
+            "403" in error_lower
+            or "forbidden" in error_lower
         ):
 
             message = (
-                "YouTube audio download timed out. "
-                "The YouTube media server could not be "
-                "reached from this computer. "
-                "Please check your network connection, "
-                "VPN, firewall, or proxy."
-            )
-
-        # ------------------------------------------------------------
-        # HTTP 403
-        # ------------------------------------------------------------
-
-        elif "403" in lower_error:
-
-            message = (
                 "YouTube rejected the media request "
-                "(HTTP 403). Please try another video "
-                "or update yt-dlp."
+                "(HTTP 403). "
+                "This is usually caused by YouTube "
+                "changing its media delivery rules or "
+                "the installed yt-dlp version being outdated. "
+                "Update yt-dlp with "
+                "'python -m pip install -U yt-dlp' "
+                "and restart the backend."
             )
 
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
         # SIGN IN
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
 
-        elif "sign in" in lower_error:
+        elif (
+            "sign in" in error_lower
+            or "authentication" in error_lower
+            or "login required" in error_lower
+        ):
 
             message = (
                 "YouTube requires authentication for this "
@@ -452,39 +562,62 @@ def download_youtube_audio(url: str):
                 "age-restricted, or otherwise protected."
             )
 
-        # ------------------------------------------------------------
-        # PRIVATE VIDEO
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
+        # PRIVATE
+        # ----------------------------------------------------
 
-        elif "private video" in lower_error:
+        elif (
+            "private video" in error_lower
+        ):
 
             message = (
                 "This YouTube video is private "
                 "and cannot be downloaded."
             )
 
-        # ------------------------------------------------------------
-        # VIDEO UNAVAILABLE
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
+        # UNAVAILABLE
+        # ----------------------------------------------------
 
         elif (
-            "video unavailable" in lower_error
-            or "unavailable" in lower_error
+            "video unavailable"
+            in error_lower
+            or "is unavailable"
+            in error_lower
         ):
 
             message = (
                 "This YouTube video is unavailable "
-                "or cannot be accessed."
+                "and cannot be downloaded."
             )
 
-        # ------------------------------------------------------------
-        # GENERIC YT-DLP ERROR
-        # ------------------------------------------------------------
+        # ----------------------------------------------------
+        # TIMEOUT
+        # ----------------------------------------------------
+
+        elif (
+            "timed out"
+            in error_lower
+            or "timeout"
+            in error_lower
+            or "winerror 10060"
+            in error_lower
+        ):
+
+            message = (
+                "YouTube audio download timed out. "
+                "Please check your internet connection "
+                "and try again."
+            )
+
+        # ----------------------------------------------------
+        # GENERIC
+        # ----------------------------------------------------
 
         else:
 
             message = (
-                f"YouTube download failed: "
+                "YouTube audio download failed: "
                 f"{error_message}"
             )
 
@@ -492,9 +625,17 @@ def download_youtube_audio(url: str):
             message
         ) from exc
 
-    # ================================================================
-    # STEP 10 — OTHER ERROR
-    # ================================================================
+    # ========================================================
+    # STEP 13 — OUR RUNTIME ERROR
+    # ========================================================
+
+    except RuntimeError:
+
+        raise
+
+    # ========================================================
+    # STEP 14 — UNEXPECTED ERROR
+    # ========================================================
 
     except Exception as exc:
 
@@ -504,12 +645,13 @@ def download_youtube_audio(url: str):
         )
 
         raise RuntimeError(
-            f"Failed to download YouTube audio: {exc}"
+            "Failed to download YouTube audio: "
+            f"{exc}"
         ) from exc
 
-    # ================================================================
-    # STEP 11 — CLEANUP
-    # ================================================================
+    # ========================================================
+    # STEP 15 — CLEANUP
+    # ========================================================
 
     finally:
 
@@ -525,10 +667,15 @@ def download_youtube_audio(url: str):
                 )
 
                 logger.info(
-                    "Temporary YouTube directory cleaned: %s",
+                    "Removed temporary YouTube directory: %s",
                     temp_dir,
                 )
 
-        except Exception:
+        except Exception as cleanup_error:
 
-            pass
+            logger.warning(
+                "Could not completely remove "
+                "temporary directory %s: %s",
+                temp_dir,
+                cleanup_error,
+            )

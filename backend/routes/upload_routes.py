@@ -1,4 +1,3 @@
-
 """
 routes/upload_routes.py
 
@@ -13,27 +12,8 @@ Endpoints:
         Download audio from a YouTube URL and process it
         through the existing audio/Whisper pipeline.
 
-Supported files:
-
-Documents:
-    PDF
-    DOCX
-    PPTX
-
-Audio:
-    MP3
-    WAV
-    M4A
-    AAC
-    FLAC
-    OGG
-
-Video:
-    MP4
-    WEBM
-    MKV
-    AVI
-    MOV
+Authentication:
+    JWT required for both endpoints.
 """
 
 from fastapi import (
@@ -85,9 +65,30 @@ router = APIRouter(
 class YouTubeUploadRequest(BaseModel):
     """
     Request body for YouTube lecture upload.
+
+    This matches the frontend payload sent by:
+        uploadYoutubeLecture()
+
+    Frontend sends:
+
+        {
+            "youtube_url": "...",
+            "title": "...",
+            "subject": "...",
+            "topic": "...",
+            "description": "..."
+        }
     """
 
-    url: str
+    youtube_url: str
+
+    title: str = ""
+
+    subject: str = ""
+
+    topic: str = ""
+
+    description: str = ""
 
 
 # ============================================================
@@ -98,24 +99,12 @@ def build_upload_response(lecture) -> UploadResponse:
     """
     Convert the processed Lecture object into the API response.
 
-    The lecture_service attaches the complete preprocessing result
-    to the Lecture object.
-
-    For documents:
-
-        clean_text / raw_text
-            ↓
-        combined_text
-
-    For audio/video:
-
-        transcript
-        timestamps
-        combined_text
-
-    This helper keeps the response format identical for:
+    Works for:
 
         POST /upload
+
+    and:
+
         POST /upload-youtube
     """
 
@@ -158,7 +147,8 @@ def build_upload_response(lecture) -> UploadResponse:
             "combined_text",
             None,
         ),
-                topic=getattr(
+
+        topic=getattr(
             lecture,
             "topic",
             None,
@@ -200,7 +190,6 @@ def build_upload_response(lecture) -> UploadResponse:
             None,
         ),
 
-
         status="Processed",
     )
 
@@ -211,22 +200,17 @@ def build_upload_response(lecture) -> UploadResponse:
 
 @router.post(
     "/upload",
-
     response_model=UploadResponse,
-
     summary="Upload and process a lecture",
-
     description="""
 Upload a lecture file and automatically process it.
 
-### Supported document files
-
+Supported documents:
 - PDF
 - DOCX
 - PPTX
 
-### Supported audio files
-
+Supported audio:
 - MP3
 - WAV
 - M4A
@@ -234,39 +218,20 @@ Upload a lecture file and automatically process it.
 - FLAC
 - OGG
 
-### Supported video files
-
+Supported video:
 - MP4
 - WEBM
 - MKV
 - AVI
 - MOV
 
-### Processing pipeline
-
-**Documents**
-
-File → Text Extraction → Text Cleaning → Completed
-
-**Audio**
-
-Audio → Faster-Whisper → Timestamped Transcript → Text Cleaning → Completed
-
-**Video**
-
-Video → Audio Extraction → Faster-Whisper → Timestamped Transcript → Text Cleaning → Completed
-
-The final processed text is saved in the `extracted_text` directory.
-
 Authentication is required.
-Student must be logged in and provide a valid JWT.
 """,
 )
 async def upload_file(
 
     file: UploadFile = File(
         ...,
-
         description=(
             "Upload a lecture file: "
             "PDF, DOCX, PPTX, MP3, WAV, M4A, AAC, "
@@ -284,27 +249,11 @@ async def upload_file(
 ):
     """
     Complete lecture upload pipeline.
-
-    Steps:
-
-        1. Read uploaded file
-        2. Validate file type
-        3. Validate file size
-        4. Create Lecture database record
-        5. Save original uploaded file
-        6. Detect file type
-        7. Process document/audio/video
-        8. Generate or extract text
-        9. Generate timestamps for media
-        10. Clean the text
-        11. Save extracted text
-        12. Update Lecture status
-        13. Return complete processed lecture
     """
 
-    # ============================================================
+    # ========================================================
     # STEP 1 — CHECK FILENAME
-    # ============================================================
+    # ========================================================
 
     if not file.filename:
 
@@ -318,9 +267,9 @@ async def upload_file(
         file.filename,
     )
 
-    # ============================================================
+    # ========================================================
     # STEP 2 — READ FILE
-    # ============================================================
+    # ========================================================
 
     try:
 
@@ -338,9 +287,9 @@ async def upload_file(
             detail="Unable to read uploaded file.",
         )
 
-    # ============================================================
+    # ========================================================
     # STEP 3 — PROCESS COMPLETE LECTURE
-    # ============================================================
+    # ========================================================
 
     try:
 
@@ -355,78 +304,62 @@ async def upload_file(
             file_bytes=file_bytes,
         )
 
-    # ============================================================
+    # ========================================================
     # STEP 4 — VALIDATION ERROR
-    # ============================================================
+    # ========================================================
 
     except FileValidationError as exc:
 
         logger.warning(
-
             "Upload rejected for student %s: %s",
-
             current_student.student_id,
-
             exc.message,
         )
 
         raise HTTPException(
-
             status_code=400,
-
             detail=exc.message,
         )
 
-    # ============================================================
-    # STEP 5 — PROCESSING / EXTRACTION ERROR
-    # ============================================================
+    # ========================================================
+    # STEP 5 — EXTRACTION ERROR
+    # ========================================================
 
     except ExtractionError as exc:
 
         logger.error(
-
             "Lecture processing failed for student %s: %s",
-
             current_student.student_id,
-
             exc.message,
         )
 
         raise HTTPException(
-
             status_code=422,
-
             detail=(
                 f"Failed to process lecture: "
                 f"{exc.message}"
             ),
         )
 
-    # ============================================================
+    # ========================================================
     # STEP 6 — UNEXPECTED ERROR
-    # ============================================================
+    # ========================================================
 
     except Exception as exc:
 
         logger.exception(
-
             "Unexpected error while processing upload: %s",
-
             exc,
         )
 
         raise HTTPException(
-
             status_code=500,
-
-            detail=(
-                "An unexpected server error occurred."
-            ),
+            detail="An unexpected server error occurred.",
         )
 
-    # ============================================================
-    # STEP 7 — RETURN COMPLETE RESPONSE
-    # ============================================================
+    # ========================================================
+    # STEP 7 — RETURN RESPONSE
+    # ========================================================
 
     return build_upload_response(
         lecture
@@ -439,29 +372,33 @@ async def upload_file(
 
 @router.post(
     "/upload-youtube",
-
     response_model=UploadResponse,
-
     summary="Upload a lecture from YouTube",
-
     description="""
 Download audio from a YouTube video and process it
 through the existing lecture audio pipeline.
 
-### Processing pipeline
+Pipeline:
 
 YouTube URL
-→ yt-dlp
-→ MP3
-→ Existing lecture pipeline
-→ Faster-Whisper
-→ Timestamped Transcript
-→ Transcript Cleaning
-→ Save extracted text
-→ Completed
+    ↓
+yt-dlp
+    ↓
+MP3
+    ↓
+Existing lecture pipeline
+    ↓
+Faster-Whisper
+    ↓
+Timestamped transcript
+    ↓
+NLP metadata
+    ↓
+RAG indexing
+    ↓
+Completed lecture
 
 Authentication is required.
-Student must be logged in and provide a valid JWT.
 """,
 )
 async def upload_youtube(
@@ -479,25 +416,22 @@ async def upload_youtube(
     """
     Process a lecture directly from a YouTube URL.
 
-    Steps:
+    The request model intentionally matches the frontend:
 
-        1. Validate YouTube URL
-        2. Download audio using yt-dlp
-        3. Convert audio to MP3 using FFmpeg
-        4. Pass MP3 bytes to existing lecture pipeline
-        5. Run Whisper transcription
-        6. Generate timestamped segments
-        7. Clean transcript
-        8. Save extracted text
-        9. Update Lecture status
-        10. Return complete processed lecture
+        youtube_url
+        title
+        subject
+        topic
+        description
     """
 
-    # ============================================================
-    # STEP 1 — CHECK URL
-    # ============================================================
+    # ========================================================
+    # STEP 1 — GET YOUTUBE URL
+    # ========================================================
 
-    youtube_url = request.url.strip()
+    youtube_url = (
+        request.youtube_url.strip()
+    )
 
     if not youtube_url:
 
@@ -506,22 +440,70 @@ async def upload_youtube(
             detail="YouTube URL is required.",
         )
 
+    # ========================================================
+    # OPTIONAL METADATA VALIDATION
+    # ========================================================
+
+    title = request.title.strip()
+
+    subject = request.subject.strip()
+
+    topic = request.topic.strip()
+
+    description = request.description.strip()
+
     logger.info(
-        "YouTube URL received from student %s: %s",
+        "================================================"
+    )
 
+    logger.info(
+        "YOUTUBE UPLOAD REQUEST"
+    )
+
+    logger.info(
+        "Student: %s",
         current_student.student_id,
+    )
 
+    logger.info(
+        "YouTube URL: %s",
         youtube_url,
     )
 
-    # ============================================================
+    logger.info(
+        "Title: %s",
+        title,
+    )
+
+    logger.info(
+        "Subject: %s",
+        subject,
+    )
+
+    logger.info(
+        "Topic: %s",
+        topic,
+    )
+
+    logger.info(
+        "Description length: %s",
+        len(description),
+    )
+
+    logger.info(
+        "================================================"
+    )
+
+    # ========================================================
     # STEP 2 — DOWNLOAD YOUTUBE AUDIO
-    # ============================================================
+    # ========================================================
 
     try:
 
-        filename, file_bytes = download_youtube_audio(
-            youtube_url
+        filename, file_bytes = (
+            download_youtube_audio(
+                youtube_url
+            )
         )
 
     except Exception as exc:
@@ -532,18 +514,16 @@ async def upload_youtube(
         )
 
         raise HTTPException(
-
             status_code=422,
-
             detail=(
                 f"Failed to download YouTube audio: "
                 f"{str(exc)}"
             ),
         )
 
-    # ============================================================
+    # ========================================================
     # STEP 3 — CHECK DOWNLOADED FILE
-    # ============================================================
+    # ========================================================
 
     if not file_bytes:
 
@@ -552,9 +532,7 @@ async def upload_youtube(
         )
 
         raise HTTPException(
-
             status_code=422,
-
             detail=(
                 "YouTube audio download returned "
                 "an empty file."
@@ -564,15 +542,13 @@ async def upload_youtube(
     logger.info(
         "YouTube audio downloaded successfully: "
         "filename=%s, size=%s bytes",
-
         filename,
-
         len(file_bytes),
     )
 
-    # ============================================================
-    # STEP 4 — PROCESS USING EXISTING PIPELINE
-    # ============================================================
+    # ========================================================
+    # STEP 4 — PROCESS THROUGH EXISTING PIPELINE
+    # ========================================================
 
     try:
 
@@ -587,81 +563,125 @@ async def upload_youtube(
             file_bytes=file_bytes,
         )
 
-    # ============================================================
+    # ========================================================
     # STEP 5 — VALIDATION ERROR
-    # ============================================================
+    # ========================================================
 
     except FileValidationError as exc:
 
         logger.warning(
-
             "YouTube file validation failed "
             "for student %s: %s",
-
             current_student.student_id,
-
             exc.message,
         )
 
         raise HTTPException(
-
             status_code=400,
-
             detail=exc.message,
         )
 
-    # ============================================================
-    # STEP 6 — PROCESSING / EXTRACTION ERROR
-    # ============================================================
+    # ========================================================
+    # STEP 6 — EXTRACTION ERROR
+    # ========================================================
 
     except ExtractionError as exc:
 
         logger.error(
-
             "YouTube lecture processing failed "
             "for student %s: %s",
-
             current_student.student_id,
-
             exc.message,
         )
 
         raise HTTPException(
-
             status_code=422,
-
             detail=(
                 f"Failed to process YouTube lecture: "
                 f"{exc.message}"
             ),
         )
 
-    # ============================================================
+    # ========================================================
     # STEP 7 — UNEXPECTED ERROR
-    # ============================================================
+    # ========================================================
 
     except Exception as exc:
 
         logger.exception(
-
             "Unexpected YouTube processing error: %s",
-
             exc,
         )
 
         raise HTTPException(
-
             status_code=500,
-
             detail=(
                 "An unexpected server error occurred "
                 "while processing the YouTube lecture."
             ),
         )
 
-    # ============================================================
-    # STEP 8 — RETURN COMPLETE RESPONSE
-    # ============================================================
+    # ========================================================
+    # STEP 8 — APPLY FRONTEND METADATA
+    # ========================================================
+    #
+    # IMPORTANT:
+    #
+    # Your current process_uploaded_file() automatically
+    # extracts NLP metadata from the transcript.
+    #
+    # Therefore we DO NOT overwrite:
+    #
+    #     topic
+    #     keywords
+    #     difficulty
+    #     learning objectives
+    #
+    # with empty frontend values.
+    #
+    # We only use frontend values when they are actually
+    # provided.
+    #
+    # ========================================================
+
+    try:
+
+        if title:
+            lecture.title = title
+
+        if subject:
+            lecture.subject = subject
+
+        if topic:
+            lecture.user_topic = topic
+
+        if description:
+            lecture.description = description
+
+        db.commit()
+        db.refresh(lecture)
+
+    except Exception as exc:
+
+        logger.warning(
+            "Could not save optional YouTube metadata: %s",
+            exc,
+        )
+
+        # Do not fail an otherwise successfully processed
+        # YouTube lecture because optional metadata could
+        # not be saved.
+
+        db.rollback()
+
+    # ========================================================
+    # STEP 9 — RETURN COMPLETE RESPONSE
+    # ========================================================
+
+    logger.info(
+        "YouTube lecture processed successfully: %s",
+        lecture.lecture_id,
+    )
 
     return build_upload_response(
         lecture

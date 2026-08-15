@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import time
+
 from google import genai
 
 from rag.core.config import settings
@@ -8,14 +10,10 @@ from rag.core.logger import logger
 
 
 class GeminiService:
-    """
-    LLM implementation using Google's Gemini API.
-    """
 
     def __init__(self) -> None:
 
         if not settings.GEMINI_API_KEY:
-
             raise RAGException(
                 "GEMINI_API_KEY is not configured."
             )
@@ -27,7 +25,8 @@ class GeminiService:
         self._model = settings.GEMINI_MODEL
 
         logger.info(
-            "GeminiService initialized."
+            "GeminiService initialized. Model=%s",
+            self._model
         )
 
     def generate(
@@ -35,39 +34,132 @@ class GeminiService:
         prompt: str
     ) -> str:
 
-        if not prompt.strip():
-
+        if not prompt or not prompt.strip():
             raise RAGException(
                 "LLM prompt cannot be empty."
             )
 
-        try:
+        max_retries = 3
 
-            response = self._client.models.generate_content(
-                model=self._model,
-                contents=prompt
-            )
+        for attempt in range(max_retries):
 
-            answer = response.text
+            try:
 
-            if not answer:
-
-                raise RAGException(
-                    "LLM returned an empty response."
+                logger.info(
+                    "Gemini request attempt %d/%d",
+                    attempt + 1,
+                    max_retries
                 )
 
-            return answer.strip()
+                response = (
+                    self._client.models.generate_content(
+                        model=self._model,
+                        contents=prompt,
+                    )
+                )
 
-        except RAGException:
+                answer = getattr(
+                    response,
+                    "text",
+                    None
+                )
 
-            raise
+                if not answer:
 
-        except Exception as exc:
+                    raise RAGException(
+                        "Gemini returned an empty response."
+                    )
 
-            logger.exception(
-                "Gemini generation failed."
-            )
+                return answer.strip()
 
-            raise RAGException(
-                "Unable to generate AI response."
-            ) from exc
+            except RAGException:
+                raise
+
+            except Exception as exc:
+
+                error_text = str(exc)
+
+                logger.exception(
+                    "Gemini request failed: %s",
+                    error_text
+                )
+
+                # ============================================
+                # 429 — RATE LIMIT / QUOTA
+                # ============================================
+
+                if (
+                    "429" in error_text
+                    or "RESOURCE_EXHAUSTED" in error_text
+                ):
+
+                    if attempt < max_retries - 1:
+
+                        wait_time = (
+                            5 * (attempt + 1)
+                        )
+
+                        logger.warning(
+                            "Gemini rate limited. "
+                            "Retrying in %d seconds.",
+                            wait_time
+                        )
+
+                        time.sleep(
+                            wait_time
+                        )
+
+                        continue
+
+                    raise RAGException(
+                        "The AI Professor has reached "
+                        "the Gemini API quota. "
+                        "Please try again later."
+                    ) from exc
+
+                # ============================================
+                # 503 — MODEL TEMPORARILY UNAVAILABLE
+                # ============================================
+
+                if (
+                    "503" in error_text
+                    or "UNAVAILABLE" in error_text
+                ):
+
+                    if attempt < max_retries - 1:
+
+                        wait_time = (
+                            5 * (attempt + 1)
+                        )
+
+                        logger.warning(
+                            "Gemini model temporarily "
+                            "unavailable. "
+                            "Retrying in %d seconds.",
+                            wait_time
+                        )
+
+                        time.sleep(
+                            wait_time
+                        )
+
+                        continue
+
+                    raise RAGException(
+                        "The Gemini model is temporarily "
+                        "unavailable due to high demand. "
+                        "Please try again shortly."
+                    ) from exc
+
+                # ============================================
+                # OTHER ERROR
+                # ============================================
+
+                raise RAGException(
+                    f"Gemini API error: "
+                    f"{type(exc).__name__}: {exc}"
+                ) from exc
+
+        raise RAGException(
+            "Unable to generate AI response."
+        )

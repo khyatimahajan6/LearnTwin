@@ -11,25 +11,16 @@ from rag.models.rag import (
     SourceReference,
 )
 
-from rag.services.context_service import (
-    ContextService,
-)
-
-from rag.services.prompt_service import (
-    PromptService,
-)
-
-from rag.services.retrieval_service import (
-    RetrievalService,
-)
+from rag.services.context_service import ContextService
+from rag.services.prompt_service import PromptService
+from rag.services.retrieval_service import RetrievalService
 
 from rag.interfaces.llm import LLMService
 
 
 class RAGService:
     """
-    Orchestrates the complete Retrieval-Augmented
-    Generation pipeline.
+    Complete Retrieval-Augmented Generation pipeline.
 
     Flow:
 
@@ -39,12 +30,19 @@ class RAGService:
             ↓
         Context
             ↓
+        Teaching Strategy
+            ↓
         Prompt
             ↓
-        LLM
+        Gemini
             ↓
-        Grounded Response
+        Answer
     """
+
+
+    # ========================================================
+    # INITIALIZATION
+    # ========================================================
 
     def __init__(
         self,
@@ -66,11 +64,14 @@ class RAGService:
             prompt_service
         )
 
-        self._llm_service = llm_service
+        self._llm_service = (
+            llm_service
+        )
 
         logger.info(
             "RAGService initialized."
         )
+
 
     # ========================================================
     # ANSWER
@@ -81,72 +82,129 @@ class RAGService:
         query: RAGQuery,
         teaching_strategy: str | None = None,
     ) -> RAGResponse:
-        """
-        Generate a grounded answer for a student.
-
-        The teaching strategy is selected by the
-        Adaptive Decision Engine and passed to the
-        PromptService.
-        """
 
         try:
 
-            # ------------------------------------------------
-            # STEP 1 — BUILD METADATA FILTER
-            # ------------------------------------------------
-
-            metadata_filter = (
-                self._build_metadata_filter(query)
+            logger.info(
+                "========================================"
             )
 
             logger.info(
-                "RAG metadata filter: %s",
-                metadata_filter,
+                "RAG REQUEST STARTED"
             )
 
-            # ------------------------------------------------
-            # STEP 2 — RETRIEVE CONTEXT
-            # ------------------------------------------------
+            logger.info(
+                "Question: %s",
+                query.question,
+            )
 
-            retrieval_result = (
-                self._retrieval_service.retrieve(
-                    query=query.question,
-                    top_k=query.top_k,
-                    metadata_filter=metadata_filter,
+            logger.info(
+                "Lecture ID: %s",
+                query.lecture_id,
+            )
+
+            logger.info(
+                "Teaching Strategy: %s",
+                teaching_strategy,
+            )
+
+            logger.info(
+                "========================================"
+            )
+
+
+            # ====================================================
+            # STEP 1 — BUILD METADATA FILTER
+            # ====================================================
+
+            metadata_filter = (
+                self._build_metadata_filter(
+                    query
                 )
             )
 
-            chunks = retrieval_result.chunks
+
+            logger.info(
+                "Metadata filter: %s",
+                metadata_filter,
+            )
+
+
+            # ====================================================
+            # STEP 2 — RETRIEVE
+            # ====================================================
+
+            logger.info(
+                "Starting retrieval..."
+            )
+
+
+            retrieval_result = (
+                self._retrieval_service.retrieve(
+
+                    query=query.question,
+
+                    top_k=query.top_k,
+
+                    metadata_filter=
+                        metadata_filter,
+
+                )
+            )
+
+
+            if retrieval_result is None:
+
+                raise ValueError(
+                    "Retrieval service returned None."
+                )
+
+
+            chunks = (
+                retrieval_result.chunks
+            )
+
 
             logger.info(
                 "Retrieved %d chunks.",
                 len(chunks),
             )
 
-            # ------------------------------------------------
-            # STEP 3 — NO RELEVANT CONTEXT
-            # ------------------------------------------------
+
+            # ====================================================
+            # STEP 3 — NO CONTEXT
+            # ====================================================
 
             if not chunks:
 
-                logger.warning(
-                    "No relevant context found."
-                )
-
                 return RAGResponse(
+
                     answer=(
                         "I couldn't find enough "
                         "information about this topic "
                         "in the uploaded lecture."
                     ),
+
                     sources=[],
+
                     retrieved_chunks=0,
+
                     grounded=False,
+
+                    teaching_strategy=
+                        teaching_strategy,
+
                 )
 
-            # ------------------------------------------------
+
+            # ====================================================
             # STEP 4 — BUILD CONTEXT
-            # ------------------------------------------------
+            # ====================================================
+
+            logger.info(
+                "Building lecture context..."
+            )
+
 
             context = (
                 self._context_service.build_context(
@@ -154,78 +212,208 @@ class RAGService:
                 )
             )
 
-            if not context.strip():
 
-                logger.warning(
-                    "Retrieved context is empty."
+            if context is None:
+
+                raise ValueError(
+                    "Context service returned None."
                 )
 
+
+            context = str(
+                context
+            ).strip()
+
+
+            if not context:
+
                 return RAGResponse(
+
                     answer=(
                         "I couldn't extract enough "
                         "usable information from the "
                         "uploaded lecture."
                     ),
+
                     sources=[],
+
                     retrieved_chunks=0,
+
                     grounded=False,
+
+                    teaching_strategy=
+                        teaching_strategy,
+
                 )
 
-            # ------------------------------------------------
-            # STEP 5 — BUILD ADAPTIVE PROMPT
-            # ------------------------------------------------
 
             logger.info(
-                "Teaching strategy selected: %s",
+                "Context length: %d",
+                len(context),
+            )
+
+
+            # ====================================================
+            # STEP 5 — BUILD PROMPT
+            # ====================================================
+
+            logger.info(
+                "Building teaching prompt..."
+            )
+
+
+            logger.info(
+                "Strategy sent to PromptService: %s",
                 teaching_strategy,
             )
 
+
             prompt = (
                 self._prompt_service.build_prompt(
+
                     question=query.question,
+
                     context=context,
-                    teaching_strategy=(
-                        teaching_strategy
-                    ),
+
+                    teaching_strategy=
+                        teaching_strategy,
+
                 )
             )
 
-            # ------------------------------------------------
-            # STEP 6 — CALL LLM
-            # ------------------------------------------------
 
-            answer = self._llm_service.generate(
-                prompt
+            if not prompt:
+
+                raise ValueError(
+                    "PromptService returned "
+                    "an empty prompt."
+                )
+
+
+            logger.info(
+                "Prompt length: %d",
+                len(prompt),
             )
 
-            # ------------------------------------------------
-            # STEP 7 — BUILD SOURCE REFERENCES
-            # ------------------------------------------------
 
-            sources = self._build_sources(
-                chunks
+            # ====================================================
+            # STEP 6 — GEMINI
+            # ====================================================
+
+            logger.info(
+                "Calling Gemini..."
             )
 
-            # ------------------------------------------------
-            # STEP 8 — RETURN RESPONSE
-            # ------------------------------------------------
 
-            return RAGResponse(
+            answer = (
+                self._llm_service.generate(
+                    prompt
+                )
+            )
+
+
+            if answer is None:
+
+                raise ValueError(
+                    "LLM service returned None."
+                )
+
+
+            answer = str(
+                answer
+            ).strip()
+
+
+            if not answer:
+
+                raise ValueError(
+                    "LLM service returned "
+                    "an empty answer."
+                )
+
+
+            logger.info(
+                "Gemini response generated."
+            )
+
+
+            # ====================================================
+            # STEP 7 — SOURCES
+            # ====================================================
+
+            sources = (
+                self._build_sources(
+                    chunks
+                )
+            )
+
+
+            # ====================================================
+            # STEP 8 — RESPONSE
+            # ====================================================
+
+            response = RAGResponse(
+
                 answer=answer,
+
                 sources=sources,
-                retrieved_chunks=len(chunks),
+
+                retrieved_chunks=
+                    len(chunks),
+
                 grounded=True,
+
+                teaching_strategy=
+                    teaching_strategy,
+
             )
+
+
+            logger.info(
+                "========================================"
+            )
+
+            logger.info(
+                "RAG REQUEST COMPLETED"
+            )
+
+            logger.info(
+                "Final Teaching Strategy: %s",
+                teaching_strategy,
+            )
+
+            logger.info(
+                "========================================"
+            )
+
+
+            return response
+
 
         except Exception as exc:
 
             logger.exception(
-                "RAG pipeline failed."
+                "========================================"
             )
 
+            logger.exception(
+                "RAG PIPELINE FAILED"
+            )
+
+            logger.exception(
+                "Error: %s",
+                str(exc),
+            )
+
+            logger.exception(
+                "========================================"
+            )
+
+
             raise RetrievalException(
-                "Unable to generate RAG response."
+                f"Unable to generate RAG response: {exc}"
             ) from exc
+
 
     # ========================================================
     # METADATA FILTER
@@ -235,72 +423,96 @@ class RAGService:
     def _build_metadata_filter(
         query: RAGQuery,
     ) -> dict[str, Any] | None:
-        """
-        Build metadata filter for retrieval.
-
-        lecture_id is used as a HARD FILTER.
-
-        topic is not used as an exact Chroma metadata
-        filter because indexed topic names may differ
-        from the student's query.
-        """
 
         if not query.lecture_id:
+
+            logger.warning(
+                "No lecture_id provided."
+            )
+
             return None
 
+
         return {
-            "lecture_id": str(
-                query.lecture_id
-            )
+
+            "lecture_id":
+                str(query.lecture_id),
+
         }
 
+
     # ========================================================
-    # SOURCES
+    # BUILD SOURCES
     # ========================================================
 
     @staticmethod
     def _build_sources(
         chunks,
     ) -> list[SourceReference]:
-        """
-        Convert retrieved chunks into source references.
-        """
 
-        sources = []
+        sources: list[
+            SourceReference
+        ] = []
+
 
         for chunk in chunks:
 
-            metadata = chunk.metadata
+            metadata = (
+                getattr(
+                    chunk,
+                    "metadata",
+                    {},
+                )
+                or {}
+            )
 
-            sources.append(
-                SourceReference(
-                    chunk_id=chunk.id,
 
-                    lecture_id=str(
-                        metadata.get(
-                            "lecture_id",
-                            "",
-                        )
-                    ),
+            chunk_id = getattr(
+                chunk,
+                "id",
+                None,
+            )
 
-                    lecture_title=str(
-                        metadata.get(
-                            "lecture_title",
-                            "Unknown",
-                        )
-                    ),
 
-                    source_file=str(
-                        metadata.get(
-                            "source_file",
-                            "Unknown",
-                        )
-                    ),
+            source = SourceReference(
 
-                    chunk_number=metadata.get(
+                chunk_id=str(
+                    chunk_id
+                    or ""
+                ),
+
+                lecture_id=str(
+                    metadata.get(
+                        "lecture_id",
+                        "",
+                    )
+                ),
+
+                lecture_title=str(
+                    metadata.get(
+                        "lecture_title",
+                        "Unknown",
+                    )
+                ),
+
+                source_file=str(
+                    metadata.get(
+                        "source_file",
+                        "Unknown",
+                    )
+                ),
+
+                chunk_number=
+                    metadata.get(
                         "chunk_number"
                     ),
-                )
+
             )
+
+
+            sources.append(
+                source
+            )
+
 
         return sources

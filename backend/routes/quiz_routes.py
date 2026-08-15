@@ -39,23 +39,14 @@ router = APIRouter(
 @lru_cache(maxsize=1)
 def get_quiz_service() -> QuizService:
     """
-    Create and cache the quiz generation service.
+    Create one shared QuizService instance.
 
-    Pipeline:
-
-        Question
-            ↓
-        Embedding
-            ↓
-        ChromaDB
-            ↓
-        Retrieval
-            ↓
-        Context
-            ↓
-        Gemini
-            ↓
-        Quiz
+    The service contains:
+        EmbeddingService
+        ChromaService
+        RetrievalService
+        ContextService
+        GeminiService
     """
 
     embedding_service = EmbeddingService()
@@ -91,10 +82,21 @@ def generate_quiz(
     current_student: Student = Depends(
         get_current_student
     ),
-    db: Session = Depends(get_db),
+    db: Session = Depends(
+        get_db
+    ),
 ):
     """
-    Generate a quiz from an uploaded lecture.
+    Generate a strategy-aware MCQ quiz.
+
+    Example request:
+
+    {
+        "lecture_id": "lecture-uuid",
+        "topic": "CNN",
+        "teaching_strategy": "Example Based",
+        "number_of_questions": 10
+    }
     """
 
     quiz_service = get_quiz_service()
@@ -104,6 +106,7 @@ def generate_quiz(
         student=current_student,
         lecture_id=request.lecture_id,
         topic=request.topic,
+        teaching_strategy=request.teaching_strategy,
         number_of_questions=request.number_of_questions,
     )
 
@@ -121,16 +124,12 @@ def submit_quiz(
     current_student: Student = Depends(
         get_current_student
     ),
-    db: Session = Depends(get_db),
+    db: Session = Depends(
+        get_db
+    ),
 ):
     """
-    Submit quiz answers.
-
-    The service:
-        1. Evaluates answers
-        2. Calculates score
-        3. Saves TestResult
-        4. Returns feedback
+    Evaluate a submitted quiz and save the result.
     """
 
     quiz_service = get_quiz_service()
@@ -140,4 +139,43 @@ def submit_quiz(
         student=current_student,
         quiz_id=request.quiz_id,
         answers=request.answers,
+    )
+
+
+# ============================================================
+# QUIZ HISTORY
+# ============================================================
+
+@router.get(
+    "/lecture/{lecture_id}/history",
+)
+def get_quiz_history(
+    lecture_id: str,
+    current_student: Student = Depends(
+        get_current_student
+    ),
+    db: Session = Depends(
+        get_db
+    ),
+):
+    """
+    Get the quiz attempt history for one lecture.
+
+    This is used by the My Lectures page to display
+    previously attempted quizzes underneath each lecture.
+
+    Example:
+
+        GET /quiz/lecture/{lecture_id}/history
+
+    Returns the quizzes attempted by the current student
+    for the requested lecture.
+    """
+
+    quiz_service = get_quiz_service()
+
+    return quiz_service.get_quiz_history(
+        db=db,
+        student=current_student,
+        lecture_id=lecture_id,
     )

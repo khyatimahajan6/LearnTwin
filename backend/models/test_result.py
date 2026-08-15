@@ -1,13 +1,7 @@
 """
 models/test_result.py
 
-Stores the result of every test/quiz attempted by a student.
-
-The Adaptive Engine uses these results to:
-- calculate recent performance
-- detect repeated low scores
-- detect diagram-based weaknesses
-- select an appropriate teaching strategy
+Stores the result of every quiz/test attempted by a student.
 """
 
 import uuid
@@ -21,6 +15,7 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Boolean,
+    JSON,
 )
 
 from sqlalchemy.orm import relationship
@@ -29,112 +24,148 @@ from database.db import Base
 
 
 class TestResult(Base):
-    """
-    ORM model mapped to the "test_results" table.
-    """
 
     __tablename__ = "test_results"
 
-    # --------------------------------------------------------
+    # ========================================================
     # PRIMARY KEY
-    # --------------------------------------------------------
+    # ========================================================
 
     id = Column(
         Integer,
         primary_key=True,
-        index=True
+        index=True,
     )
 
-    # Public unique ID for this test result
+    # ========================================================
+    # TEST ID
+    # ========================================================
+
     test_id = Column(
         String,
         unique=True,
         index=True,
-        default=lambda: str(uuid.uuid4())
+        nullable=False,
+        default=lambda: str(uuid.uuid4()),
     )
 
-    # --------------------------------------------------------
-    # STUDENT RELATIONSHIP
-    # --------------------------------------------------------
+    # ========================================================
+    # STUDENT
+    # ========================================================
 
     student_id = Column(
         Integer,
         ForeignKey("students.id"),
         nullable=False,
-        index=True
+        index=True,
     )
 
     student = relationship(
         "Student",
-        back_populates="test_results"
+        back_populates="test_results",
     )
 
-    # --------------------------------------------------------
+    # ========================================================
+    # QUIZ
+    # ========================================================
+
+    quiz_id = Column(
+        String,
+        nullable=True,
+        index=True,
+    )
+
+    # ========================================================
+    # LECTURE
+    # ========================================================
+
+    lecture_id = Column(
+        String,
+        nullable=True,
+        index=True,
+    )
+
+    # ========================================================
     # TEST INFORMATION
-    # --------------------------------------------------------
+    # ========================================================
 
     topic = Column(
         String,
         nullable=True,
-        index=True
+        index=True,
     )
 
     test_name = Column(
         String,
-        nullable=True
+        nullable=True,
     )
 
-    # --------------------------------------------------------
-    # SCORE INFORMATION
-    # --------------------------------------------------------
+    teaching_strategy = Column(
+        String,
+        nullable=True,
+        index=True,
+    )
+
+    # ========================================================
+    # SCORE
+    # ========================================================
 
     score = Column(
         Float,
-        nullable=False
+        nullable=False,
     )
 
     total_marks = Column(
         Float,
-        nullable=False
+        nullable=False,
     )
 
     percentage = Column(
         Float,
-        nullable=False
+        nullable=False,
     )
 
-    # --------------------------------------------------------
-    # DIAGRAM-BASED PERFORMANCE
-    # --------------------------------------------------------
+    # ========================================================
+    # DIAGRAM PERFORMANCE
+    # ========================================================
 
     diagram_questions = Column(
         Integer,
         default=0,
-        nullable=False
+        nullable=False,
     )
 
     diagram_correct = Column(
         Integer,
         default=0,
-        nullable=False
+        nullable=False,
     )
 
-    # --------------------------------------------------------
-    # PERFORMANCE FLAGS
-    # --------------------------------------------------------
+    # ========================================================
+    # PASS / FAIL
+    # ========================================================
 
     passed = Column(
         Boolean,
         default=False,
-        nullable=False
+        nullable=False,
     )
 
-    # --------------------------------------------------------
+    # ========================================================
+    # DETAILED RESULTS
+    # ========================================================
+
+    results = Column(
+        JSON,
+        nullable=True,
+    )
+
+    # ========================================================
     # TIMESTAMP
-    # --------------------------------------------------------
+    # ========================================================
 
     created_at = Column(
         DateTime,
         default=datetime.utcnow,
-        nullable=False
+        nullable=False,
     )

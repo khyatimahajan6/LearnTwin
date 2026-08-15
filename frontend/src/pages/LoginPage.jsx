@@ -1,181 +1,893 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { authService } from '../services/authService';
-import { Button, Input, Alert, Loading } from '../components/UI';
-import { validateEmail, validatePassword } from '../utils/helpers';
+import React, { useState } from "react";
+
+import {
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+
+import {
+  ArrowRight,
+  Brain,
+  BookOpen,
+  Sparkles,
+} from "lucide-react";
+
+import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
+import { authService } from "../services/authService";
+
+import { Input, Alert } from "../components/UI";
+
+// ============================================================
+// LOGIN PAGE
+// ============================================================
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { login } = useAuth();
+  const { darkMode } = useTheme();
+
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     rememberMe: false,
   });
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [serverError, setServerError] = useState('');
 
-  useEffect(() => {
-    if (localStorage.getItem('twinalai_auth')) {
-      navigate('/dashboard');
-    }
-  }, [navigate]);
+  const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // ==========================================================
+  // VALIDATION
+  // ==========================================================
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.email) newErrors.email = 'Email is required';
-    else if (!validateEmail(formData.email)) newErrors.email = 'Invalid email format';
-    if (!formData.password) newErrors.password = 'Password is required';
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    }
+
     return newErrors;
   };
 
+  // ==========================================================
+  // CHANGE
+  // ==========================================================
+
+  const handleChange = (e) => {
+    const {
+      name,
+      value,
+      type,
+      checked,
+    } = e.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]:
+        type === "checkbox"
+          ? checked
+          : value,
+    }));
+
+    if (errors[name]) {
+      setErrors((previous) => ({
+        ...previous,
+        [name]: "",
+      }));
+    }
+
+    if (serverError) {
+      setServerError("");
+    }
+  };
+
+  // ==========================================================
+  // SUBMIT
+  // ==========================================================
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validate();
-    
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
 
     setLoading(true);
-    setServerError('');
+    setServerError("");
 
     try {
       const result = await authService.login(
-        formData.email,
+        formData.email.trim(),
         formData.password,
         formData.rememberMe
       );
 
-      if (result.success) {
-        login(result.user);
-        navigate('/dashboard');
-      } else {
-        setServerError(result.error || 'Login failed. Please try again.');
+      if (!result.success) {
+        setServerError(
+          result.error || "Unable to sign in."
+        );
+        return;
       }
-    } catch (err) {
-      setServerError('An error occurred. Please try again.');
+
+      console.log("LOGIN SUCCESS:", result);
+
+      login(result.user);
+
+      const destination =
+        location.state?.from?.pathname ||
+        "/dashboard";
+
+      navigate(destination, {
+        replace: true,
+      });
+
+    } catch (error) {
+      console.error(
+        "LOGIN PAGE ERROR:",
+        error
+      );
+
+      setServerError(
+        "Unable to connect to the backend."
+      );
+
     } finally {
       setLoading(false);
     }
   };
 
+  // ==========================================================
+  // PAGE
+  // ==========================================================
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-600 to-primary-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-2xl p-8">
-          <div className="text-center mb-8">
-            <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
-              T
+    <div
+      className={`
+        min-h-screen
+        flex
+        transition-colors
+        duration-300
+
+        ${
+          darkMode
+            ? "bg-[#171916] text-[#eeeae1]"
+            : "bg-[#f7f3ea] text-[#3e4038]"
+        }
+      `}
+    >
+
+      {/* =====================================================
+          LEFT PANEL
+      ===================================================== */}
+
+      <div
+        className={`
+          hidden
+          lg:flex
+          lg:w-[48%]
+          relative
+          overflow-hidden
+
+          ${
+            darkMode
+              ? "bg-[#20231e]"
+              : "bg-[#e7eadf]"
+          }
+        `}
+      >
+
+        {/* Decorative circle */}
+
+        <div
+          className={`
+            absolute
+            -top-32
+            -left-32
+            w-[420px]
+            h-[420px]
+            rounded-full
+
+            ${
+              darkMode
+                ? "bg-[#8fa27a]/10"
+                : "bg-[#9aaa82]/20"
+            }
+          `}
+        />
+
+        <div
+          className={`
+            absolute
+            -bottom-40
+            -right-32
+            w-[500px]
+            h-[500px]
+            rounded-full
+
+            ${
+              darkMode
+                ? "bg-[#c98262]/5"
+                : "bg-[#c98262]/10"
+            }
+          `}
+        />
+
+        <div
+          className="
+            relative
+            z-10
+            w-full
+            p-14
+            xl:p-20
+            flex
+            flex-col
+            justify-between
+          "
+        >
+
+          {/* LOGO */}
+
+          <div className="flex items-center gap-3">
+
+            <div
+              className="
+                w-10
+                h-10
+                rounded-lg
+                bg-[#6f8061]
+                flex
+                items-center
+                justify-center
+              "
+            >
+              <span
+                className="
+                  text-white
+                  text-lg
+                  font-semibold
+                "
+              >
+                T
+              </span>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-2">
-              Welcome Back
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Sign in to continue your learning journey
-            </p>
+
+            <div>
+
+              <div
+                className={`
+                  text-lg
+                  font-semibold
+
+                  ${
+                    darkMode
+                      ? "text-[#eeeae1]"
+                      : "text-[#3e4038]"
+                  }
+                `}
+              >
+                TwinLearn
+              </div>
+
+              <div
+                className={`
+                  text-[10px]
+                  uppercase
+                  tracking-[0.2em]
+
+                  ${
+                    darkMode
+                      ? "text-[#999d92]"
+                      : "text-[#7d806f]"
+                  }
+                `}
+              >
+                Intelligent Learning
+              </div>
+
+            </div>
+
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {serverError && (
+          {/* MAIN */}
+
+          <div className="max-w-xl">
+
+            <p
+              className="
+                text-[#c98262]
+                text-xs
+                uppercase
+                tracking-[0.25em]
+                font-semibold
+                mb-5
+              "
+            >
+              Welcome back
+            </p>
+
+            <h1
+              className={`
+                font-display
+                text-5xl
+                xl:text-6xl
+                leading-[1.08]
+
+                ${
+                  darkMode
+                    ? "text-[#f2eee5]"
+                    : "text-[#3e4038]"
+                }
+              `}
+            >
+              Continue your
+
+              <br />
+
+              <span className="text-[#8fa27a]">
+                learning journey.
+              </span>
+            </h1>
+
+            <p
+              className={`
+                mt-6
+                text-lg
+                leading-relaxed
+                max-w-lg
+
+                ${
+                  darkMode
+                    ? "text-[#a7aaa0]"
+                    : "text-[#73766b]"
+                }
+              `}
+            >
+              Your AI Professor remembers how
+              you learn and adapts every lesson
+              to help you improve.
+            </p>
+
+            <div className="mt-10 space-y-5">
+
+              <LoginFeature
+                icon={Brain}
+                title="Adaptive Learning"
+                text="Teaching strategies adjust to your performance."
+                darkMode={darkMode}
+              />
+
+              <LoginFeature
+                icon={BookOpen}
+                title="Your Lectures"
+                text="Learn directly from your uploaded course material."
+                darkMode={darkMode}
+              />
+
+              <LoginFeature
+                icon={Sparkles}
+                title="Personalized AI"
+                text="Get explanations designed around your learning needs."
+                darkMode={darkMode}
+              />
+
+            </div>
+
+          </div>
+
+          {/* FOOTER */}
+
+          <div
+            className={`
+              text-xs
+
+              ${
+                darkMode
+                  ? "text-[#777a70]"
+                  : "text-[#92958a]"
+              }
+            `}
+          >
+            Your knowledge. Your pace. Your Professor.
+          </div>
+
+        </div>
+      </div>
+
+      {/* =====================================================
+          RIGHT PANEL
+      ===================================================== */}
+
+      <div
+        className={`
+          w-full
+          lg:w-[52%]
+          flex
+          items-center
+          justify-center
+          px-6
+          py-10
+
+          ${
+            darkMode
+              ? "bg-[#171916]"
+              : "bg-[#f7f3ea]"
+          }
+        `}
+      >
+
+        <div className="w-full max-w-[450px]">
+
+          {/* MOBILE LOGO */}
+
+          <div
+            className="
+              lg:hidden
+              flex
+              items-center
+              gap-3
+              mb-9
+            "
+          >
+
+            <div
+              className="
+                w-10
+                h-10
+                rounded-lg
+                bg-[#6f8061]
+                flex
+                items-center
+                justify-center
+              "
+            >
+              <span className="text-white font-semibold">
+                T
+              </span>
+            </div>
+
+            <div
+              className={`
+                font-semibold
+                text-xl
+
+                ${
+                  darkMode
+                    ? "text-[#eeeae1]"
+                    : "text-[#3e4038]"
+                }
+              `}
+            >
+              TwinLearn
+            </div>
+
+          </div>
+
+          {/* HEADER */}
+
+          <div className="mb-8">
+
+            <p
+              className="
+                text-[#c98262]
+                text-xs
+                uppercase
+                tracking-[0.2em]
+                font-semibold
+                mb-3
+              "
+            >
+              Student Login
+            </p>
+
+            <h2
+              className={`
+                font-display
+                text-4xl
+
+                ${
+                  darkMode
+                    ? "text-[#f2eee5]"
+                    : "text-[#3e4038]"
+                }
+              `}
+            >
+              Welcome back.
+            </h2>
+
+            <p
+              className={`
+                mt-3
+
+                ${
+                  darkMode
+                    ? "text-[#a1a49a]"
+                    : "text-[#7d7d72]"
+                }
+              `}
+            >
+              Sign in to continue learning with
+              your AI Professor.
+            </p>
+
+          </div>
+
+          {/* ERROR */}
+
+          {serverError && (
+            <div className="mb-5">
               <Alert
                 variant="error"
                 message={serverError}
-                onClose={() => setServerError('')}
+                onClose={() =>
+                  setServerError("")
+                }
               />
-            )}
+            </div>
+          )}
+
+          {/* FORM */}
+
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5"
+          >
+
+            {/* EMAIL */}
 
             <Input
-              label="Email Address"
+              label="University email"
+              name="email"
               type="email"
               placeholder="you@university.edu"
               value={formData.email}
-              onChange={(e) => {
-                setFormData({ ...formData, email: e.target.value });
-                if (errors.email) setErrors({ ...errors, email: '' });
-              }}
+              onChange={handleChange}
               error={errors.email}
+              disabled={loading}
+              autoComplete="email"
+              darkMode={darkMode}
             />
+
+            {/* PASSWORD */}
 
             <Input
               label="Password"
+              name="password"
               type="password"
-              placeholder="••••••••"
+              placeholder="Enter your password"
               value={formData.password}
-              onChange={(e) => {
-                setFormData({ ...formData, password: e.target.value });
-                if (errors.password) setErrors({ ...errors, password: '' });
-              }}
+              onChange={handleChange}
               error={errors.password}
+              disabled={loading}
+              autoComplete="current-password"
+              darkMode={darkMode}
             />
 
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id="rememberMe"
-                checked={formData.rememberMe}
-                onChange={(e) =>
-                  setFormData({ ...formData, rememberMe: e.target.checked })
-                }
-                className="w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 cursor-pointer"
-              />
-              <label htmlFor="rememberMe" className="text-sm text-gray-700 dark:text-gray-300">
+            {/* REMEMBER */}
+
+            <div
+              className="
+                flex
+                items-center
+                justify-between
+              "
+            >
+
+              <label
+                className={`
+                  flex
+                  items-center
+                  gap-2
+                  text-sm
+                  cursor-pointer
+
+                  ${
+                    darkMode
+                      ? "text-[#a5a89e]"
+                      : "text-[#73766b]"
+                  }
+                `}
+              >
+
+                <input
+                  type="checkbox"
+                  name="rememberMe"
+                  checked={formData.rememberMe}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="
+                    w-4
+                    h-4
+                    accent-[#6f8061]
+                    cursor-pointer
+                  "
+                />
+
                 Remember me
+
               </label>
+
+              <button
+                type="button"
+                onClick={() =>
+                  navigate("/forgot-password")
+                }
+                className="
+                  text-sm
+                  text-[#6f8061]
+                  font-semibold
+                  hover:text-[#c98262]
+                  transition-colors
+                "
+              >
+                Forgot password?
+              </button>
+
             </div>
 
-            <Button
+            {/* SIGN IN */}
+
+            <button
               type="submit"
-              variant="primary"
-              size="lg"
-              className="w-full"
-              loading={loading}
               disabled={loading}
+              className="
+                w-full
+                h-[52px]
+                mt-2
+                rounded-lg
+                bg-[#6f8061]
+                text-white
+                font-semibold
+                tracking-wide
+                hover:bg-[#5d6e51]
+                transition-all
+                duration-200
+                disabled:opacity-50
+                disabled:cursor-not-allowed
+                flex
+                items-center
+                justify-center
+                gap-2
+              "
             >
-              {loading ? 'Signing In...' : 'Sign In'}
-            </Button>
+
+              {loading ? (
+                <>
+                  <span
+                    className="
+                      w-4
+                      h-4
+                      border-2
+                      border-white/40
+                      border-t-white
+                      rounded-full
+                      animate-spin
+                    "
+                  />
+
+                  Signing in...
+                </>
+              ) : (
+                <>
+                  Sign in
+                  <ArrowRight size={18} />
+                </>
+              )}
+
+            </button>
+
           </form>
 
-          <div className="mt-6 space-y-3">
-            <Link
-              to="/forgot-password"
-              className="block text-center text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium"
+          {/* DIVIDER */}
+
+          <div
+            className="
+              flex
+              items-center
+              gap-4
+              my-7
+            "
+          >
+
+            <div
+              className={`
+                flex-1
+                h-px
+
+                ${
+                  darkMode
+                    ? "bg-[#353831]"
+                    : "bg-[#e2dcd0]"
+                }
+              `}
+            />
+
+            <span
+              className={`
+                text-xs
+                uppercase
+                tracking-wider
+
+                ${
+                  darkMode
+                    ? "text-[#777a70]"
+                    : "text-[#a09e95]"
+                }
+              `}
             >
-              Forgot password?
-            </Link>
+              New to TwinLearn?
+            </span>
 
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300 dark:border-dark-600" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white dark:bg-dark-800 text-gray-600 dark:text-gray-400">
-                  Or
-                </span>
-              </div>
-            </div>
+            <div
+              className={`
+                flex-1
+                h-px
 
-            <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
-              Don't have an account?{' '}
-              <Link
-                to="/register"
-                className="font-medium text-primary-600 dark:text-primary-400 hover:underline"
-              >
-                Sign up here
-              </Link>
-            </p>
+                ${
+                  darkMode
+                    ? "bg-[#353831]"
+                    : "bg-[#e2dcd0]"
+                }
+              `}
+            />
+
           </div>
 
-          <div className="mt-6 pt-6 border-t border-gray-200 dark:border-dark-700 text-center text-xs text-gray-600 dark:text-gray-400">
-            <p>Demo credentials:</p>
-            <p>Email: test@university.edu</p>
-            <p>Password: password123</p>
-          </div>
+          {/* REGISTER */}
+
+          <Link
+            to="/register"
+            className={`
+              flex
+              items-center
+              justify-center
+              gap-2
+              w-full
+              h-[52px]
+              rounded-lg
+              border
+              font-semibold
+              transition-all
+
+              ${
+                darkMode
+                  ? `
+                    border-[#41443c]
+                    text-[#ddd9d0]
+                    hover:bg-[#242720]
+                    hover:border-[#62685a]
+                  `
+                  : `
+                    border-[#cfc9bc]
+                    text-[#4d5047]
+                    hover:bg-[#eee9df]
+                    hover:border-[#aeb5a1]
+                  `
+              }
+            `}
+          >
+            Create an account
+            <ArrowRight size={17} />
+          </Link>
+
+          {/* BOTTOM */}
+
+          <p
+            className={`
+              text-center
+              text-xs
+              mt-6
+              leading-relaxed
+
+              ${
+                darkMode
+                  ? "text-[#6f7269]"
+                  : "text-[#aaa79d]"
+              }
+            `}
+          >
+            Secure student authentication powered
+            by TwinLearnAI.
+          </p>
+
         </div>
       </div>
+    </div>
+  );
+}
+
+// ============================================================
+// LOGIN FEATURE
+// ============================================================
+
+function LoginFeature({
+  icon: Icon,
+  title,
+  text,
+  darkMode,
+}) {
+  return (
+    <div className="flex gap-4 items-start">
+
+      <div
+        className={`
+          w-10
+          h-10
+          rounded-lg
+          flex
+          items-center
+          justify-center
+          shrink-0
+          border
+
+          ${
+            darkMode
+              ? `
+                bg-[#292d26]
+                border-[#3d4138]
+              `
+              : `
+                bg-[#f5f0e7]
+                border-[#ddd7ca]
+              `
+          }
+        `}
+      >
+
+        <Icon
+          size={18}
+          className="text-[#6f8061]"
+        />
+
+      </div>
+
+      <div>
+
+        <h3
+          className={`
+            text-sm
+            font-semibold
+
+            ${
+              darkMode
+                ? "text-[#ddd9d0]"
+                : "text-[#4a4d43]"
+            }
+          `}
+        >
+          {title}
+        </h3>
+
+        <p
+          className={`
+            text-sm
+            mt-1
+
+            ${
+              darkMode
+                ? "text-[#92958a]"
+                : "text-[#85877d]"
+            }
+          `}
+        >
+          {text}
+        </p>
+
+      </div>
+
     </div>
   );
 }
